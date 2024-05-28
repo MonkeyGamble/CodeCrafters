@@ -1,0 +1,27 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.container {
+	width: 60px;
+	height: 32px;
+	background-color: grey;
+	border-radius: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	/* gap: 6px; */
+}
+.circle {
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	background-color: white;
+}
+.moon {
+	width: 17px;
+	height: 17px;
+	color: white;
+}

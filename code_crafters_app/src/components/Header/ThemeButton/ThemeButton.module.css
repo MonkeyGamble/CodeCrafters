@@ -7,21 +7,51 @@
 .container {
 	width: 60px;
 	height: 32px;
-	background-color: grey;
 	border-radius: 30px;
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	/* gap: 6px; */
+	position: relative;
+	z-index: 1;
 }
 .circle {
 	width: 28px;
 	height: 28px;
 	border-radius: 50%;
 	background-color: white;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	transition: left 0.5s ease-in-out;
+	z-index: 3;
+}
+
+.circle.light {
+	left: 2px;
+	/* right: auto; */
+}
+
+.circle.dark {
+	/* left: auto; */
+	/* right: 2px; */
+	left: calc(100% - 30px);
+	background-color: grey;
+}
+
+.space_elements {
+	display: flex;
+	gap: 10px;
+	position: absolute;
+	left: 6px;
+	top: 6px;
+}
+
+.sun {
+	color: grey;
+	width: 20px;
+	height: 20px;
+	z-index: 2;
 }
 .moon {
 	width: 17px;
 	height: 17px;
 	color: white;
+	z-index: 2;
 }

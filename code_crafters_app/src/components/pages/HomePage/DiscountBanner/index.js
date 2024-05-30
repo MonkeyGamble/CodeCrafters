@@ -5,7 +5,7 @@ export default function DiscountBanner() {
 	return (
 		<div className={s.discount_banner}>
 			<h1>Amazing Discounts on Garden Products!</h1>
-			<Link to='/shopping_cart'>
+			<Link to='/all_sales'>
 				<button>Check out</button>
 			</Link>
 		</div>

@@ -1,22 +1,20 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import s from './DiscountProducts.module.css';
-import { getAllProducts } from '../../../../asyncActions/products';
+import { getDiscountProducts } from '../../../../asyncActions/products';
 import like from '../../../../assets/img/like_white.png';
 import shopping_cart from '../../../../assets/img/shopping_cart_white.png';
 import { Link } from 'react-router-dom';
 
 export default function DiscountProducts() {
 	const dispatch = useDispatch();
-	const allProducts = useSelector(state => state.products.allProducts);
+	const discountProducts = useSelector(
+		state => state.products.discountProducts
+	);
 
 	useEffect(() => {
-		dispatch(getAllProducts());
+		dispatch(getDiscountProducts());
 	}, [dispatch]);
-
-	const discountProducts = allProducts.filter(
-		product => product.discont_price !== null
-	);
 
 	function shuffle(array) {
 		let currentIndex = array.length,
@@ -34,13 +32,11 @@ export default function DiscountProducts() {
 			array[currentIndex] = array[randomIndex];
 			array[randomIndex] = tempElem;
 		}
-
 		return array;
 	}
 
 	const randomDiscountProducts = shuffle(discountProducts).slice(0, 4);
 
-	console.log(discountProducts);
 	return (
 		<div className={s.sale_container}>
 			<div className={s.component_header}>
@@ -54,7 +50,10 @@ export default function DiscountProducts() {
 			<div className={s.cards_container}>
 				{randomDiscountProducts.map(product => (
 					<div key={product.id} className={s.card}>
-						<div className={s.product_picture}>
+						<div
+							className={s.product_picture}
+							style={{ backgroundImage: `url(${product.image})` }}
+						>
 							<div className={s.discount_size}>
 								-{Math.round((1 - product.discont_price / product.price) * 100)}
 								%

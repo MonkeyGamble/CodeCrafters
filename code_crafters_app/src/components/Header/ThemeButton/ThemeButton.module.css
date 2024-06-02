@@ -50,8 +50,37 @@
 	z-index: 2;
 }
 .moon {
-	width: 17px;
-	height: 17px;
+	width: 20px;
+	height: 20px;
 	color: white;
 	z-index: 2;
+}
+
+@media (max-width: 768px) {
+	.container {
+		width: 52.5px;
+		height: 28px;
+		border-radius: 26.25px;
+	}
+	.circle {
+		width: 24.5px;
+		height: 24.5px;
+		top: 1.75px;
+		left: 1.75px;
+	}
+	.circle.light {
+		left: 1.75px;
+	}
+	.space_elements {
+		left: 5.25px;
+		top: 5.25px;
+	}
+	.moon {
+		width: 17.5px;
+		height: 17.5px;
+	}
+	.sun {
+		width: 17.5px;
+		height: 17.5px;
+	}
 }

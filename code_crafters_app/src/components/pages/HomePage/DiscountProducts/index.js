@@ -77,6 +77,8 @@ export default function DiscountProducts() {
 					</div>
 				))}
 			</div>
+
+			<button className={s.button_340}>All sales</button>
 		</div>
 	);
 }

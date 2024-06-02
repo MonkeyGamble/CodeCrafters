@@ -12,7 +12,7 @@
 	background-image: url('../../../../assets/img/discount_banner.jpg');
 	background-size: cover;
 	background-position: center;
-	padding: 80px 0 239.3px 40px;
+	padding: 80px 0 210px 40px;
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
@@ -36,4 +36,37 @@
 	font-weight: 600;
 	color: white;
 	font-family: 'Montserrat';
+}
+
+@media (max-width: 1000px) {
+	.discount_banner {
+		padding: 60px 20px 120px 20px;
+	}
+	.discount_banner h1 {
+		font-size: 90px;
+	}
+}
+
+@media (max-width: 768px) {
+	.discount_banner h1 {
+		font-size: 68px;
+	}
+}
+
+@media (max-width: 480px) {
+	.discount_banner h1 {
+		font-size: 60px;
+	}
+	.discount_banner button {
+		width: 199px;
+		height: 47px;
+		font-size: 18px;
+		padding: 12px 52px;
+	}
+}
+
+@media (max-width: 360px) {
+	.discount_banner h1 {
+		font-size: 52px;
+	}
 }

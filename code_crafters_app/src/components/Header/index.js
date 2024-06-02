@@ -4,6 +4,7 @@ import logo from '../../assets/img/logo.png';
 import like from '../../assets/img/like.png';
 import shopping_cart from '../../assets/img/shopping_cart.png';
 import { NavLink } from 'react-router-dom';
+import { RxHamburgerMenu } from 'react-icons/rx';
 
 export default function Header() {
 	return (
@@ -34,9 +35,10 @@ export default function Header() {
 				<NavLink to='/liked_products'>
 					<img src={like} alt='like' />
 				</NavLink>
-				<NavLink to='/shopping_cart'>
+				<NavLink to='/shopping_cart' className={s.shopping_cart}>
 					<img src={shopping_cart} alt='cart' />
 				</NavLink>
+				<RxHamburgerMenu className={s.burger} />
 			</div>
 		</div>
 	);

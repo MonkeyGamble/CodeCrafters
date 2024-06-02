@@ -66,5 +66,86 @@
 }
 .header_right {
 	display: flex;
+	align-items: center;
 	gap: 24px;
+}
+
+.burger {
+	display: none;
+}
+
+@media (max-width: 1000px) {
+	.container {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	.logo > img {
+		height: 68px;
+		width: 68px;
+	}
+	.nav_menu {
+		gap: 24px;
+	}
+	.header_right {
+		gap: 11px;
+	}
+}
+
+@media (max-width: 768px) {
+	.container {
+		padding: 35px 20px 30px 20px;
+	}
+	.logo > img {
+		height: 68px;
+		width: 68px;
+	}
+	.nav_menu {
+		gap: 20px;
+		font-size: 16px;
+	}
+	.header_left {
+		gap: 16px;
+	}
+	.header_right {
+		gap: 11px;
+	}
+	.header_center {
+		gap: 10px;
+	}
+}
+
+@media (max-width: 480px) {
+	.container {
+		padding: 12px 20px;
+	}
+	.logo > img {
+		height: 44px;
+		width: 44px;
+	}
+
+	.discount,
+	.nav_menu {
+		display: none;
+	}
+	.header_right {
+		gap: 12px;
+	}
+	.header_right img {
+		height: 32px;
+		width: 32px;
+	}
+	.shopping_cart {
+		margin-right: 8px;
+	}
+	.burger {
+		display: block;
+		font-size: 44px;
+	}
+}
+
+@media (max-width: 340px) {
+	.logo > img {
+		height: 44px;
+		width: 44px;
+	}
 }

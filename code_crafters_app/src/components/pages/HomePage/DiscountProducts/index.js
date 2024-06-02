@@ -5,9 +5,11 @@ import { getDiscountProducts } from '../../../../asyncActions/products';
 import like from '../../../../assets/img/like_white.png';
 import shopping_cart from '../../../../assets/img/shopping_cart_white.png';
 import { Link } from 'react-router-dom';
+import { ROOT_URL } from '../../../..';
 
 export default function DiscountProducts() {
 	const dispatch = useDispatch();
+
 	const discountProducts = useSelector(
 		state => state.products.discountProducts
 	);
@@ -16,6 +18,7 @@ export default function DiscountProducts() {
 		dispatch(getDiscountProducts());
 	}, [dispatch]);
 
+	//Перемешиваем массив и берем 4 рандомных продукта
 	function shuffle(array) {
 		let currentIndex = array.length,
 			tempElem,
@@ -52,7 +55,7 @@ export default function DiscountProducts() {
 					<div key={product.id} className={s.card}>
 						<div
 							className={s.product_picture}
-							style={{ backgroundImage: `url(${product.image})` }}
+							style={{ backgroundImage: `url(${ROOT_URL + product.image})` }}
 						>
 							<div className={s.discount_size}>
 								-{Math.round((1 - product.discont_price / product.price) * 100)}

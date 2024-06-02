@@ -64,8 +64,9 @@ h1 {
 	border-top-right-radius: 12px;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
-	/* background-color: aqua; */
 	border-bottom: 1px solid #dddddd;
+	background-size: cover;
+	background-position: center;
 }
 
 .product_description {

@@ -160,6 +160,9 @@ h1 {
 		grid-template-rows: repeat(2, 1fr);
 		gap: 20px;
 	}
+	.component_header h1 {
+		font-size: 56px;
+	}
 	.card {
 		width: 354px;
 		height: 372px;
@@ -170,6 +173,9 @@ h1 {
 	}
 }
 @media (max-width: 480px) {
+	.component_header h1 {
+		font-size: 48px;
+	}
 	.card {
 		width: 210px;
 		height: 358px;
@@ -219,6 +225,7 @@ h1 {
 		width: 320px;
 		text-align: left;
 		margin: 0;
+		font-size: 40px;
 	}
 	.button_340 {
 		display: block;

@@ -1,0 +1,53 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.discount_user_form {
+	max-width: 1360px;
+	height: 486px;
+	margin-left: auto;
+	margin-right: auto;
+	background-image: url('../../../../assets/img/discountform.png');
+	background-color: #339933;
+	background-size: cover;
+	background-position: center;
+	padding: 80px 0 239.3px 40px;
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	gap: 40px;
+}
+
+
+.discount_user_form h2 {
+	font-size: 64px;
+	color: white;
+	display: flex; 
+    justify-content: center;
+	line-height: 110%;
+	max-width: 1296px;
+}
+
+.discount_user_form form {
+	width: 516px;
+	height: 296px;
+	color: #339933;
+	gap: 32px;
+	display: flex;
+	flex-direction: column;
+	
+  
+
+}
+.discount_user_form input, button {
+width: 516px;
+height: 58px;
+border: #FFFFF1;
+padding: 16px 32px 16px 32px;
+gap: 10px;
+border-radius: 5px;
+font-size: 20px;
+opacity: 0px;
+}

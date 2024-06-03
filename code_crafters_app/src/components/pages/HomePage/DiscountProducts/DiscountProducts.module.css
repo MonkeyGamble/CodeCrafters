@@ -1,8 +1,8 @@
-* {
+/* * {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-}
+} */
 
 .sale_container {
 	display: flex;
@@ -20,7 +20,7 @@
 	height: 36px;
 	border-radius: 6px;
 	background-color: transparent;
-	border: 1px solid #dddddd;
+	border: 1px solid var(--grey_divider);
 	color: grey;
 	font-size: 16px;
 	font-weight: 500;
@@ -33,7 +33,7 @@ h1 {
 .line {
 	flex: 1; /* Растягиваем линию на всю доступную ширину */
 	height: 1px;
-	background-color: #dddddd;
+	background-color: var(--grey_divider);
 	margin: 0 0 0 32px;
 }
 
@@ -46,10 +46,10 @@ h1 {
 .card {
 	width: 316px;
 	height: 422px;
-	background-color: white;
+	background-color: var(--text_white);
 	display: flex;
 	flex-direction: column;
-	border: 1px solid #dddddd;
+	border: 1px solid var(--grey_divider);
 	border-radius: 12px;
 	cursor: pointer;
 }
@@ -64,7 +64,7 @@ h1 {
 	border-top-right-radius: 12px;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
-	border-bottom: 1px solid #dddddd;
+	border-bottom: 1px solid var(--grey_divider);
 	background-size: cover;
 	background-position: center;
 }
@@ -88,11 +88,11 @@ h1 {
 	width: 68px;
 	height: 34px;
 	border-radius: 6px;
-	background-color: #f26d22;
+	background-color: var(--sale);
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: white;
+	color: var(--text_white);
 	font-size: 20px;
 	font-weight: 600;
 	letter-spacing: 3%;
@@ -122,7 +122,7 @@ h1 {
 .price h5 {
 	font-size: 20px;
 	font-weight: 500;
-	color: grey;
+	color: var(--grey);
 	text-decoration: line-through;
 }
 .button_340 {
@@ -233,8 +233,8 @@ h1 {
 		height: 42px;
 		border-radius: 6px;
 		background-color: transparent;
-		border: 1px solid #dddddd;
-		color: grey;
+		border: 1px solid var(--grey_divider);
+		color: var(--grey);
 		font-size: 14px;
 		font-weight: 500;
 		cursor: pointer;

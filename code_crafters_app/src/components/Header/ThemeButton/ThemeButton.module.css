@@ -15,7 +15,7 @@
 	width: 28px;
 	height: 28px;
 	border-radius: 50%;
-	background-color: white;
+	background-color: var(--text_white);
 	position: absolute;
 	top: 2px;
 	left: 2px;
@@ -32,7 +32,7 @@
 	/* left: auto; */
 	/* right: 2px; */
 	left: calc(100% - 30px);
-	background-color: grey;
+	background-color: var(--grey);
 }
 
 .space_elements {
@@ -52,7 +52,7 @@
 .moon {
 	width: 20px;
 	height: 20px;
-	color: white;
+	color: var(--text_white);
 	z-index: 2;
 }
 

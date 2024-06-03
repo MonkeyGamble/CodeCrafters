@@ -1,12 +1,12 @@
 .container {
-	max-width: 1440px;
+	/* max-width: 1440px;
 	margin-left: auto;
-	margin-right: auto;
+	margin-right: auto; */
 	padding: 30px 40px 28px 40px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background-color: #fffff1;
+	background-color: var(--white);
 }
 
 .header_left {
@@ -36,12 +36,12 @@
 .discount {
 	width: 151px;
 	height: 32px;
-	background-color: #92a134;
+	background-color: var(--green);
 	border-radius: 6px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: white;
+	color: var(--text_white);
 	font-size: 16px;
 	font-weight: 500;
 }
@@ -60,10 +60,16 @@
 	display: inline-block;
 }
 
+.nav_menu a:hover {
+	transform: scale(1.05);
+	transition: 0.5s ease;
+}
+
 .nav_menu a:active {
 	text-decoration: none;
-	color: #92a134;
+	color: var(--green);
 }
+
 .header_right {
 	display: flex;
 	align-items: center;

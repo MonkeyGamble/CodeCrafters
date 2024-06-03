@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import s from './DiscountProducts.module.css';
+import '../../../../Global.css';
 import { getDiscountProducts } from '../../../../asyncActions/products';
 import like from '../../../../assets/img/like_white.png';
 import shopping_cart from '../../../../assets/img/shopping_cart_white.png';
@@ -41,7 +42,7 @@ export default function DiscountProducts() {
 	const randomDiscountProducts = shuffle(discountProducts).slice(0, 4);
 
 	return (
-		<div className={s.sale_container}>
+		<div className={`${s.sale_container} content_line`}>
 			<div className={s.component_header}>
 				<h1>Sale</h1>
 				<div class={s.line}></div>

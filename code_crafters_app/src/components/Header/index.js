@@ -1,3 +1,5 @@
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import s from './Header.module.css';
 import '../../Global.css';
 import ThemeButton from './ThemeButton/index';
@@ -6,8 +8,21 @@ import like from '../../assets/img/like.png';
 import shopping_cart from '../../assets/img/shopping_cart.png';
 import { NavLink } from 'react-router-dom';
 import { RxHamburgerMenu } from 'react-icons/rx';
+import { RxCross2 } from 'react-icons/rx';
+import { closeModalAction, openModalAction } from '../../store/modalReducer';
 
 export default function Header() {
+	const isModalOpen = useSelector(state => state.modal.isModalOpen);
+	const dispatch = useDispatch();
+
+	const modalMenuOpenHandler = () => {
+		dispatch(openModalAction());
+	};
+
+	const modalMenuCloseHandler = () => {
+		dispatch(closeModalAction());
+	};
+
 	return (
 		<header className={`${s.container} content_line`}>
 			<div className={s.header_left}>
@@ -44,7 +59,33 @@ export default function Header() {
 					<img src={shopping_cart} alt='cart' />
 				</NavLink>
 
-				<RxHamburgerMenu className={s.burger} />
+				<RxHamburgerMenu className={s.burger} onClick={modalMenuOpenHandler} />
+
+				<div className={`${s.modal_menu} ${isModalOpen ? s.active : ''}`}>
+					<RxCross2
+						className={`${s.cross} ${isModalOpen ? s.active : ''}`}
+						onClick={modalMenuCloseHandler}
+					/>
+					<nav>
+						<ul className={`${s.nav_menu} ${isModalOpen ? s.active : ''}`}>
+							<NavLink to='/'>
+								<li>Main Page</li>
+							</NavLink>
+							<NavLink to='/categories'>
+								<li>Categories</li>
+							</NavLink>
+							<NavLink to='/all_products'>
+								<li>All Products</li>
+							</NavLink>
+							<NavLink to='/all_sales'>
+								<li>All Sales</li>
+							</NavLink>
+						</ul>
+					</nav>
+					<div className={`${s.discount} ${isModalOpen ? s.active : ''}`}>
+						1 day discount!
+					</div>
+				</div>
 			</div>
 		</header>
 	);

@@ -29,6 +29,7 @@
 h1 {
 	font-size: 64px;
 	font-weight: bold;
+	color: var(--text_black);
 }
 .line {
 	flex: 1; /* Растягиваем линию на всю доступную ширину */
@@ -117,6 +118,7 @@ h1 {
 .price h2 {
 	font-size: 40px;
 	font-weight: 600;
+	color: var(--text_black);
 }
 
 .price h5 {

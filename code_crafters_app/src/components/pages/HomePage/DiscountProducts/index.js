@@ -7,6 +7,7 @@ import like from '../../../../assets/img/like_white.png';
 import shopping_cart from '../../../../assets/img/shopping_cart_white.png';
 import { Link } from 'react-router-dom';
 import { ROOT_URL } from '../../../..';
+import { shuffle } from '../../../../utils/shuffleArray';
 
 export default function DiscountProducts() {
 	const dispatch = useDispatch();

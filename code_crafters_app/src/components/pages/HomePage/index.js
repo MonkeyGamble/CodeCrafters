@@ -9,7 +9,7 @@ export default function HomePage() {
 		<div>
 			<DiscountBanner />
 			<DiscountProducts className={s.discount_products} />
-            <Categories />
+            <Categories limit = {4}/>
 			<DiscountUserForm />
 		</div>
 	);

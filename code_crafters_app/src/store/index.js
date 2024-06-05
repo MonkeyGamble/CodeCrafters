@@ -3,6 +3,7 @@ import themeReducer from './themeButtonReducer';
 import { productsReducer } from './productsReducer';
 import { thunk } from 'redux-thunk';
 import { categoriesReducer } from './categoriesReducer';
+import { composeWithDevTools } from '@redux-devtools/extension';
 
 const rootReducer = combineReducers({
 	theme: themeReducer,
@@ -10,7 +11,10 @@ const rootReducer = combineReducers({
 	categories: categoriesReducer
 });
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(
+	rootReducer, 
+	composeWithDevTools(applyMiddleware(thunk))
+)
 export default store;
 
 // Список продуктов (для категории, для всех продуктов, для продуктов со скидкой, фаворитные продукты). Получение списков продуктов, фильтрация

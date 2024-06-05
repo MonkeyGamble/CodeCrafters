@@ -1,5 +1,5 @@
 import s from './DiscountUserForm.module.css';
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function DiscountUserForm() {
 
@@ -21,27 +21,21 @@ export default function DiscountUserForm() {
   }
 
 	return (
-       <section>
-
-	   
-		<div className={s.discount_user_form}>
-			<h2>5% off on the first order</h2>
-		     <div className={s.form}>
-	          <form onSubmit={submit}>
+      
+        <div className={s.discount_user_form}>
+			
+			   <h2>5% off on the first order</h2>
+			
+	          <form className={s.form} onSubmit={submit}>
                  <input type='text' placeholder='Name'/>
                  <input type='text' placeholder='Phone number'/>
                  <input type='text' placeholder='Email'/>
                  <button>Get a discount</button>
               </form>
-             </div>
+
 		</div>		
 		
-		</section>
+		
 	);
 }
-	//<div className={s.discount_form}>
-			//<h2>5% off on the first order</h2>
-			//<Link to='/all_sales'>
-				//<button>Get a discount</button>
-			//</Link>
-		//</div>
+	

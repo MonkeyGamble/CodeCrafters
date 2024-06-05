@@ -5,7 +5,7 @@ import { ROOT_URL } from '../../../../index';
 import { getAllCategories } from '../../../../asyncActions/categories';
 
 
-export default function Categories() {
+export default function Categories({limit}) {
 
  const dispatch = useDispatch()
  
@@ -26,7 +26,7 @@ console.log ( categories)
          
         </div>
         <div className={s.categoryList}>
-          {categories.slice(0,4).map((category) => (
+          {categories.slice(0,limit).map((category) => (
             <div key={category.id} className={s.categoryItem}>
               <img src={ROOT_URL+category.image} alt={category.title} className={s.categoryImage} />
               <p>{category.title}</p>

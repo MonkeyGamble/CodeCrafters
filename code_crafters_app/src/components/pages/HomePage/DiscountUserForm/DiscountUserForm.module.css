@@ -4,50 +4,62 @@
 	box-sizing: border-box;
 }
 
+/* Стили для блока скидки */
 .discount_user_form {
+
 	max-width: 1360px;
 	height: 486px;
+	text-align: center;
+	background-image: url('../../../../assets/img/discountform1.png');
+   
+	border-radius: 10px;
+	margin-top: 80px; 
 	margin-left: auto;
 	margin-right: auto;
-	background-image: url('../../../../assets/img/discountform.png');
-	background-color: #339933;
-	background-size: cover;
-	background-position: center;
-	padding: 80px 0 239.3px 40px;
+    
 	display: flex;
 	flex-direction: column;
-	border-radius: 10px;
-	gap: 40px;
 }
-
-
-.discount_user_form h2 {
-	font-size: 64px;
+   /* Стили для заголовка */
+  .discount_user_form h2 {
+	margin: 32px 32px 32px 24px;
+    font-size: 64px;
 	color: white;
 	display: flex; 
     justify-content: center;
-	line-height: 110%;
-	max-width: 1296px;
 }
-
-.discount_user_form form {
+  /* Стили для формы */
+  .discount_user_form form {
 	width: 516px;
 	height: 296px;
-	color: #339933;
-	gap: 32px;
 	display: flex;
 	flex-direction: column;
-	
+	gap: 32px;
+	max-width: 300px;
+	margin: 0 auto;
+	border-radius: 10px;
+}
+  
+ /* Стили для полей ввода */
+  .discount_user_form input, .discount_user_form button {
+	width: 516px;
+    height: 58px;
+	Border: 1px;
+    Padding: 16px, 32px, 16px, 32px;
+    Gap: 10px;
+	padding: 10px;
+	font-size: 20px;
+	border-radius: 5px;
+}
+  
+  /* Стили для кнопки */
+  .discount_user_form button {
+	background-color: white;
+	color: black;
+	cursor: pointer;
+	font-weight: bold;
+	transition: background-color 0.3s ease;
+  }
   
 
-}
-.discount_user_form input, button {
-width: 516px;
-height: 58px;
-border: #FFFFF1;
-padding: 16px 32px 16px 32px;
-gap: 10px;
-border-radius: 5px;
-font-size: 20px;
-opacity: 0px;
-}
+

@@ -1,8 +1,10 @@
+
 /* * {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
 } */
+
 
 .sale_container {
 	display: flex;
@@ -20,7 +22,9 @@
 	height: 36px;
 	border-radius: 6px;
 	background-color: transparent;
+
 	border: 1px solid var(--grey_divider);
+
 	color: grey;
 	font-size: 16px;
 	font-weight: 500;
@@ -29,28 +33,36 @@
 h1 {
 	font-size: 64px;
 	font-weight: bold;
+
 	color: var(--text_black);
+
 }
 .line {
 	flex: 1; /* Растягиваем линию на всю доступную ширину */
 	height: 1px;
+
 	background-color: var(--grey_divider);
+
 	margin: 0 0 0 32px;
 }
 
 .cards_container {
 	display: flex;
 	justify-content: space-between;
+
 	/* gap: 32px; */
+
 }
 
 .card {
 	width: 316px;
 	height: 422px;
+
 	background-color: var(--text_white);
 	display: flex;
 	flex-direction: column;
 	border: 1px solid var(--grey_divider);
+
 	border-radius: 12px;
 	cursor: pointer;
 }
@@ -65,9 +77,11 @@ h1 {
 	border-top-right-radius: 12px;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
+
 	border-bottom: 1px solid var(--grey_divider);
 	background-size: cover;
 	background-position: center;
+
 }
 
 .product_description {
@@ -89,11 +103,13 @@ h1 {
 	width: 68px;
 	height: 34px;
 	border-radius: 6px;
+
 	background-color: var(--sale);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	color: var(--text_white);
+
 	font-size: 20px;
 	font-weight: 600;
 	letter-spacing: 3%;
@@ -118,12 +134,15 @@ h1 {
 .price h2 {
 	font-size: 40px;
 	font-weight: 600;
+
 	color: var(--text_black);
+
 }
 
 .price h5 {
 	font-size: 20px;
 	font-weight: 500;
+
 	color: var(--grey);
 	text-decoration: line-through;
 }
@@ -243,3 +262,4 @@ h1 {
 		margin-top: 4px;
 	}
 }
+

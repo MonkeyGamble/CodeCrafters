@@ -4,7 +4,9 @@ import s from './DiscountProducts.module.css';
 
 import '../../../../Global.css';
 
-import { getDiscountProducts } from '../../../../asyncActions/products';
+import { getAllProducts } from '../../../../asyncActions/products';
+
+
 import like from '../../../../assets/img/like_white.png';
 import shopping_cart from '../../../../assets/img/shopping_cart_white.png';
 import { Link } from 'react-router-dom';
@@ -19,7 +21,7 @@ export default function DiscountProducts() {
 	);
 
 	useEffect(() => {
-		dispatch(getDiscountProducts());
+		dispatch(getAllProducts());
 	}, [dispatch]);
 
 	const randomDiscountProducts = shuffle(discountProducts).slice(0, 4);

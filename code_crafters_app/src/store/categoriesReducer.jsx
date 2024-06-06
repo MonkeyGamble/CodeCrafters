@@ -17,4 +17,3 @@ export const getAllCategoriesAction = categories => ({
 	type: GET_ALL_CATEGORIES,
 	payload: categories,
 });
-git branch

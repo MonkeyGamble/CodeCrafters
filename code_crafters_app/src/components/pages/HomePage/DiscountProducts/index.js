@@ -8,15 +8,11 @@ import { getDiscountProducts } from '../../../../asyncActions/products';
 import like from '../../../../assets/img/like_white.png';
 import shopping_cart from '../../../../assets/img/shopping_cart_white.png';
 import { Link } from 'react-router-dom';
-
-
-
 import { ROOT_URL } from '../../../..';
 import { shuffle } from '../../../../utils/shuffleArray';
 
 export default function DiscountProducts() {
 	const dispatch = useDispatch();
-
 
 	const discountProducts = useSelector(
 		state => state.products.discountProducts
@@ -26,13 +22,10 @@ export default function DiscountProducts() {
 		dispatch(getDiscountProducts());
 	}, [dispatch]);
 
-
-
 	const randomDiscountProducts = shuffle(discountProducts).slice(0, 4);
 
 	return (
 		<div className={`${s.sale_container} content_line`}>
-
 			<div className={s.component_header}>
 				<h1>Sale</h1>
 				<div class={s.line}></div>
@@ -46,9 +39,7 @@ export default function DiscountProducts() {
 					<div key={product.id} className={s.card}>
 						<div
 							className={s.product_picture}
-
 							style={{ backgroundImage: `url(${ROOT_URL + product.image})` }}
-
 						>
 							<div className={s.discount_size}>
 								-{Math.round((1 - product.discont_price / product.price) * 100)}
@@ -71,9 +62,7 @@ export default function DiscountProducts() {
 				))}
 			</div>
 
-
 			<button className={s.button_340}>All sales</button>
-
 		</div>
 	);
 }

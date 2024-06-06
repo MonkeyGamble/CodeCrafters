@@ -1,10 +1,8 @@
-
 /* * {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
 } */
-
 
 .sale_container {
 	display: flex;
@@ -35,7 +33,6 @@ h1 {
 	font-weight: bold;
 
 	color: var(--text_black);
-
 }
 .line {
 	flex: 1; /* Растягиваем линию на всю доступную ширину */
@@ -48,21 +45,17 @@ h1 {
 
 .cards_container {
 	display: flex;
-	justify-content: space-between;
-
-	/* gap: 32px; */
-
+	justify-content: space-around;
+	gap: 32px;
 }
 
 .card {
 	width: 316px;
 	height: 422px;
-
 	background-color: var(--text_white);
 	display: flex;
 	flex-direction: column;
 	border: 1px solid var(--grey_divider);
-
 	border-radius: 12px;
 	cursor: pointer;
 }
@@ -81,7 +74,6 @@ h1 {
 	border-bottom: 1px solid var(--grey_divider);
 	background-size: cover;
 	background-position: center;
-
 }
 
 .product_description {
@@ -136,7 +128,6 @@ h1 {
 	font-weight: 600;
 
 	color: var(--text_black);
-
 }
 
 .price h5 {
@@ -262,4 +253,3 @@ h1 {
 		margin-top: 4px;
 	}
 }
-

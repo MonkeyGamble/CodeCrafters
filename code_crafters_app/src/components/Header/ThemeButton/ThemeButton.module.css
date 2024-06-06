@@ -15,7 +15,7 @@
 	width: 28px;
 	height: 28px;
 	border-radius: 50%;
-	background-color: white;
+	background-color: var(--text_white);
 	position: absolute;
 	top: 2px;
 	left: 2px;
@@ -32,7 +32,7 @@
 	/* left: auto; */
 	/* right: 2px; */
 	left: calc(100% - 30px);
-	background-color: grey;
+	background-color: var(--grey);
 }
 
 .space_elements {
@@ -50,8 +50,37 @@
 	z-index: 2;
 }
 .moon {
-	width: 17px;
-	height: 17px;
-	color: white;
+	width: 20px;
+	height: 20px;
+	color: var(--text_white);
 	z-index: 2;
+}
+
+@media (max-width: 768px) {
+	.container {
+		width: 52.5px;
+		height: 28px;
+		border-radius: 26.25px;
+	}
+	.circle {
+		width: 24.5px;
+		height: 24.5px;
+		top: 1.75px;
+		left: 1.75px;
+	}
+	.circle.light {
+		left: 1.75px;
+	}
+	.space_elements {
+		left: 5.25px;
+		top: 5.25px;
+	}
+	.moon {
+		width: 17.5px;
+		height: 17.5px;
+	}
+	.sun {
+		width: 17.5px;
+		height: 17.5px;
+	}
 }

@@ -7,16 +7,13 @@ import DiscountUserForm from './DiscountUserForm';
 
 import '../../../Global.css';
 
-
 export default function HomePage() {
 	return (
 		<div className={`${s.container} content_line`}>
 			<DiscountBanner />
-			<DiscountProducts className={s.discount_products} />
-
-            <Categories limit = {4}/>
+			<Categories limit={4} />
 			<DiscountUserForm />
-
+			<DiscountProducts className={s.discount_products} />
 		</div>
 	);
 }

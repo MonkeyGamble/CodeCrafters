@@ -6,22 +6,17 @@ import { thunk } from 'redux-thunk';
 import { categoriesReducer } from './categoriesReducer';
 import { composeWithDevTools } from '@redux-devtools/extension';
 
-
 const rootReducer = combineReducers({
 	theme: themeReducer,
 	products: productsReducer,
 
-	categories: categoriesReducer
+	categories: categoriesReducer,
 });
 
 const store = createStore(
-	rootReducer, 
+	rootReducer,
 	composeWithDevTools(applyMiddleware(thunk))
-)
-
-});
-
-const store = createStore(rootReducer, applyMiddleware(thunk));
+);
 
 export default store;
 

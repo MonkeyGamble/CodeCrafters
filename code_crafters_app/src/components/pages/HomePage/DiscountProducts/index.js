@@ -1,12 +1,17 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import s from './DiscountProducts.module.css';
+
 import '../../../../Global.css';
+
 import { getAllProducts } from '../../../../asyncActions/products';
+
+
 import like from '../../../../assets/img/like_white.png';
 import shopping_cart from '../../../../assets/img/shopping_cart_white.png';
 import { Link } from 'react-router-dom';
 import { ROOT_URL } from '../../../..';
+import { shuffle } from '../../../../utils/shuffleArray';
 
 export default function DiscountProducts() {
 	const dispatch = useDispatch();
@@ -18,26 +23,6 @@ export default function DiscountProducts() {
 	useEffect(() => {
 		dispatch(getAllProducts());
 	}, [dispatch]);
-
-	//Перемешиваем массив и берем 4 рандомных продукта
-	function shuffle(array) {
-		let currentIndex = array.length,
-			tempElem,
-			randomIndex;
-
-		// Пока остаются элементы для перемешивания
-		while (0 !== currentIndex) {
-			// Выбираем случайный элемент
-			randomIndex = Math.floor(Math.random() * currentIndex);
-			currentIndex -= 1;
-
-			// Меняем текущий элемент с выбранным случайным элементом
-			tempElem = array[currentIndex];
-			array[currentIndex] = array[randomIndex];
-			array[randomIndex] = tempElem;
-		}
-		return array;
-	}
 
 	const randomDiscountProducts = shuffle(discountProducts).slice(0, 4);
 

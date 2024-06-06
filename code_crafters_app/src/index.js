@@ -8,6 +8,7 @@ import store from './store/index';
 
 export const ROOT_URL = 'http://localhost:3333/';
 
+
 const setCSSVariables = colors => {
 	const root = document.documentElement;
 	Object.keys(colors).forEach(key => {
@@ -16,6 +17,7 @@ const setCSSVariables = colors => {
 };
 
 setCSSVariables(colors);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -9,10 +9,29 @@ export default function DiscountProducts({ products, header, styles }) {
 		<div className={`${styles.sale_container} content_line`}>
 			<div className={styles.component_header}>
 				<h1>{header}</h1>
+
 				<div className={styles.line}></div>
+
 				<Link to='/all_sales'>
 					<button>All sales</button>
 				</Link>
+			</div>
+
+			<div className={styles.filter}>
+				<div className={styles.filter_price}>
+					<p>Price</p>
+					<input type='text' placeholder='from' />
+					<input type='text' placeholder='to' />
+				</div>
+
+				<div className={styles.filter_sort}>
+					<label for='filter_sort'>Sorted</label>
+					<select id='filter_sort' name='options'>
+						<option value='option1'>by default</option>
+						<option value='option2'>Price from Low to High</option>
+						<option value='option3'>Price for High to Low</option>
+					</select>
+				</div>
 			</div>
 
 			<div className={styles.cards_container}>

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import DiscountProducts from '../../DiscountProducts';
 import { getAllProducts } from '../../../asyncActions/products';
 import s from './DiscountedItemsPage.module.css';
+import { Link } from 'react-router-dom';
 
 export default function DiscountItemsPage() {
 	const dispatch = useDispatch();
@@ -16,7 +17,17 @@ export default function DiscountItemsPage() {
 	}, [dispatch]);
 
 	return (
-		<div>
+		<div className={`${s.discount_wrapper} content_line`}>
+			<div className={s.nav_buttons}>
+				<Link to='/'>
+					<button className={s.first_button}>Main page</button>
+				</Link>
+				<div className={s.nav_line}></div>
+				<Link to='/all_sales'>
+					<button className={s.second_button}>All sales</button>
+				</Link>
+			</div>
+
 			<DiscountProducts
 				products={discountProducts}
 				header='Discounted Items'

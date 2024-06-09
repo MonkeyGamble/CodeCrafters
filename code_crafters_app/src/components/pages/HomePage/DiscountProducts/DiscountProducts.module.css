@@ -10,6 +10,9 @@
 	gap: 40px;
 	margin-top: 108px;
 }
+.filter {
+	display: none;
+}
 
 .component_header {
 	display: flex;

@@ -184,6 +184,7 @@ h1 {
 	background-color: transparent;
 	font-size: 16px;
 	color: var(--text_grey);
+	cursor: pointer;
 }
 
 .nav_line {
@@ -200,6 +201,7 @@ h1 {
 	background-color: transparent;
 	font-size: 16px;
 	color: var(--text_black);
+	cursor: pointer;
 }
 
 @media (max-width: 1000px) {

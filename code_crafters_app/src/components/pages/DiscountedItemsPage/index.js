@@ -4,6 +4,7 @@ import DiscountProducts from '../../DiscountProducts';
 import { getAllProducts } from '../../../asyncActions/products';
 import s from './DiscountedItemsPage.module.css';
 import { Link } from 'react-router-dom';
+import Filter from '../../Filter';
 
 export default function DiscountItemsPage() {
 	const dispatch = useDispatch();
@@ -32,6 +33,7 @@ export default function DiscountItemsPage() {
 				products={discountProducts}
 				header='Discounted Items'
 				styles={s}
+				filter={<Filter />}
 			/>
 		</div>
 	);

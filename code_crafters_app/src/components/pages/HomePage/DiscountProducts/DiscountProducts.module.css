@@ -10,7 +10,12 @@
 	gap: 40px;
 	margin-top: 108px;
 }
+
 .filter {
+	display: none;
+}
+
+.filter_component {
 	display: none;
 }
 
@@ -31,6 +36,7 @@
 	font-weight: 500;
 	cursor: pointer;
 }
+
 h1 {
 	font-size: 64px;
 	font-weight: bold;

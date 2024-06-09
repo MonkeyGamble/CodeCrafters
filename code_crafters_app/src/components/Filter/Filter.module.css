@@ -1,0 +1,46 @@
+.filter {
+	display: flex;
+	gap: 40px;
+	align-items: center;
+}
+
+.filter_price,
+.filter_sort {
+	display: flex;
+	gap: 16px;
+	align-items: center;
+}
+
+.filter_price p,
+.filter_sort label {
+	font-size: 20px;
+	font-weight: 600;
+	color: var(--text_black);
+}
+
+.filter_price input {
+	width: 112px;
+	height: 36px;
+	border-radius: 6px;
+	background-color: var(--text_white);
+	border: 1px solid var(--grey_divider);
+	padding: 8px 16px;
+}
+
+.filter_price input::placeholder {
+	font-size: 16px;
+	font-weight: 500;
+	color: var(--text_grey);
+}
+
+.filter_sort select {
+	width: 200px;
+	height: 36px;
+	border-radius: 6px;
+	background-color: var(--text_white);
+	border: 1px solid var(--grey_divider);
+	padding: 8px 16px;
+	font-size: 16px;
+	font-weight: 500;
+	color: var(--text_black);
+}

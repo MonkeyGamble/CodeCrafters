@@ -3,8 +3,9 @@ import like from '../../assets/img/like_white.png';
 import shopping_cart from '../../assets/img/shopping_cart_white.png';
 import { Link } from 'react-router-dom';
 import { ROOT_URL } from '../../index';
+// import Filter from '../Filter';
 
-export default function DiscountProducts({ products, header, styles }) {
+export default function DiscountProducts({ products, header, styles, filter }) {
 	return (
 		<div className={`${styles.sale_container} content_line`}>
 			<div className={styles.component_header}>
@@ -17,26 +18,15 @@ export default function DiscountProducts({ products, header, styles }) {
 				</Link>
 			</div>
 
-			<div className={styles.filter}>
-				<div className={styles.filter_price}>
-					<p>Price</p>
-					<input type='text' placeholder='from' />
-					<input type='text' placeholder='to' />
-				</div>
-
-				<div className={styles.filter_sort}>
-					<label for='filter_sort'>Sorted</label>
-					<select id='filter_sort' name='options'>
-						<option value='option1'>by default</option>
-						<option value='option2'>Price from Low to High</option>
-						<option value='option3'>Price for High to Low</option>
-					</select>
-				</div>
-			</div>
+			{filter && filter}
 
 			<div className={styles.cards_container}>
 				{products.map(product => (
-					<div key={product.id} className={styles.card}>
+					<Link
+						key={product.id}
+						to={`/products/${product.id}`}
+						className={styles.card}
+					>
 						<div
 							className={styles.product_picture}
 							style={{ backgroundImage: `url(${ROOT_URL + product.image})` }}
@@ -58,7 +48,7 @@ export default function DiscountProducts({ products, header, styles }) {
 								<h5>${product.price}</h5>
 							</div>
 						</div>
-					</div>
+					</Link>
 				))}
 			</div>
 

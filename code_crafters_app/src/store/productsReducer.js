@@ -1,11 +1,13 @@
 const defaultState = {
 	allProducts: [],
+	productsFromCategory: {},
 	discountProducts: [],
 	product: {},
 };
 
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
+const GET_PRODUCTS_BY_CATEGORY_ID = 'GET_PRODUCTS_BY_CATEGORY_ID';
 
 export const productsReducer = (state = defaultState, action) => {
 	switch (action.type) {
@@ -23,6 +25,11 @@ export const productsReducer = (state = defaultState, action) => {
 				...state,
 				product: action.payload,
 			};
+		case GET_PRODUCTS_BY_CATEGORY_ID:
+			return {
+				...state,
+				productsFromCategory: action.payload,
+			};
 		default:
 			return state;
 	}
@@ -36,4 +43,9 @@ export const getAllProductsAction = products => ({
 export const getProductByIdAction = product => ({
 	type: GET_PRODUCT_BY_ID,
 	payload: product,
+});
+
+export const getProductsByCategoryIdAction = products => ({
+	type: GET_PRODUCTS_BY_CATEGORY_ID,
+	payload: products,
 });

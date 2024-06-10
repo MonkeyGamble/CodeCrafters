@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ROOT_URL } from '../../index';
 import { getAllCategories } from '../../asyncActions/categories';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import '../../Global.css';
 
 export default function Categories({ limit, style }) {
@@ -26,14 +26,20 @@ export default function Categories({ limit, style }) {
 
 				<div className={style.categoryList}>
 					{categories.slice(0, limit).map(category => (
-						<div key={category.id} className={style.categoryItem}>
-							<img
-								src={ROOT_URL + category.image}
-								alt={category.title}
-								className={style.categoryImage}
-							/>
-							<p>{category.title}</p>
-						</div>
+						<Link
+							key={category.id}
+							to={`/categories/${category.id}`}
+							className={style.categoryItem}
+						>
+							<div key={category.id} className={style.categoryItem}>
+								<img
+									src={ROOT_URL + category.image}
+									alt={category.title}
+									className={style.categoryImage}
+								/>
+								<p>{category.title}</p>
+							</div>
+						</Link>
 					))}
 				</div>
 			</div>

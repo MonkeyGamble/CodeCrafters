@@ -1,9 +1,8 @@
-import '../../Global.css';
+ import '../../Global.css';
 import like from '../../assets/img/like_white.png';
 import shopping_cart from '../../assets/img/shopping_cart_white.png';
 import { Link } from 'react-router-dom';
 import { ROOT_URL } from '../../index';
-// import Filter from '../Filter';
 
 export default function DiscountProducts({ products, header, styles, filter }) {
 	return (

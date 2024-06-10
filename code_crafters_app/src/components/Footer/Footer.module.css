@@ -1,14 +1,10 @@
 footer {
-	/* padding: 20px; */
 	margin-top: 80px;
 	padding-bottom: 80px;
 	background-color: var(--white);
 }
 
 .footerContainer {
-	/* max-width: 1200px; Увеличение ширины для более крупного контейнера */
-	/* margin: 0 auto; */
-	/* padding: 20px; */
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start; /* Выравнивание по левому краю */
@@ -34,7 +30,6 @@ footer {
 	background-color: var(--light_grey);
 	border-radius: 12px;
 	padding: 32px;
-	/* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
 
 .label {
@@ -57,7 +52,7 @@ footer {
 
 .socialLinks a {
 	font-size: 43px;
-	/* margin-right: 16px; */
+
 	color: var(--black);
 	text-decoration: none;
 }
@@ -67,11 +62,8 @@ footer {
 }
 
 .map {
-	/* background-color: #ffffff; */
 	height: 350px;
 	width: 100%;
 	border-radius: 12px;
-	/* padding: 20px; */
-	/* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 	width: 100%;
 }

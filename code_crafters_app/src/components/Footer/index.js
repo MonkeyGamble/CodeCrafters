@@ -6,6 +6,7 @@ import {
 	faTwitter,
 	faInstagram,
 } from '@fortawesome/free-brands-svg-icons';
+// import { IoLogoWhatsapp } from 'react-icons/io';
 
 export default function Footer() {
 	return (
@@ -19,6 +20,7 @@ export default function Footer() {
 					</div>
 					<div className={s.infoBox}>
 						<p className={s.label}>Socials</p>
+
 						<div className={s.socialLinks}>
 							<a href='https://facebook.com'>
 								<FontAwesomeIcon icon={faFacebook} />

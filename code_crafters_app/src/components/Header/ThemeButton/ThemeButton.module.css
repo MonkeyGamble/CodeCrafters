@@ -25,12 +25,10 @@
 
 .circle.light {
 	left: 2px;
-	/* right: auto; */
+
 }
 
 .circle.dark {
-	/* left: auto; */
-	/* right: 2px; */
 	left: calc(100% - 30px);
 	background-color: var(--grey);
 }

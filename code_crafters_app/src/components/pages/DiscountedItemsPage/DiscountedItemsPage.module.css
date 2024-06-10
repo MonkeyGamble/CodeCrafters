@@ -209,11 +209,13 @@ h1 {
 }
 
 @media (max-width: 1000px) {
-	/* .cards_container {
-		gap: 20px;
-	} */
 	.sale_container {
 		padding: 0 20px;
+	}
+	.cards_container {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(225px, 1fr));
+		gap: 20px;
 	}
 	.card {
 		width: 225px;
@@ -236,7 +238,7 @@ h1 {
 	.cards_container {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: repeat(2, 1fr);
+		/* grid-template-rows: repeat(2, 1fr); */
 		gap: 20px;
 	}
 	.component_header h1 {
@@ -252,6 +254,13 @@ h1 {
 	}
 }
 @media (max-width: 480px) {
+	.cards_container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		/* grid-template-rows: repeat(2, 1fr); */
+		gap: 20px;
+	}
+
 	.component_header h1 {
 		font-size: 48px;
 	}
@@ -288,6 +297,7 @@ h1 {
 	.cards_container {
 		display: flex;
 		flex-direction: column;
+		gap: 20px;
 	}
 	.card {
 		width: 320px;

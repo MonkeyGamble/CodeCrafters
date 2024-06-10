@@ -8,6 +8,7 @@ import { ROOT_URL } from '../../index';
 export default function DiscountProducts({ products, header, styles, filter }) {
 	return (
 		<div className={`${styles.sale_container} content_line`}>
+			
 			<div className={styles.component_header}>
 				<h1>{header}</h1>
 

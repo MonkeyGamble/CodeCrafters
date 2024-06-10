@@ -13,6 +13,9 @@
 	flex-direction: column;
 	gap: 40px;
 }
+.cards_container a {
+	text-decoration: none;
+}
 
 .component_header {
 	display: flex;
@@ -124,6 +127,7 @@ h1 {
 	font-size: 20px;
 	font-weight: 500;
 	overflow: hidden;
+	color: var(--text_black);
 	white-space: nowrap; /* Запрещаем перенос строки */
 	text-overflow: ellipsis; /* Добавляем троеточие */
 }

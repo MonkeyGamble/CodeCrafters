@@ -17,6 +17,9 @@ export default function ProductItemPage() {
 	if (loading) {
 		return <p>Loading...</p>;
 	}
+	console.log(product);
+	console.log(product.title);
+
 
 	return (
 		<div>

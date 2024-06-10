@@ -6,6 +6,7 @@ import {
 	faTwitter,
 	faInstagram,
 } from '@fortawesome/free-brands-svg-icons';
+import '../../Global.css';
 // import { IoLogoWhatsapp } from 'react-icons/io';
 
 export default function Footer() {
@@ -23,13 +24,13 @@ export default function Footer() {
 
 						<div className={s.socialLinks}>
 							<a href='https://facebook.com'>
-								<FontAwesomeIcon icon={faFacebook} />
+								<FontAwesomeIcon icon={faFacebook} className={s.social_netz} />
 							</a>
 							<a href='https://twitter.com'>
-								<FontAwesomeIcon icon={faTwitter} />
+								<FontAwesomeIcon icon={faTwitter} className={s.social_netz} />
 							</a>
 							<a href='https://instagram.com'>
-								<FontAwesomeIcon icon={faInstagram} />
+								<FontAwesomeIcon icon={faInstagram} className={s.social_netz} />
 							</a>
 						</div>
 					</div>

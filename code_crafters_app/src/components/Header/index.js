@@ -4,14 +4,17 @@ import ThemeButton from './ThemeButton/index';
 import logo from '../../assets/img/logo.png';
 import like from '../../assets/img/like.png';
 import shopping_cart from '../../assets/img/shopping_cart.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
 export default function Header() {
 	return (
 		<header className={`${s.container} content_line`}>
 			<div className={s.header_left}>
-				<img src={logo} alt='logo' />
+				<Link to='/'>
+					<img src={logo} alt='logo' />
+				</Link>
+
 				<ThemeButton className={s.theme_button} />
 			</div>
 

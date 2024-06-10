@@ -1,19 +1,20 @@
 import DiscountBanner from './DiscountBanner';
 import DiscountProducts from './DiscountProducts';
 import s from './HomePage.module.css';
-
 import Categories from './Categories/index';
 import DiscountUserForm from './DiscountUserForm';
-
 import '../../../Global.css';
+import DiscountProductsHomePage from './DiscountProducts';
 
 export default function HomePage() {
 	return (
-		<div className={`${s.container} content_line`}>
+		<main>
 			<DiscountBanner />
-			<Categories limit={4} />
-			<DiscountUserForm />
-			<DiscountProducts className={s.discount_products} />
-		</div>
+			<div className={`${s.container} content_line`}>
+				<Categories limit={4} />
+				<DiscountUserForm />
+				<DiscountProductsHomePage className={s.discount_products} />
+			</div>
+		</main>
 	);
 }

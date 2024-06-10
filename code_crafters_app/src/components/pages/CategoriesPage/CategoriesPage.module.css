@@ -1,0 +1,27 @@
+
+.categoriespage {
+    /* Ваши стили для страницы категорий */
+    padding: 20px;
+}
+
+.mainPageButton {   
+    width: 120px;
+    height: 36px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #424436;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.mainPageButton:hover {
+    background-color: #e9ebe0;
+}
+.line {
+	flex: 1; /* Растягиваем линию на всю доступную ширину */
+	height: 1px;
+	background-color: #dddddd;
+	margin: 0 0 0 32px; }

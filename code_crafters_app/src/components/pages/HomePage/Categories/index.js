@@ -1,41 +1,26 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import s from './Categories.module.css';
-import { ROOT_URL } from '../../../../index';
 import { getAllCategories } from '../../../../asyncActions/categories';
+import Categories from '../../../Categories';
 
-export default function Categories({ limit }) {
-	const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(getAllCategories());
-	}, [dispatch]);
+export default function CategoriesHomePage({limit}) {
 
-	const categories = useSelector(state => state.categories.allCategories);
+ const dispatch = useDispatch();
+ const categories = useSelector( state => state.categories.allCategories);
 
-	console.log(categories);
+ 
+ useEffect(() => {
+  dispatch(getAllCategories());
+}, [dispatch]);
 
-	return (
-		<section className={`${s.categories} content_line`}>
-			<div className={s.wrapper}>
-				<div className={s.header}>
-					<h2>Categories</h2>
-					<span className={s.line}></span>
-					<button className={s.my_button}>All categories</button>
-				</div>
-				<div className={s.categoryList}>
-					{categories.slice(0, limit).map(category => (
-						<div key={category.id} className={s.categoryItem}>
-							<img
-								src={ROOT_URL + category.image}
-								alt={category.title}
-								className={s.categoryImage}
-							/>
-							<p>{category.title}</p>
-						</div>
-					))}
-				</div>
-			</div>
-		</section>
-	);
+
+
+
+
+  return (
+    <Categories limit={4} style={s}/>
+  );
+
 }

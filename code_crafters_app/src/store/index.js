@@ -14,9 +14,13 @@ const rootReducer = combineReducers({
 const store = createStore(
 	rootReducer,
 	composeWithDevTools(applyMiddleware(thunk))
-);
 
-export default store;
+)
+
+export default store
+
+
+
 
 // Список продуктов (для категории, для всех продуктов, для продуктов со скидкой, фаворитные продукты). Получение списков продуктов, фильтрация
 // Корзина. (добавление элемента в корзину, изменение count каждого элемента, удаление продукта, очистка списка продукта после нажатия на “купить”)

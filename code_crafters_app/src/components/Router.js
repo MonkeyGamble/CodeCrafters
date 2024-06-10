@@ -9,6 +9,8 @@ import ShoppingCartPage from './pages/ShoppingCartPage/index';
 import LikedProductsPage from './pages/LikedProductsPage/index';
 import NotFoundPage from './pages/NotFoundPage/index';
 import Layout from './Layout';
+import AllCategoriesPage from './pages/AllCategoriesPage/index'; // импортируйте новый компонент
+
 
 export const router = createBrowserRouter([
 	{
@@ -22,6 +24,8 @@ export const router = createBrowserRouter([
 			{ path: '/products/product_item', element: <ProductItemPage /> },
 			{ path: '/shopping_cart', element: <ShoppingCartPage /> },
 			{ path: '/liked_products', element: <LikedProductsPage /> },
+			{ path: '/all_categories', element: <AllCategoriesPage /> }, // добавьте новый маршрут
+
 			{
 				path: '*',
 				element: <NotFoundPage />,

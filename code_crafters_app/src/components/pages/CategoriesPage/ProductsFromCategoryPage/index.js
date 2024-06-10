@@ -1,3 +1,12 @@
+
+export default function ProductsFromCategoryPage() {
+	return <div>ProductsFromCategoryPage</div>;
+}
+
+/*useParams()
+
+
+
 import { useParams } from 'react-router-dom';
 import s from './ProductsFromCategoryPage.module.css';
 import { useDispatch } from 'react-redux';
@@ -5,13 +14,13 @@ import { useEffect } from 'react';
 
 
 export default function ProductsFromCategoryPage() {
-	const { category_name } = useParams();
+	const { categories_name } = useParams();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(resetStatusAction());
-    dispatch(getProductsByCategory(category_name))
+    dispatch(getProductsFromCategoryPage(categories_name))
   }, []);
 
   const productsByCategoryState = useSelector(store => store.productsByCategory);
@@ -32,13 +41,4 @@ export default function ProductsFromCategoryPage() {
     </div> 
   )
 }
-
-
-/*useParams()
-
-
-export default function ProductsFromCategoryPage() {
-	return <div>ProductsFromCategoryPage</div>;
-}
-
 */

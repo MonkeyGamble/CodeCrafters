@@ -4,6 +4,7 @@ import s from './Categories.module.css';
 import { getAllCategories } from '../../../../asyncActions/categories';
 import Categories from '../../../Categories';
 
+
 export default function CategoriesHomePage({limit}) {
 
  const dispatch = useDispatch();
@@ -15,10 +16,11 @@ export default function CategoriesHomePage({limit}) {
 }, [dispatch]);
 
 
-console.log (categories)
+
+
+
   return (
     <Categories limit={4} style={s}/>
   );
+
 }
-
-

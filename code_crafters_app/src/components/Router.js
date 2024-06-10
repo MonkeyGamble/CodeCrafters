@@ -3,7 +3,9 @@ import HomePage from './pages/HomePage/index';
 import CategoriesPage from './pages/CategoriesPage/index';
 import AllProductsPage from './pages/AllProductsPage/index';
 import DiscountedItemsPage from './pages/DiscountedItemsPage/index';
+
 import ProductsFromCategoryPage from './pages/AllCategoriesPage/ProductsFromCategoryPage/index';
+
 import ProductItemPage from './pages/ProductItemPage/index';
 import ShoppingCartPage from './pages/ShoppingCartPage/index';
 import LikedProductsPage from './pages/LikedProductsPage/index';
@@ -21,7 +23,7 @@ export const router = createBrowserRouter([
 			{ path: '/all_products', element: <AllProductsPage /> },
 			{ path: '/all_sales', element: <DiscountedItemsPage /> },
 			{ path: '/products', element: <ProductsFromCategoryPage /> },
-			{ path: '/products/product_item', element: <ProductItemPage /> },
+			{ path: '/products/:id', element: <ProductItemPage /> },
 			{ path: '/shopping_cart', element: <ShoppingCartPage /> },
 			{ path: '/liked_products', element: <LikedProductsPage /> },
 			{ path: '/all_categories', element: <AllCategoriesPage /> }, 

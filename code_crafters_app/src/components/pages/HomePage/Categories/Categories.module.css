@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-
 * {
 	padding: 0;
 	margin: 0;
@@ -9,22 +8,22 @@
 }
 
 .categories {
-	
-	margin: 0 auto;
+	/* margin: 0 auto; */
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
 	margin-top: 108px;
-	padding: 20px;
-	margin: 80px 40px;
-  }
-  
+	/* padding: 20px; */
+	/* margin: 80px 40px; */
+}
+
 .line {
 	flex: 1; /* Растягиваем линию на всю доступную ширину */
 	height: 1px;
 	background-color: #dddddd;
-	margin: 0 0 0 32px; }
-  
+	margin: 0 0 0 32px;
+}
+
 .my_button {
 	width: 142px;
 	height: 36px;
@@ -32,66 +31,61 @@
 	background-color: transparent;
 	border: 1px solid #dddddd;
 	color: grey;
-	font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
+	font-family: 'Montserrat', sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
 	font-size: 16px;
 	font-weight: 500;
 	cursor: pointer;
-  }
+}
 
-  .wrapper {
-	max-width: 1360px;
+.wrapper {
+	/* max-width: 1360px; */
 	height: 528px;
-	margin: 0 auto;
-  }
-  
-  .header {
+	/* margin: 0 auto; */
+}
+
+.header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 32px;
-  }
-  
- .header h2 {
+}
 
-	font-family: "Montserrat", sans-serif;
+.header h2 {
+	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
 	font-size: 64px;
 	margin: 0;
- }
-  
-  .categoryList {
-	width: 1360px;
+}
+
+.categoryList {
+	/* width: 1360px; */
 	height: 418px;
-	
 	display: flex;
 	justify-content: space-between;
-	flex-wrap: wrap;
-  }
-  
-  .categoryItem {
-	
+	/* flex-wrap: no wrap; */
+}
+
+.categoryItem {
 	text-align: center;
 	margin: 10px;
-  }
-  
-  .categoryImage {
+}
+
+.categoryImage {
 	width: 316px;
 	height: 350px;
+	object-fit: cover;
 	border-radius: 10px;
-	display: block;
-	
-  }
-  
-  .categoryItem p {
-	font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    font-weight: 500;
+
+	/* display: block; */
+}
+
+.categoryItem p {
+	font-family: 'Montserrat', sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-weight: 500;
 	margin-top: 10px;
 	font-size: 20px;
-  }
-
-
-  
+}

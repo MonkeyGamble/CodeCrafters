@@ -23,7 +23,7 @@ export default function Header() {
 						<NavLink to='/'>
 							<li>Main Page</li>
 						</NavLink>
-						<NavLink to='/categories'>
+						<NavLink to='/all_categories'>
 							<li>Categories</li>
 						</NavLink>
 						<NavLink to='/all_products'>

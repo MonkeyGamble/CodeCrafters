@@ -1,11 +1,9 @@
 import DiscountBanner from './DiscountBanner';
 import DiscountProducts from './DiscountProducts';
 import s from './HomePage.module.css';
-
-import Categories from './Categories/index';
 import DiscountUserForm from './DiscountUserForm';
-
 import '../../../Global.css';
+import CategoriesHomePage from './Categories/index';
 
 
 export default function HomePage() {
@@ -14,7 +12,7 @@ export default function HomePage() {
 			<DiscountBanner />
 			<DiscountProducts className={s.discount_products} />
 
-            <Categories limit = {4}/>
+            <CategoriesHomePage limit = {4}/>
 			<DiscountUserForm />
 
 		</div>

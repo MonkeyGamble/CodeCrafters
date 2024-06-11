@@ -23,7 +23,7 @@ export const productsReducer = (state = defaultState, action) => {
 		case GET_PRODUCT_BY_ID:
 			return {
 				...state,
-				product: action.payload,
+				product: action.payload[0],
 			};
 		case GET_PRODUCTS_BY_CATEGORY_ID:
 			return {

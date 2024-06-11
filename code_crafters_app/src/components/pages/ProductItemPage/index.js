@@ -20,7 +20,6 @@ export default function ProductItemPage() {
 	console.log(product);
 	console.log(product.title);
 
-
 	return (
 		<div>
 			<h1>{product.title}</h1>

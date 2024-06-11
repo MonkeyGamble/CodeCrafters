@@ -1,30 +1,54 @@
- 
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 .content_line {
 	max-width: 1360px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-
-.mainPageButton, .categoriesButton {
+.mainPageButton, .categoriesPageButton {
     width: 120px;
     height: 36px;
-    margin: 18px;
-}
+    margin: 16px;
+	border-radius: 5px;
+	background-color: transparent;
+    border: 1px solid var(--grey_divider);
+	color: grey;
+	cursor: pointer;
+	font-size: 16px;
+    font-weight: 500;
+	font-family: "Montserrat", sans-serif;
 
-.all_categories_button1 {
-    width: 205px;
-    height: 36px;
-}
 
+}
+.line {
+	
+	flex: 1;
+	height: 1px;
+	background-color: var(--grey_divider);
+    margin: 0 0 0 16px;
+}
 .categoryImage {
-	width: 316px;
-	height: 284px;
+	width: 248px;
+	height: 350px;
 	border-radius: 10px;
 	display: block;
 	
   }
+ .my_button {
+	display: none;
  
+ }
+ .header h2 {
+	
+	
+	font-size: 64px;
+	color: var(--text_black);
+	margin: 0;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 700;
+
+ }
   .categoryItem p {
 	font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
@@ -32,11 +56,10 @@
     font-weight: 500;
 	margin-top: 10px;
 	font-size: 20px;
+	
   }
 
   .categoryList {
-	width: 1360px;
-	height: 418px;
 	
 	display: flex;
 	justify-content: space-between;
@@ -44,39 +67,4 @@
   }
   
 
-/*
 
-.categories {
-	
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
-	gap: 40px;
-	margin-top: 108px;
-	padding: 20px;
-	margin: 80px 40px;
-  }
-  
-.line {
-	flex: 1; 
-	background-color: #dddddd;
-	margin: 0 0 0 32px; }
-  
-
-
-
- .header h2 {
-
-	font-family: "Montserrat", sans-serif;
-	font-weight: 700;
-	font-size: 64px;
-
- }
-  
-
-  .categoryItem {
-	
-	text-align: center;
-	margin: 10px;
-  }
-  */

@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import HomePage from './pages/HomePage/index';
-import CategoriesPage from './pages/CategoriesPage/index';
 import AllProductsPage from './pages/AllProductsPage/index';
 import DiscountedItemsPage from './pages/DiscountedItemsPage/index';
 import ProductsFromCategoryPage from './pages/AllCategoriesPage/ProductsFromCategoryPage/index';

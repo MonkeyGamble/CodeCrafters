@@ -8,11 +8,9 @@ export default function AllCategoriesPage() {
 			<button className={s.mainPageButton}>Main page</button>
             </NavLink>
 			<span className={s.line}></span>
-			<button className={s.mainPageButton}>Categories</button>
+
+			<button className={s.categoriesPageButton}>Categories</button>
             <Categories limit={10} style={s} />
 		
 	</div>;
 }
-/* <button>Main page</button>
-		
-		< Categories/>*/

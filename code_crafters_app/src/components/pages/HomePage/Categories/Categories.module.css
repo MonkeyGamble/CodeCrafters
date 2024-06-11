@@ -7,6 +7,11 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+.content_line {
+	max-width: 1360px;
+	margin-left: auto;
+	margin-right: auto;
+}
 
 .categories {
 	
@@ -20,11 +25,11 @@
   }
   
 .line {
-	flex: 1; /* Растягиваем линию на всю доступную ширину */
+	flex: 1; 
 	height: 1px;
 	background-color: #dddddd;
-	margin: 0 0 0 32px; }
-  
+	margin: 0 0 0 32px;
+	}
 .my_button {
 	width: 142px;
 	height: 36px;

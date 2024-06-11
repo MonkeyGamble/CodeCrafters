@@ -1,5 +1,5 @@
 import s from './Header.module.css';
-import '../../Global.css';
+
 import ThemeButton from './ThemeButton/index';
 import logo from '../../assets/img/logo.png';
 import like from '../../assets/img/like.png';
@@ -9,7 +9,7 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 
 export default function Header() {
 	return (
-		<header className={`${s.container} content_line`}>
+		<header className={`${s.container} ${s.content_line}`}>
 			<div className={s.header_left}>
 				<Link to='/'>
 					<img src={logo} alt='logo' />

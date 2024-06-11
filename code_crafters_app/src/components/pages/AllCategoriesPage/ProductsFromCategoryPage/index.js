@@ -21,8 +21,12 @@ export default function ProductsFromCategoryPage() {
 	useEffect(() => {
 		dispatch(getProductsByCategoryId(id));
 	}, [dispatch, id]);
+
+
 	return (
-		<div className={`${s.products_wrapper} content_line`}>
+
+<div className={`${s.products_wrapper} content_line`}>
+
 			{productsByCategory.category && productsByCategory.data && (
 				<>
 					<div className={s.nav_buttons}>
@@ -39,9 +43,16 @@ export default function ProductsFromCategoryPage() {
 						</button>
 					</div>
 
+
+
 					<div className={s.cards_container}>
+						
 						{productsByCategory.data.map(product => (
-							<div key={product.id} className={s.card}>
+							<Link
+								key={product.id}
+								to={`/products/${product.id}`}
+								className={s.card}
+							>
 								<div
 									className={s.product_picture}
 									style={{
@@ -72,7 +83,7 @@ export default function ProductsFromCategoryPage() {
 										)}
 									</div>
 								</div>
-							</div>
+							</Link>
 						))}
 					</div>
 				</>

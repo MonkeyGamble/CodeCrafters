@@ -117,3 +117,8 @@ h5 {
 	font-family: 'Montserrat';
 	cursor: pointer;
 }
+
+.add_to_cart .add_button:active {
+	background-color: #0056b3;
+	transform: translateY(2px);
+}

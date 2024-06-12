@@ -38,6 +38,9 @@
 	gap: 12px;
 	align-items: center;
 }
+.header_center a {
+	text-decoration: none;
+}
 
 .discount {
 	width: 151px;

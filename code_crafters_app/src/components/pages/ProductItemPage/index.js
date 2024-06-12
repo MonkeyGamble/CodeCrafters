@@ -9,12 +9,14 @@ import { ROOT_URL } from '../../..';
 import '../../../Global.css';
 import like from '../../../assets/img/like_white.png';
 import Counter from '../../Counter/counter';
+import { useBasketActions } from '../../../asyncActions/basket';
 
 export default function ProductItemPage() {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const product = useSelector(state => state.products.product);
 	const categories = useSelector(state => state.categories.allCategories);
+	const { addProductToBasket } = useBasketActions();
 
 	useEffect(() => {
 		dispatch(getProductById(id));
@@ -76,7 +78,15 @@ export default function ProductItemPage() {
 					</div>
 					<div className={s.add_to_cart}>
 						<Counter />
-						<button className={s.add_button}>Add to cart</button>
+						<button
+							className={s.add_button}
+							onClick={() => {
+								addProductToBasket(product);
+								console.log('Added product: ', product);
+							}}
+						>
+							Add to cart
+						</button>
 					</div>
 
 					<p>{product.description}</p>

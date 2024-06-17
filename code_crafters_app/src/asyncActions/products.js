@@ -2,7 +2,11 @@ import {
 	getAllProductsAction,
 	getProductByIdAction,
 	getProductsByCategoryIdAction,
+	incrProductCountAction,
+	decrProductCountAction,
 } from '../store/productsReducer';
+
+
 import { ROOT_URL } from '../';
 
 export function getAllProducts() {
@@ -31,21 +35,6 @@ export function getProductById(id) {
 	};
 }
 
-// export function getProductsByCategoryId(id) {
-// 	return function (dispatch) {
-// 		fetch(ROOT_URL + `categories/${id}`)
-// 			.then(res => res.json())
-// 			.then(products => {
-// 				// if (Array.isArray(products.data)) {
-// 				// 	// Проверяем, что products является массивом
-// 				dispatch(getProductsByCategoryIdAction(products));
-// 				// } else {
-// 				// 	throw new Error('Products is not an array');
-// 			})
-// 			.catch(error => console.error('Error fetching products:', error));
-// 	};
-// }
-
 export function getProductsByCategoryId(id) {
 	return async function (dispatch) {
 		try {
@@ -60,3 +49,16 @@ export function getProductsByCategoryId(id) {
 		}
 	};
 }
+
+export function incrementProductCount() {
+	return function (dispatch) {
+		dispatch(incrProductCountAction());
+	};
+}
+
+export function decrementProductCount() {
+	return function (dispatch) {
+		dispatch(decrProductCountAction());
+	};
+}
+

@@ -1,0 +1,49 @@
+.counter_wrapper {
+	display: flex;
+	align-items: center;
+	position: relative;
+	width: 200px;
+	height: 58px;
+}
+
+.counter_button_decr,
+.counter_button_incr {
+	width: 58px;
+	height: 58px;
+	cursor: pointer;
+	padding: 17px;
+	border: 1px solid var(--grey_divider);
+	border-radius: 6px;
+	background-color: var(--text_white);
+	font-size: 24px;
+	color: var(--text_grey);
+	position: absolute;
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.counter_button_decr {
+	left: 0;
+}
+
+.counter_button_incr {
+	right: 0;
+}
+
+.counter_number {
+	/* flex-grow: 1; */
+	width: 100%;
+	height: 58px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid var(--grey_divider);
+	border-radius: 6px;
+	background-color: var(--text_white);
+	font-size: 20px;
+	color: var(--text_black);
+	position: absolute;
+	z-index: 1;
+}

@@ -41,6 +41,9 @@
 	gap: 32px;
 }
 
+.cards_container a {
+	text-decoration: none;
+}
 .card {
 	width: 316px;
 	height: 422px;
@@ -55,7 +58,6 @@
 
 .product_picture {
 	display: flex;
-	/* justify-content: space-between; */
 	align-items: first flex-start;
 	padding: 16px 16px 0 17px;
 	width: 314px;

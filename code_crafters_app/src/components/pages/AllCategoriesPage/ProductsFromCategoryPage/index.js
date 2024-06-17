@@ -8,6 +8,7 @@ import '../../../../Global.css';
 import { Link } from 'react-router-dom';
 import like from '../../../../assets/img/like_white.png';
 import shopping_cart from '../../../../assets/img/shopping_cart_white.png';
+import Basket from '../../../Basket';
 
 export default function ProductsFromCategoryPage() {
 	const { id } = useParams();
@@ -21,6 +22,7 @@ export default function ProductsFromCategoryPage() {
 	useEffect(() => {
 		dispatch(getProductsByCategoryId(id));
 	}, [dispatch, id]);
+
 	return (
 		<div className={`${s.products_wrapper} content_line`}>
 			{productsByCategory.category && productsByCategory.data && (
@@ -41,7 +43,11 @@ export default function ProductsFromCategoryPage() {
 
 					<div className={s.cards_container}>
 						{productsByCategory.data.map(product => (
-							<div key={product.id} className={s.card}>
+							<Link
+								key={product.id}
+								to={`/products/${product.id}`}
+								className={s.card}
+							>
 								<div
 									className={s.product_picture}
 									style={{
@@ -59,7 +65,8 @@ export default function ProductsFromCategoryPage() {
 									)}
 									<div className={s.like_cart}>
 										<img src={like} alt='like' />
-										<img src={shopping_cart} alt='cart' />
+										<Basket product={product} />
+										{/* <img src={shopping_cart} alt='cart' /> */}
 									</div>
 								</div>
 
@@ -72,7 +79,7 @@ export default function ProductsFromCategoryPage() {
 										)}
 									</div>
 								</div>
-							</div>
+							</Link>
 						))}
 					</div>
 				</>

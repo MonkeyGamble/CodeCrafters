@@ -1,3 +1,8 @@
+.content_line {
+	max-width: 1440px;
+	margin: 0 auto;
+}
+
 .container {
 	/* max-width: 1440px;
 	margin-left: auto;
@@ -32,6 +37,9 @@
 	flex-direction: column;
 	gap: 12px;
 	align-items: center;
+}
+.header_center a {
+	text-decoration: none;
 }
 
 .discount {

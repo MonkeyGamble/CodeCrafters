@@ -1,5 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 .content_line {
 	max-width: 1360px;
 	margin-left: auto;
@@ -9,7 +11,7 @@
 .mainPageButton, .categoriesPageButton {
     width: 120px;
     height: 36px;
-    margin: 16px;
+   
 	border-radius: 5px;
 	background-color: transparent;
     border: 1px solid var(--grey_divider);
@@ -22,12 +24,11 @@
 
 }
 .line {
-	
-	flex: 1;
+	width: 16px;
 	height: 1px;
 	background-color: var(--grey_divider);
-    margin: 0 0 0 16px;
-}
+  }
+
 .categoryImage {
 	width: 248px;
 	height: 350px;
@@ -37,8 +38,13 @@
   }
  .my_button {
 	display: none;
- 
  }
+ .nav_buttons {
+   display: flex;
+   align-items: center;
+
+ }
+ 
  .header h2 {
 	
 	
@@ -67,4 +73,27 @@
   }
   
 
-
+@media(max-width:1000px){
+	.categoryItem img{
+		width: 306px;
+		height: 250px;
+	}
+}
+@media(max-width:768px){
+	.categoryItem img{
+		width: 354px;
+		height: 250px;
+	}
+}
+@media(max-width:480px){
+	.categoryItem img{
+		width: 210px;
+		height: 254px;
+	}
+}
+@media(max-width:360px){
+	.categoryItem img{
+		width: 320px;
+		height: 220px;
+	}
+}

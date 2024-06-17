@@ -2,7 +2,6 @@ import s from './Header.module.css';
 import ThemeButton from './ThemeButton/index';
 import logo from '../../assets/img/logo.png';
 import like from '../../assets/img/like.png';
-// import shopping_cart from '../../assets/img/shopping_cart.png';
 import { NavLink, Link } from 'react-router-dom';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import Basket from '../Basket/index';
@@ -42,14 +41,12 @@ export default function Header() {
 			</div>
 
 			<div className={s.header_right}>
-				<NavLink to='/liked_products'>
+				<Link to='/liked_products'>
 					<img src={like} alt='like' />
-				</NavLink>
-				<NavLink to='/shopping_cart' className={s.shopping_cart}>
+				</Link>
+				<Link to='/shopping_cart' className={s.shopping_cart}>
 					<Basket addToCart={false} />
-					{/* <img src={shopping_cart} alt='cart' /> */}
-				</NavLink>
-
+				</Link>
 				<RxHamburgerMenu className={s.burger} />
 			</div>
 		</header>

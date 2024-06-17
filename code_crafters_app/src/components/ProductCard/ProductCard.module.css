@@ -1,0 +1,89 @@
+.card {
+	width: 316px;
+	height: 422px;
+	background-color: var(--text_white);
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--grey_divider);
+	border-radius: 12px;
+	cursor: pointer;
+}
+
+.product_picture {
+	width: 314px;
+	height: 284px;
+	display: flex;
+	justify-content: space-between;
+	padding: 16px 16px 0 17px;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+
+	border-bottom: 1px solid var(--grey_divider);
+	background-size: cover;
+	background-position: center;
+}
+
+.product_description {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 20px 32px 32px 32px;
+}
+
+.product_description h3 {
+	font-size: 20px;
+	font-weight: 500;
+	color: var(--text_black);
+	overflow: hidden;
+	white-space: nowrap; /* Запрещаем перенос строки */
+	text-overflow: ellipsis; /* Добавляем троеточие */
+}
+
+.discount_size {
+	width: 68px;
+	height: 34px;
+	border-radius: 6px;
+
+	background-color: var(--sale);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--text_white);
+
+	font-size: 20px;
+	font-weight: 600;
+	letter-spacing: 3%;
+}
+
+.like_cart {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.like_cart img {
+	cursor: pointer;
+}
+
+.price {
+	display: flex;
+	align-items: last baseline;
+	gap: 16px;
+}
+
+.price h2 {
+	font-size: 40px;
+	font-weight: 600;
+
+	color: var(--text_black);
+}
+
+.price h5 {
+	font-size: 20px;
+	font-weight: 500;
+
+	color: var(--grey);
+	text-decoration: line-through;
+}

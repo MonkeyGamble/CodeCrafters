@@ -2,10 +2,9 @@ import {
 	getAllProductsAction,
 	getProductByIdAction,
 	getProductsByCategoryIdAction,
-	incrProductCountAction,
-	decrProductCountAction,
+	incrementProductCountAction,
+	decrementProductCountAction,
 } from '../store/productsReducer';
-
 
 import { ROOT_URL } from '../';
 
@@ -50,15 +49,32 @@ export function getProductsByCategoryId(id) {
 	};
 }
 
-export function incrementProductCount() {
-	return function (dispatch) {
-		dispatch(incrProductCountAction());
-	};
-}
+export const incrementProductCount = id => (dispatch, getState) => {
+	const state = getState();
+	const basket = state.basket?.items || [];
+	const product = basket.find(item => item.id === id);
+	if (product) {
+		dispatch(incrementProductCountAction(id));
+	}
+};
 
-export function decrementProductCount() {
-	return function (dispatch) {
-		dispatch(decrProductCountAction());
-	};
-}
+export const decrementProductCount = id => (dispatch, getState) => {
+	const state = getState();
+	const basket = state.basket?.items || [];
+	const product = basket.find(item => item.id === id);
+	if (product) {
+		dispatch(decrementProductCountAction(id));
+	}
+};
 
+// export function incrementProductCount() {
+// 	return function (dispatch) {
+// 		dispatch(incrProductCountAction());
+// 	};
+// }
+
+// export function decrementProductCount() {
+// 	return function (dispatch) {
+// 		dispatch(decrProductCountAction());
+// 	};
+// }

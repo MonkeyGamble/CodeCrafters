@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import s from './ProductItem.module.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +8,11 @@ import { Link } from 'react-router-dom';
 import { ROOT_URL } from '../../..';
 import '../../../Global.css';
 import like from '../../../assets/img/like_white.png';
-import Counter from '../../Counter/counter';
+import Counter from '../../Counter/index.jsx';
+import {
+	incrementProductCountAction,
+	decrementProductCountAction,
+} from '../../../store/basketReducer.jsx';
 import { useBasketActions } from '../../../asyncActions/basket';
 
 export default function ProductItemPage() {
@@ -22,6 +26,18 @@ export default function ProductItemPage() {
 		dispatch(getProductById(id));
 		dispatch(getAllCategories());
 	}, [dispatch, id]);
+
+	if (!product) {
+		return <div>Loading...</div>;
+	}
+
+	const handleIncrement = () => {
+		dispatch(incrementProductCountAction(product.id));
+	};
+
+	const handleDecrement = () => {
+		dispatch(decrementProductCountAction(product.id));
+	};
 
 	return (
 		<div className={`${s.product_wrapper} content_line`}>
@@ -77,7 +93,12 @@ export default function ProductItemPage() {
 						)}
 					</div>
 					<div className={s.add_to_cart}>
-						<Counter />
+						<Counter
+							count={product.count}
+							onIncrement={handleIncrement}
+							onDecrement={handleDecrement}
+						/>
+						{/* Передаем productId в Counter */}
 						<button
 							className={s.add_button}
 							onClick={() => {

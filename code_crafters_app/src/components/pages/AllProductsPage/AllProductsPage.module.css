@@ -1,111 +1,168 @@
+.sale_container {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.nav_buttons {
+	display: flex;
+	align-items: center;
+	margin-top: 40px;
+}
+
+.first_button {
+	width: 118px;
+	height: 36px;
+	border: 1px solid var(--grey_divider);
+	border-radius: 6px;
+	background-color: transparent;
+	font-size: 16px;
+	color: var(--text_grey);
+	cursor: pointer;
+}
+
+.nav_line {
+	width: 16px;
+	height: 1px;
+	background-color: var(--grey_divider);
+}
+
+.second_button {
+	width: 118px;
+	height: 36px;
+	border: 1px solid var(--grey_divider);
+	border-radius: 6px;
+	background-color: transparent;
+	font-size: 16px;
+	color: var(--text_black);
+	cursor: pointer;
+}
 .product_filter {
-    padding: 20px;
-    font-family: Arial, sans-serif;
+	padding: 20px;
+	font-family: Arial, sans-serif;
 }
 
 .product_filter h1 {
-    margin-bottom: 50px;
+	margin-bottom: 50px;
 }
 
 .filter_options {
-    
-    display: flex;
-   align-items: center; /* выравнивание элементов по центру по вертикали */
-   gap: 20px;
+	display: flex;
+	align-items: center; /* выравнивание элементов по центру по вертикали */
+	gap: 20px;
 }
 
 .filter_option {
-    
-    display: flex;
-    flex-direction: row; /* расположение элементов в строку */
-    align-items: center; /* выравнивание элементов по центру по вертикали */
-    gap: 10px;
+	display: flex;
+	flex-direction: row; /* расположение элементов в строку */
+	align-items: center; /* выравнивание элементов по центру по вертикали */
+	gap: 10px;
 }
 
 .filter_option label {
-    font-size: 20px;
-    writing-mode: horizontal-tb;
+	font-size: 20px;
+	writing-mode: horizontal-tb;
 }
 
-.filter_option input[type="number"],
+.filter_option input[type='number'],
 .filter_option select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
 }
 
-.filter_option input[type="checkbox"] {
-    transform: scale(1.5);
-    margin-left: 10px;
+.filter_option input[type='checkbox'] {
+	transform: scale(1.5);
+	margin-left: 10px;
 }
 
 .cards_container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 32px;
+}
+
+.cards_container a {
+	text-decoration: none;
 }
 
 .card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.product_picture {
-    background-size: cover;
-    background-position: center;
-    height: 200px;
-    position: relative;
-}
-
-.discount_size {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: green;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
+	position: relative;
 }
 
 .like_cart {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: flex;
-    gap: 10px;
+	position: absolute;
+	right: 16px;
+	top: 16px;
+}
+
+/* .cards_container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 32px;
+}
+
+.card {
+	background: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+.product_picture {
+	background-size: cover;
+	background-position: center;
+	height: 200px;
+	position: relative;
+}
+
+.discount_size {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	background: green;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+.like_cart {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	display: flex;
+	gap: 10px;
 }
 
 .product_description h3 {
-    font-size: 20px;
-    margin: 10px 0;
+	font-size: 20px;
+	margin: 10px 0;
 }
 
 .price h2 {
-    font-size: 22px;
-    color: #333;
+	font-size: 22px;
+	color: #333;
 }
 
 .price h5 {
-    text-decoration: line-through;
-    color: #999;
-    margin-left: 10px;
+	text-decoration: line-through;
+	color: #999;
+	margin-left: 10px;
 }
 
 .button_340 {
-    background: green;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 20px 0;
+	background: green;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	margin: 20px 0;
 }
 
 .button_340:hover {
-    background: darkgreen;
-}
+	background: darkgreen;
+} */

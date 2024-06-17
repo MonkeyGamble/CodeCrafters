@@ -13,9 +13,24 @@ export default function ProductCard({ product, ...otherProps }) {
 		e.stopPropagation();
 		// Если кликнули на карточку продукта внутри Link, предотвращаем всплытие события
 	};
+
 	const handleBasketClick = e => {
+		e.preventDefault();
 		e.stopPropagation();
-		addProductToBasket(product);
+
+		console.log('Product to add:', product);
+		console.log('Price:', product.price);
+		console.log('Discont price:', product.discont_price);
+		console.log('Count:', product.count);
+		const priceToAdd = (product.discont_price || product.price) * product.count;
+		console.log('Price to add:', priceToAdd);
+
+		addProductToBasket({ ...product, count: 1 });
+		console.log(
+			`Added to basket: ${product.title}, price: ${
+				product.discont_price || product.price
+			}`
+		);
 	};
 
 	return (
@@ -29,9 +44,12 @@ export default function ProductCard({ product, ...otherProps }) {
 				className={s.product_picture}
 				style={{ backgroundImage: `url(${ROOT_URL + product.image})` }}
 			>
-				<div className={s.discount_size}>
-					-{Math.round((1 - product.discont_price / product.price) * 100)}%
-				</div>
+				{product.discont_price && (
+					<div className={s.discount_size}>
+						-{Math.round((1 - product.discont_price / product.price) * 100)}%
+					</div>
+				)}
+
 				<div className={s.like_cart}>
 					<img src={like} alt='like' />
 					<Basket product={product} onClick={handleBasketClick} />
@@ -40,9 +58,42 @@ export default function ProductCard({ product, ...otherProps }) {
 
 			<div className={s.product_description}>
 				<h3>{product.title}</h3>
+
 				<div className={s.price}>
-					<h2>${product.discont_price}</h2>
-					<h5>${product.price}</h5>
+					{product.discont_price ? (
+						<>
+							<h2
+								style={{
+									fontSize: '40px',
+									fontWeight: '600',
+									color: 'var(--text_black)',
+								}}
+							>
+								${product.discont_price.toFixed(2)}
+							</h2>
+							<h5
+								style={{
+									fontSize: '20px',
+									fontWeight: '500',
+									color: 'var(--grey)',
+									textDecoration: 'line-through',
+								}}
+							>
+								${product.price.toFixed(2)}
+							</h5>
+						</>
+					) : (
+						<h5
+							style={{
+								fontSize: '40px',
+								fontWeight: '600',
+								color: 'var(--text_black)',
+								textDecoration: 'none',
+							}}
+						>
+							${product.price.toFixed(2)}
+						</h5>
+					)}
 				</div>
 			</div>
 		</Link>

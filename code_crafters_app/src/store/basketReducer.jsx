@@ -15,9 +15,22 @@ export const basketReducer = (state = defaultState, action) => {
 		case ADD_PRODUCT_TO_BASKET: {
 			const productToAdd = action.payload;
 
+			console.log('Product to add:', productToAdd);
+			console.log('TotalPrice before update:', state.basket.totalPrice);
+
 			const existingProductIndex = state.basket.items.findIndex(
 				item => item.id === productToAdd.id
 			);
+
+			const priceToAdd =
+				(productToAdd.discont_price || productToAdd.price) *
+				(productToAdd.count || 1);
+
+			const totalPriceToAdd =
+				(productToAdd.discont_price || productToAdd.price) * productToAdd.count;
+
+			console.log('Price to add:', priceToAdd);
+			console.log('TotalPriceToAdd:', totalPriceToAdd);
 
 			if (existingProductIndex !== -1) {
 				const updatedItems = state.basket.items.map((item, index) =>
@@ -26,15 +39,16 @@ export const basketReducer = (state = defaultState, action) => {
 						: item
 				);
 
+				const updatedTotalPrice = state.basket.totalPrice + totalPriceToAdd;
+
+				console.log('Updated state:', state);
+
 				return {
 					...state,
 					basket: {
 						...state.basket,
 						items: updatedItems,
-						totalPrice:
-							state.basket.totalPrice +
-							(productToAdd.discont_price || productToAdd.price) *
-								productToAdd.count,
+						totalPrice: updatedTotalPrice,
 					},
 				};
 			} else {
@@ -43,10 +57,8 @@ export const basketReducer = (state = defaultState, action) => {
 					basket: {
 						...state.basket,
 						items: [...state.basket.items, { ...productToAdd }],
-						totalPrice:
-							state.basket.totalPrice +
-							(productToAdd.discont_price || productToAdd.price) *
-								productToAdd.count,
+						totalPrice: state.basket.totalPrice + totalPriceToAdd,
+						
 					},
 				};
 			}

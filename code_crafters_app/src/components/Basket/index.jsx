@@ -1,20 +1,18 @@
 import React from 'react';
 import shopping_cart from '../../assets/img/shopping_cart_white.png';
-// import { useBasketActions } from '../../asyncActions/basket';
 
-export default function Basket({ product, ...otherProps }) {
-	// const { addProductToBasket } = useBasketActions();
-
-	// 	const handleBasketClick = e => {
-	//  // Предотвращаем всплытие события
-	// 		if (addToCart) {
-	// 			e.stopPropagation();
-	// 			addProductToBasket(product);
-	// 		}
-	// 	};
-	
+export default function Basket({ product, onClick, ...otherProps }) {
+	const handleClick = e => {
+		e.preventDefault();
+		e.stopPropagation();
+		if (typeof onClick === 'function') {
+			onClick(e); // Вызываем переданную функцию onClick
+		} else {
+			console.error('onClick is not a function');
+		}
+	};
 	return (
-		<div {...otherProps}>
+		<div onClick={handleClick} {...otherProps}>
 			<img src={shopping_cart} alt='cart' />
 		</div>
 	);

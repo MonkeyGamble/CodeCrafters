@@ -70,8 +70,25 @@ export default function ShoppingCartPage() {
 										onDecrement={() => handleDecrement(product.id)}
 									/>
 									<div className={s.price}>
-										<p>${product.discont_price}</p>
-										<p>${product.price}</p>
+										<div className={s.price}>
+											{product.discont_price ? (
+												<>
+													<p>${product.discont_price}</p>
+													<p>${product.price}</p>
+												</>
+											) : (
+												<p
+													style={{
+														fontSize: '40px',
+														fontWeight: '600',
+														textDecoration: 'none',
+														color: 'var(--text_black)',
+													}}
+												>
+													${product.price}
+												</p>
+											)}
+										</div>
 									</div>
 								</div>
 							</div>

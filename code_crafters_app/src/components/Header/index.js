@@ -5,8 +5,14 @@ import like from '../../assets/img/like.png';
 import { NavLink, Link } from 'react-router-dom';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import Basket from '../Basket/index';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
+	const navigate = useNavigate();
+	const handleBasketClick = () => {
+		navigate('/shopping_cart', { state: { from: 'Header' } });
+	};
+
 	return (
 		<header className={`${s.container} ${s.content_line}`}>
 			<div className={s.header_left}>
@@ -45,7 +51,7 @@ export default function Header() {
 					<img src={like} alt='like' />
 				</Link>
 				<Link to='/shopping_cart' className={s.shopping_cart}>
-					<Basket addToCart={false} />
+					<Basket onClick={handleBasketClick} />
 				</Link>
 				<RxHamburgerMenu className={s.burger} />
 			</div>

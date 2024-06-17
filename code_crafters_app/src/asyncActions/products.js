@@ -67,14 +67,3 @@ export const decrementProductCount = id => (dispatch, getState) => {
 	}
 };
 
-// export function incrementProductCount() {
-// 	return function (dispatch) {
-// 		dispatch(incrProductCountAction());
-// 	};
-// }
-
-// export function decrementProductCount() {
-// 	return function (dispatch) {
-// 		dispatch(decrProductCountAction());
-// 	};
-// }

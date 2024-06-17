@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import s from './AllProductsPage.module.css';
+import style from './AllProductsPage.module.css';
 import { Link } from 'react-router-dom';
+import ProductCard from '../../ProductCard';
+import Filter from '../../Filter';
 
 const ROOT_URL = 'http://localhost:3333';
 
@@ -53,72 +55,26 @@ const AllProductsPage = () => {
 	}, [minPrice, maxPrice, isDiscounted, sortOrder, products]);
 
 	return (
-		<div className={`${s.sale_container} content_line`}>
-			<div className={s.header_section}>
-				<h1>All Products</h1>
-			</div>
-			<div className={`${s.filter_options} filter-options`}>
-				<div className={`${s.filter_option} filter-option`}>
-					<label>Price</label>
-					<input
-						type='number'
-						placeholder='from'
-						value={minPrice}
-						onChange={e => setMinPrice(e.target.value)}
-					/>
-					<input
-						type='number'
-						placeholder='to'
-						value={maxPrice}
-						onChange={e => setMaxPrice(e.target.value)}
-					/>
-				</div>
-				<div className={`${s.filter_option} filter-option`}>
-					<label>Discounted items</label>
-					<input
-						type='checkbox'
-						checked={isDiscounted}
-						onChange={e => setIsDiscounted(e.target.checked)}
-					/>
-				</div>
-				<div className={`${s.filter_option} filter-option`}>
-					<label>Sorted</label>
-					<select
-						value={sortOrder}
-						onChange={e => setSortOrder(e.target.value)}
-					>
-						<option value='default'>by default</option>
-						<option value='priceAsc'>price Asc</option>
-						<option value='priceDesc'>price Desc</option>
-						<option value='alphabetical'>Alphabetical</option>
-					</select>
-				</div>
+		<div className={`${style.sale_container} content_line`}>
+			<div className={style.nav_buttons}>
+				<Link to='/'>
+					<button className={style.first_button}>Main page</button>
+				</Link>
+				<div className={style.nav_line}></div>
+				<Link to='/all_sales'>
+					<button className={style.second_button}>All products</button>
+				</Link>
 			</div>
 
-			<div className={s.cards_container}>
+			<div className={style.header_section}>
+				<h1>All Products</h1>
+			</div>
+
+			<Filter />
+
+			<div className={style.cards_container}>
 				{randomAllProducts.map(product => (
-					<Link
-						key={product.id}
-						className={s.card}
-						to={`/products/${product.id}`}
-					>
-						<div
-							className={s.product_picture}
-							style={{ backgroundImage: `url(${ROOT_URL + product.image})` }}
-						>
-							<div className={s.discount_size}>
-								-{Math.round((1 - product.discont_price / product.price) * 100)}
-								%
-							</div>
-						</div>
-						<div className={s.product_description}>
-							<h3>{product.title}</h3>
-							<div className={s.price}>
-								<h2>${product.discont_price}</h2>
-								<h5>${product.price}</h5>
-							</div>
-						</div>
-					</Link>
+					<ProductCard key={products.id} product={product} />
 				))}
 			</div>
 		</div>
@@ -126,3 +82,4 @@ const AllProductsPage = () => {
 };
 
 export default AllProductsPage;
+

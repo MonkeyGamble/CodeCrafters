@@ -32,26 +32,22 @@ export const productsReducer = (state = defaultState, action) => {
 				...state,
 				productsFromCategory: action.payload,
 			};
-		case INCR_PRODUCT_COUNT: {
-			const updatedProduct = {
-				...state.product,
-				count: state.product.count + 1,
-			};
+		case INCR_PRODUCT_COUNT:
 			return {
 				...state,
-				product: updatedProduct,
+				product: {
+					...state.product,
+					count: state.product.count + 1,
+				},
 			};
-		}
-		case DECR_PRODUCT_COUNT: {
-			const updatedProduct = {
-				...state.product,
-				count: state.product.count > 1 ? state.product.count - 1 : 1,
-			};
+		case DECR_PRODUCT_COUNT:
 			return {
 				...state,
-				product: updatedProduct,
+				product: {
+					...state.product,
+					count: state.product.count > 1 ? state.product.count - 1 : 1,
+				},
 			};
-		}
 		default:
 			return state;
 	}
@@ -71,10 +67,10 @@ export const getProductsByCategoryIdAction = products => ({
 	type: GET_PRODUCTS_BY_CATEGORY_ID,
 	payload: products,
 });
-export const incrProductCountAction = () => ({
+export const incrementProductCountAction = () => ({
 	type: INCR_PRODUCT_COUNT,
 });
 
-export const decrProductCountAction = () => ({
+export const decrementProductCountAction = () => ({
 	type: DECR_PRODUCT_COUNT,
 });

@@ -2,9 +2,8 @@ import React from 'react';
 import s from './Footer.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-	faFacebook,
-	faTwitter,
 	faInstagram,
+    faViber
 } from '@fortawesome/free-brands-svg-icons';
 import '../../Global.css';
 // import { IoLogoWhatsapp } from 'react-icons/io';
@@ -23,15 +22,15 @@ export default function Footer() {
 						<p className={s.label}>Socials</p>
 
 						<div className={s.socialLinks}>
-							<a href='https://facebook.com'>
-								<FontAwesomeIcon icon={faFacebook} className={s.social_netz} />
-							</a>
-							<a href='https://twitter.com'>
-								<FontAwesomeIcon icon={faTwitter} className={s.social_netz} />
-							</a>
-							<a href='https://instagram.com'>
-								<FontAwesomeIcon icon={faInstagram} className={s.social_netz} />
-							</a>
+
+
+						<a href='https://instagram.com'>
+                <FontAwesomeIcon icon={faInstagram} className={s.social_netz} />
+            </a>
+            <a href='https://viber.com'>
+                <FontAwesomeIcon icon={faViber} className={s.social_netz} />
+            </a>
+
 						</div>
 					</div>
 					<div className={s.infoBox}>

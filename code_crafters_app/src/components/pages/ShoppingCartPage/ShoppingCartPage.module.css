@@ -94,6 +94,8 @@ h1 {
 	font-size: 20px;
 	font-weight: 500;
 	color: var(--text_black);
+	/* white-space: nowrap; Запрещаем перенос строки */
+	/* text-overflow: ellipsis; Добавляем троеточие */
 }
 
 .product_header_section .xmark {

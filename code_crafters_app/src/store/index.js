@@ -2,15 +2,15 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import themeReducer from './themeButtonReducer';
 import { productsReducer } from './productsReducer';
 import { thunk } from 'redux-thunk';
-
 import { categoriesReducer } from './categoriesReducer';
+import { basketReducer } from './basketReducer';
 import { composeWithDevTools } from '@redux-devtools/extension';
 
 const rootReducer = combineReducers({
 	theme: themeReducer,
 	products: productsReducer,
-
 	categories: categoriesReducer,
+	basket: basketReducer,
 });
 
 const store = createStore(

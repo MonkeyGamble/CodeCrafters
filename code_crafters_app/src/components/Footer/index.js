@@ -5,6 +5,8 @@ import {
 	faInstagram,
     faViber
 } from '@fortawesome/free-brands-svg-icons';
+import '../../Global.css';
+// import { IoLogoWhatsapp } from 'react-icons/io';
 
 export default function Footer() {
 	return (
@@ -18,7 +20,9 @@ export default function Footer() {
 					</div>
 					<div className={s.infoBox}>
 						<p className={s.label}>Socials</p>
+
 						<div className={s.socialLinks}>
+
 
 						<a href='https://instagram.com'>
                 <FontAwesomeIcon icon={faInstagram} className={s.social_netz} />
@@ -50,6 +54,7 @@ export default function Footer() {
 					allowFullScreen=''
 					loading='lazy'
 					referrerPolicy='no-referrer-when-downgrade'
+					title='map'
 				></iframe>
 			</div>
 		</footer>

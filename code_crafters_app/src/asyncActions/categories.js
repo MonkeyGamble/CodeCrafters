@@ -1,6 +1,4 @@
-import {
-	getAllCategoriesAction,
-} from '../store/categoriesReducer';
+import { getAllCategoriesAction } from '../store/categoriesReducer';
 import { ROOT_URL } from '..';
 
 export function getAllCategories() {

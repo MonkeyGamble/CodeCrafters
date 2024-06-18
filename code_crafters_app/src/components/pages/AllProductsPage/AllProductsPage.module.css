@@ -41,9 +41,29 @@
 }
 
 .cards_container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 32px;
+}
+
+.cards_container a {
+	text-decoration: none;
+}
+
+.card {
+	position: relative;
+}
+
+.like_cart {
+	position: absolute;
+	right: 16px;
+	top: 16px;
+}
+
+ .cards_container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 32px;
 }
 
 .card {
@@ -107,5 +127,5 @@
 }
 
 .button_340:hover {
-    background: darkgreen;
-}
+	background: darkgreen;
+} 

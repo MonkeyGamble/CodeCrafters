@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import s from './AllProductsPage.module.css';
 
-
 const ROOT_URL = 'http://localhost:3333';
 
 const AllProductsPage = () => {
@@ -27,27 +26,27 @@ const AllProductsPage = () => {
 
   useEffect(() => {
     let filtered = products;
-	if (minPrice !== '') filtered = filtered.filter(p => p.discont_price >= parseFloat(minPrice));
-	if (maxPrice !== '') filtered = filtered.filter(p => p.discont_price <= parseFloat(maxPrice));
-    if (isDiscounted) filtered = filtered.filter(p => p.discont_price < p.price);
+    if (minPrice !== '') filtered = filtered.filter(p => (p.discont_price !== null ? p.discont_price : p.price) >= parseFloat(minPrice));
+    if (maxPrice !== '') filtered = filtered.filter(p => (p.discont_price !== null ? p.discont_price : p.price) <= parseFloat(maxPrice));
+    if (isDiscounted) filtered = filtered.filter(p => p.discont_price !== null && p.discont_price < p.price);
 
     switch (sortOrder) {
-		case 'priceAsc':
-		  filtered = filtered.sort((a, b) => a.discont_price - b.discont_price);
-		  break;
-		case 'priceDesc':
-		  filtered = filtered.sort((a, b) => b.discont_price - a.discont_price);
-		  break;
-		case 'alphabetical':
-		  filtered = filtered.sort((a, b) => a.title.localeCompare(b.title));
-		  break;
-		default:
-		  break;
-	  }
+      case 'priceAsc':
+        filtered = filtered.sort((a, b) => (a.discont_price !== null ? a.discont_price : a.price) - (b.discont_price !== null ? b.discont_price : b.price));
+        break;
+      case 'priceDesc':
+        filtered = filtered.sort((a, b) => (b.discont_price !== null ? b.discont_price : b.price) - (a.discont_price !== null ? a.discont_price : a.price));
+        break;
+      case 'alphabetical':
+        filtered = filtered.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      default:
+        break;
+    }
 
-      setFilteredProducts([...filtered]);
+    setFilteredProducts([...filtered]);
   }, [minPrice, maxPrice, isDiscounted, sortOrder, products]);
- 
+
   return (
     <div className={`${s.sale_container} content_line`}>
       <div className={s.header_section}>
@@ -91,32 +90,34 @@ const AllProductsPage = () => {
         </div>
       </div>
 
-    
-		
-        <div className={s.cards_container}>
-          {randomAllProducts.map(product => (
-            <div key={product.id} className={s.card}>
-              <div
-                className={s.product_picture}
-                style={{ backgroundImage: `url(${ROOT_URL + product.image})` }}
-				
-              >
-                <div className={s.discount_size}>
-                  -{Math.round((1 - product.discont_price / product.price) * 100)}%
-                </div>
-              </div>
-              <div className={s.product_description}>
-                <h3>{product.title}</h3>
-                <div className={s.price}>
-                  <h2>${product.discont_price}</h2>
-                  <h5>${product.price}</h5>
-                </div>
+      <div className={s.cards_container}>
+        {randomAllProducts.map(product => (
+          <div key={product.id} className={s.card}>
+            <div
+              className={s.product_picture}
+              style={{ backgroundImage: `url(${ROOT_URL + product.image})` }}
+            >
+              <div className={s.discount_size}>
+                -{product.discont_price ? Math.round((1 - product.discont_price / product.price) * 100) : 0}%
               </div>
             </div>
-          ))}
-        </div>
-		</div>
-    
+            <div className={s.product_description}>
+              <h3>{product.title}</h3>
+              <div className={s.price}>
+                {product.discont_price !== null ? (
+                  <>
+                    <h2>${product.discont_price.toFixed(2)}</h2>
+                    <h5>${product.price.toFixed(2)}</h5>
+                  </>
+                ) : (
+                  <h2>${product.price.toFixed(2)}</h2>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 

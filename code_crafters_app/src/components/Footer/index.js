@@ -2,9 +2,8 @@ import React from 'react';
 import s from './Footer.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-	faFacebook,
-	faTwitter,
 	faInstagram,
+    faViber
 } from '@fortawesome/free-brands-svg-icons';
 
 export default function Footer() {
@@ -20,15 +19,14 @@ export default function Footer() {
 					<div className={s.infoBox}>
 						<p className={s.label}>Socials</p>
 						<div className={s.socialLinks}>
-							<a href='https://facebook.com'>
-								<FontAwesomeIcon icon={faFacebook} />
-							</a>
-							<a href='https://twitter.com'>
-								<FontAwesomeIcon icon={faTwitter} />
-							</a>
-							<a href='https://instagram.com'>
-								<FontAwesomeIcon icon={faInstagram} />
-							</a>
+
+						<a href='https://instagram.com'>
+                <FontAwesomeIcon icon={faInstagram} className={s.social_netz} />
+            </a>
+            <a href='https://viber.com'>
+                <FontAwesomeIcon icon={faViber} className={s.social_netz} />
+            </a>
+
 						</div>
 					</div>
 					<div className={s.infoBox}>

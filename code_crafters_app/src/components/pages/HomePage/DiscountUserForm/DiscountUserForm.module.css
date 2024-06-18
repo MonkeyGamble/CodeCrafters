@@ -202,6 +202,7 @@
 }
 
 
+
 .discount_user_form {
     max-width: 1360px;
 	height: 486px;
@@ -214,9 +215,11 @@
     display: flex;
 	flex-direction: column;
 }
+
   .discount_user_form h2 {
 	font-family: "Montserrat", sans-serif;
     font-weight: 700;
+
 	margin: 32px 32px 24px 32px;
     font-size: 64px;
 	color: white;
@@ -233,6 +236,7 @@ display: flex;
 align-items: flex-end;
 }
 .form {
+
 	width: 516px;
 	height: 324px;
 	display: flex;
@@ -243,6 +247,7 @@ align-items: flex-end;
 	margin: auto;
 	border-radius: 10px;
 }
+
   
 .discount_user_form input, .discount_user_form button {
 	width: 516px;
@@ -278,3 +283,4 @@ font-size: 16px;
 }
 
 */
+

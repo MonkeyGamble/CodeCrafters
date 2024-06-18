@@ -4,6 +4,7 @@ import errorIcon from '../../HomePage/DiscountUserForm/x-octagonn.png';
 
 
 export default function DiscountUserForm() {
+
   const { 
     register, 
     handleSubmit, 
@@ -304,5 +305,6 @@ export default function DiscountUserForm() {
 }
 
 */
+
 
 

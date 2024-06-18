@@ -58,7 +58,6 @@ export const basketReducer = (state = defaultState, action) => {
 						...state.basket,
 						items: [...state.basket.items, { ...productToAdd }],
 						totalPrice: state.basket.totalPrice + totalPriceToAdd,
-						
 					},
 				};
 			}

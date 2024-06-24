@@ -22,7 +22,8 @@ export default function ProductCard({ product, ...otherProps }) {
 		console.log('Price:', product.price);
 		console.log('Discont price:', product.discont_price);
 		console.log('Count:', product.count);
-		const priceToAdd = (product.discont_price || product.price) * product.count;
+
+				const priceToAdd = (product.discont_price || product.price) * product.count;
 		console.log('Price to add:', priceToAdd);
 
 		addProductToBasket({ ...product, count: 1 });

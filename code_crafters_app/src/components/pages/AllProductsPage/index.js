@@ -7,7 +7,6 @@ import { getAllProducts } from '../../../asyncActions/products.js';
 import ProductCard from '../../ProductCard/index.jsx';
 
 const AllProductsPage = () => {
-
 	const dispatch = useDispatch();
 	const filters = useSelector(state => state.products.filters);
 	const filteredProducts = useSelector(
@@ -50,5 +49,3 @@ const AllProductsPage = () => {
 };
 
 export default AllProductsPage;
-
-

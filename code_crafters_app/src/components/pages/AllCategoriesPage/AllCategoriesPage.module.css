@@ -6,6 +6,12 @@
 	margin-right: auto;
 }
 
+.categoryList a {
+	text-decoration: none;
+	text-align: center;
+	color: var(--text_black);
+}
+
 .mainPageButton,
 .categoriesPageButton {
 	width: 120px;
@@ -31,6 +37,7 @@
 	height: 350px;
 	border-radius: 10px;
 	display: block;
+	object-fit: cover;
 }
 .my_button {
 	display: none;

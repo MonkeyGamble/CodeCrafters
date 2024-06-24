@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './DailyDealModal.css';
-import { useBasketActions } from '../../asyncActions/basket';
-import like from '../../assets/img/like_white.png';
 
 const ROOT_URL = 'http://localhost:3333';
 
 const DailyDealModal = ({ isOpen, onRequestClose, product }) => {
-	const { addProductToBasket } = useBasketActions();
 	const [currentProduct, setCurrentProduct] = useState(null);
 	const [loading, setLoading] = useState(false);
 
@@ -41,8 +38,6 @@ const DailyDealModal = ({ isOpen, onRequestClose, product }) => {
 	const discountPrice = calculateDiscountPrice(price);
 
 	const handleAddToCart = () => {
-		addProductToBasket({ ...displayedProduct, count: 1, price: discountPrice });
-
 		console.log(
 			`Added ${displayedProduct.title} to cart for $${discountPrice}`
 		);

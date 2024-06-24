@@ -61,7 +61,7 @@
 .filter_option input[type='number'],
 .filter_option select {
 	padding: 5px;
-	border: 1px solid #ccc;
+	border: 1px solid var(--grey_divider);
 	border-radius: 4px;
 	font-size: 14px;
 }
@@ -71,6 +71,12 @@
 	margin-left: 10px;
 }
 
+
+.cards_container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(316px, 1fr));
+	gap: 32px;
+
 .discount_wrapper {
 	margin-top: 40px;
 }
@@ -79,7 +85,7 @@
 	display: flex;
 	align-items: center;
 	margin-bottom: 40px;
-}
+
 
 .sale_container {
 	display: flex;
@@ -122,6 +128,9 @@ h1 {
 	align-items: center;
 }
 
+
+/* .cards_container {
+
 .filter_price p,
 .filter_sort label {
 	font-size: 20px;
@@ -137,6 +146,7 @@ h1 {
 	border: 1px solid var(--grey_divider);
 	padding: 8px 16px;
 }
+
 
 .filter_price input::placeholder {
 	font-size: 16px;
@@ -404,4 +414,6 @@ h1 {
 	}
 }
 
+
+} */
 

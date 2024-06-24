@@ -12,6 +12,13 @@
 	color: var(--white);
 }
 
+
+.discount_user_form h2 {
+	color: var(--text_white);
+	letter-spacing: 1px;
+}
+
+
 .first_order {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
@@ -30,14 +37,17 @@
 	flex-direction: column;
 	gap: 10px;
 	align-items: flex-end;
-	font-family: 'Montserrat', sans-serif;
+
+
 }
 
 .input,
 .submitButton {
 	width: 516px;
 	height: 58px;
-	border: 1px solid var(--white);
+
+	border: 1px solidvar(--white);
+
 	padding: 16px;
 	margin: 5px auto;
 	color: var(--white);
@@ -46,10 +56,7 @@
 	background: transparent;
 	outline: none;
 	cursor: pointer;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 20px;
-	font-weight: 600;
-	color: var(--text_black);
+
 }
 
 .input.error {
@@ -90,7 +97,9 @@
 }
 
 .submitButton:hover {
-	background-color: var(--white);
+
+	background-color: #e0e0e0;
+
 }
 
 /*

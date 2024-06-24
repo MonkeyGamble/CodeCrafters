@@ -25,26 +25,34 @@ const AllProductsPage = () => {
   }, []);
 
   useEffect(() => {
-    let filtered = products;
-    if (minPrice !== '') filtered = filtered.filter(p => (p.discont_price !== null ? p.discont_price : p.price) >= parseFloat(minPrice));
-    if (maxPrice !== '') filtered = filtered.filter(p => (p.discont_price !== null ? p.discont_price : p.price) <= parseFloat(maxPrice));
-    if (isDiscounted) filtered = filtered.filter(p => p.discont_price !== null && p.discont_price < p.price);
+    let filtered = [...products];
+
+    if (minPrice !== '') {
+      filtered = filtered.filter(p => (p.discont_price !== null ? p.discont_price : p.price) >= parseFloat(minPrice));
+    }
+    if (maxPrice !== '') {
+      filtered = filtered.filter(p => (p.discont_price !== null ? p.discont_price : p.price) <= parseFloat(maxPrice));
+    }
+    if (isDiscounted) {
+      filtered = filtered.filter(p => p.discont_price !== null && p.discont_price < p.price);
+    }
 
     switch (sortOrder) {
       case 'priceAsc':
-        filtered = filtered.sort((a, b) => (a.discont_price !== null ? a.discont_price : a.price) - (b.discont_price !== null ? b.discont_price : b.price));
+        filtered.sort((a, b) => (a.discont_price !== null ? a.discont_price : a.price) - (b.discont_price !== null ? b.discont_price : b.price));
         break;
       case 'priceDesc':
-        filtered = filtered.sort((a, b) => (b.discont_price !== null ? b.discont_price : b.price) - (a.discont_price !== null ? a.discont_price : a.price));
+        filtered.sort((a, b) => (b.discont_price !== null ? b.discont_price : b.price) - (a.discont_price !== null ? a.discont_price : a.price));
         break;
       case 'alphabetical':
-        filtered = filtered.sort((a, b) => a.title.localeCompare(b.title));
+        filtered.sort((a, b) => a.title.localeCompare(b.title));
         break;
       default:
         break;
     }
 
-    setFilteredProducts([...filtered]);
+    console.log('Filtered Products:', filtered);
+    setFilteredProducts(filtered);
   }, [minPrice, maxPrice, isDiscounted, sortOrder, products]);
 
   return (
@@ -97,16 +105,18 @@ const AllProductsPage = () => {
               className={s.product_picture}
               style={{ backgroundImage: `url(${ROOT_URL + product.image})` }}
             >
-              <div className={s.discount_size}>
-                -{product.discont_price ? Math.round((1 - product.discont_price / product.price) * 100) : 0}%
-              </div>
+              {product.discont_price && product.discont_price < product.price && (
+                <div className={s.discount_size}>
+                  -{Math.round((1 - product.discont_price / product.price) * 100)}%
+                </div>
+              )}
             </div>
             <div className={s.product_description}>
               <h3>{product.title}</h3>
               <div className={s.price}>
                 {product.discont_price !== null ? (
                   <>
-                    <h2>${product.discont_price.toFixed(2)}</h2>
+                    <h2 className={s.price_discounted}>${product.discont_price.toFixed(2)}</h2>
                     <h5>${product.price.toFixed(2)}</h5>
                   </>
                 ) : (
@@ -122,3 +132,5 @@ const AllProductsPage = () => {
 }
 
 export default AllProductsPage;
+
+

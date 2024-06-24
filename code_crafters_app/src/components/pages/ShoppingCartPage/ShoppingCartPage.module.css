@@ -62,7 +62,7 @@ h1 {
 	width: 780px;
 	height: 180px;
 	border-radius: 12px;
-	background-color: #ffffff;
+	background-color: var(--text_white);
 	border: 1px solid var(--grey_divider);
 	display: flex;
 	justify-content: space-between;

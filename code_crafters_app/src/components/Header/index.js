@@ -2,13 +2,16 @@ import s from './Header.module.css';
 import ThemeButton from './ThemeButton/index';
 import logo from '../../assets/img/logo.png';
 import like from '../../assets/img/like.png';
+import like_darkTheme from '../../assets/img/like_darkTheme.png';
 import { NavLink, Link } from 'react-router-dom';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import Basket from '../Basket/index';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
 	const navigate = useNavigate();
+	const isLight = useSelector(state => state.theme.isLight);
 	const handleBasketClick = () => {
 		navigate('/shopping_cart', { state: { from: 'Header' } });
 	};
@@ -48,7 +51,7 @@ export default function Header() {
 
 			<div className={s.header_right}>
 				<Link to='/liked_products'>
-					<img src={like} alt='like' />
+					<img src={isLight ? like : like_darkTheme} alt='like' />
 				</Link>
 				<Link to='/shopping_cart' className={s.shopping_cart}>
 					<Basket onClick={handleBasketClick} />

@@ -1,4 +1,4 @@
-const colors = {
+const lightColors = {
 	green: '#92A134',
 	sale: '#F26D22',
 	white: '#fffff1',
@@ -11,4 +11,5 @@ const colors = {
 	text_grey: '#8B8B8B',
 };
 
-export default colors;
+export default lightColors;
+

@@ -5,10 +5,14 @@ import { getAllProducts } from '../../../asyncActions/products';
 import s from './DiscountedItemsPage.module.css';
 import { Link } from 'react-router-dom';
 import Filter from '../../Filter';
+import {
+	setFiltersAction,
+	filterProductsAction,
+} from '../../../store/productsReducer';
 
 export default function DiscountItemsPage() {
 	const dispatch = useDispatch();
-
+	const filters = useSelector(state => state.products.filters);
 	const discountProducts = useSelector(
 		state => state.products.discountProducts
 	);
@@ -16,6 +20,11 @@ export default function DiscountItemsPage() {
 	useEffect(() => {
 		dispatch(getAllProducts());
 	}, [dispatch]);
+
+	const handleFilterChange = (key, value) => {
+		dispatch(setFiltersAction({ ...filters, [key]: value }));
+		dispatch(filterProductsAction());
+	};
 
 	return (
 		<div className={`${s.discount_wrapper} content_line`}>
@@ -33,7 +42,14 @@ export default function DiscountItemsPage() {
 				products={discountProducts}
 				header='Discounted Items'
 				styles={s}
-				filter={<Filter />}
+				filter={
+					<Filter
+						showDiscountedItemsFilter={false}
+						minPrice={filters.minPrice}
+						maxPrice={filters.maxPrice}
+						sortOrder={filters.sortOrder}
+					/>
+				}
 			/>
 		</div>
 	);

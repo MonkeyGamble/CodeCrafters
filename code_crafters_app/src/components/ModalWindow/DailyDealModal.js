@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './DailyDealModal.css';
+import { ROOT_URL } from '../..';
+import { addProductToBasketAction } from '../../store/basketReducer';
 
-const ROOT_URL = 'http://localhost:3333';
+// const ROOT_URL = 'http://localhost:3333';
 
 const DailyDealModal = ({ isOpen, onRequestClose, product }) => {
 	const [currentProduct, setCurrentProduct] = useState(null);
@@ -12,7 +14,7 @@ const DailyDealModal = ({ isOpen, onRequestClose, product }) => {
 		if (isOpen && !product) {
 			setLoading(true);
 			axios
-				.get(`${ROOT_URL}/products/all`)
+				.get(`${ROOT_URL}products/all`)
 				.then(response => {
 					const products = response.data;
 					const randomProduct =
@@ -38,6 +40,7 @@ const DailyDealModal = ({ isOpen, onRequestClose, product }) => {
 	const discountPrice = calculateDiscountPrice(price);
 
 	const handleAddToCart = () => {
+		
 		console.log(
 			`Added ${displayedProduct.title} to cart for $${discountPrice}`
 		);

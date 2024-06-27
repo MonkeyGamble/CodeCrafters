@@ -111,6 +111,7 @@ export const productsReducer = (state = defaultState, action) => {
 			return {
 				...state,
 				filteredProducts: filtered,
+				discountProducts: filtered,
 			};
 		default:
 			return state;

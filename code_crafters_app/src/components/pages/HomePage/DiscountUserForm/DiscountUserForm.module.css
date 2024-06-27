@@ -9,20 +9,27 @@
 	margin-right: auto;
 	display: flex;
 	flex-direction: column;
-	color: white;
-  }
-  
-  .first_order {
-	font-family: "Montserrat", sans-serif;
+	color: var(--white);
+}
+
+
+.discount_user_form h2 {
+	color: var(--text_white);
+	letter-spacing: 1px;
+}
+
+
+.first_order {
+	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
 	margin: 32px 32px 24px 32px;
 	font-size: 64px;
-	color: white;
-	display: flex; 
+	color: var(--white);
+	display: flex;
 	justify-content: center;
-  }
-  
-  .form {
+}
+
+.form {
 	width: 1296px;
 	height: 388px;
 	margin: 0px 32px;
@@ -30,67 +37,72 @@
 	flex-direction: column;
 	gap: 10px;
 	align-items: flex-end;
-  }
-  
-  .input,
-  .submitButton {
+
+
+}
+
+.input,
+.submitButton {
 	width: 516px;
 	height: 58px;
-	border: 1px solid white;
+
+	border: 1px solidvar(--white);
+
 	padding: 16px;
 	margin: 5px auto;
-	color: white;
+	color: var(--white);
 	font-size: 20px;
 	border-radius: 5px;
 	background: transparent;
 	outline: none;
 	cursor: pointer;
-  }
-  
-  .input.error {
-	border-color: white;
-  }
-  
-  .errorMessage {
-	font-family: "Montserrat", sans-serif;
+
+}
+
+.input.error {
+	border-color: var(--white);
+}
+
+.errorMessage {
+	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-	color: white;
+	color: var(--white);
 	font-size: 16px;
 	text-align: right;
 	width: 53%; /* Ensure error message takes up full width */
 	margin: 5px auto;
 	min-height: 20px; /* Add this to ensure space for error message */
-  }
-  
-  .successMessage {
+}
+
+.successMessage {
 	width: 49%;
-	color: white;
-	font-family: "Montserrat", sans-serif;
+	color: var(--white);
+	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
 	font-size: 16px;
 	margin-top: 10px;
-  }
-  
-  .submitButton {
-	background-color: white;
+}
+
+.submitButton {
+	background-color: var(--white);
 	border: none;
 	padding: 10px 20px;
 	margin-top: 10px;
 	border-radius: 5px;
 	transition: background-color 0.3s;
-	color: #424436;
+	color: var(--black);
 	font-weight: 600;
 	font-size: 20px;
 	cursor: pointer;
-  }
-  
-  .submitButton:hover {
-	background-color: #e0e0e0;
-  }
-  
-  
+}
 
- /*
+.submitButton:hover {
+
+	background-color: #e0e0e0;
+
+}
+
+/*
  
  .discount_user_form {
 	max-width: 1360px;
@@ -191,8 +203,8 @@
 	transition: background-color 0.3s ease;
 	cursor: pointer;
   }
- */ 
-  
+ */
+
 /*
 
 * {
@@ -283,4 +295,3 @@ font-size: 16px;
 }
 
 */
-

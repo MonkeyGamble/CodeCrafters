@@ -29,12 +29,15 @@ export default function ProductCard({ product, ...otherProps }) {
 		e.preventDefault();
 		e.stopPropagation();
 
-		// console.log('Product to add:', product);
-		// console.log('Price:', product.price);
-		// console.log('Discont price:', product.discont_price);
-		// console.log('Count:', product.count);
-		const priceToAdd = (product.discont_price || product.price) * product.count;
-		// console.log('Price to add:', priceToAdd);
+
+		console.log('Product to add:', product);
+		console.log('Price:', product.price);
+		console.log('Discont price:', product.discont_price);
+		console.log('Count:', product.count);
+
+				const priceToAdd = (product.discont_price || product.price) * product.count;
+		console.log('Price to add:', priceToAdd);
+
 
 		addProductToBasket({ ...product, count: 1 });
 		// console.log(

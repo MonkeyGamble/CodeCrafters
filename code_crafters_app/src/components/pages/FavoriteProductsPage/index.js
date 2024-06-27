@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllProducts } from '../../../asyncActions/products';
 import s from './FavoriteProductsPage.module.css';
+
 import { Link } from 'react-router-dom';
-// import Filter from '../../Filter';
+
 import ProductCard from '../../ProductCard';
+
 
 export default function FavoriteProductsPage() {
 	const dispatch = useDispatch();
@@ -148,6 +150,3 @@ console.log(favoriteProducts);
 
 	return <div>FavoriteProductsPage</div>;
 }
-
-
-*/

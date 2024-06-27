@@ -10,6 +10,7 @@ import {
 	incrementProductCountAction,
 	decrementProductCountAction,
 } from '../../../store/basketReducer';
+import SubmitForm from '../../SubmitForm/index.jsx';
 
 export default function ShoppingCartPage() {
 	const dispatch = useDispatch();
@@ -102,7 +103,7 @@ export default function ShoppingCartPage() {
 						<h3>Total</h3>
 						<p className={s.total_price}>${basketPrice.toFixed(2)}</p>
 					</div>
-					<div className={s.form}>Форма</div>
+					<SubmitForm style={s} button='Order' />
 				</div>
 			</div>
 		</div>

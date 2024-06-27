@@ -2,7 +2,7 @@ const defaultState = {
 	allProducts: [],
 	productsFromCategory: {},
 	discountProducts: [],
-	product: { count: 1 },
+	product: { count: 1, isFavorite: false },
 };
 
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
@@ -10,6 +10,8 @@ const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 const GET_PRODUCTS_BY_CATEGORY_ID = 'GET_PRODUCTS_BY_CATEGORY_ID';
 const INCR_PRODUCT_COUNT = 'INCR_PRODUCT_COUNT';
 const DECR_PRODUCT_COUNT = 'DECR_PRODUCT_COUNT';
+const ADD_PRODUCT_FAVORITE = 'ADD_PRODUCT_FAVORITE';
+const REMOVE_PRODUCT_FAVORITE = 'REMOVE_PRODUCT_FAVORITE';
 
 export const productsReducer = (state = defaultState, action) => {
 	switch (action.type) {
@@ -21,7 +23,60 @@ export const productsReducer = (state = defaultState, action) => {
 				...state,
 				allProducts: action.payload,
 				discountProducts: discountProducts,
+				
 			};
+
+
+		
+  case ADD_PRODUCT_FAVORITE:
+	
+  return {
+    ...state,
+    allProducts: state.allProducts.map(product =>
+        product.id === action.payload.id
+            ? { ...product, isFavorite: true }
+            : product
+    ),
+};
+			 
+		
+			/*case ADD_PRODUCT_FAVORITE:
+				if (state.favoriteProducts.find(product => product.id === action.payload.id)) {
+					return state;
+				} else {
+					return {
+						...state,
+						favoriteProducts: [...state.favoriteProducts, action.payload],
+					};
+				}
+	
+			case REMOVE_PRODUCT_FAVORITE:
+				return {
+					...state,
+					favoriteProducts: state.favoriteProducts.filter(
+						product => product.id !== action.payload.id
+					),
+				};
+
+			*/
+			// case ADD_PRODUCT_FAVORITE:
+			// 	if (state.favoriteProducts.includes(action.payload)) { return state; }
+			// 	 else {
+			// 		return { ...state, favoriteProducts: [...state.favoriteProducts, action.payload], }; }
+
+			case REMOVE_PRODUCT_FAVORITE: 
+			return {
+				...state,
+				favoriteProducts: state.favoriteProducts.filter(
+					product => product.id !== action.payload.id
+				)
+			};
+			
+			
+			
+			
+			
+			
 		case GET_PRODUCT_BY_ID:
 			return {
 				...state,
@@ -62,6 +117,18 @@ export const getProductByIdAction = product => ({
 	type: GET_PRODUCT_BY_ID,
 	payload: product,
 });
+
+export const addProductFavoriteAction = product => ({
+	type:ADD_PRODUCT_FAVORITE,
+	payload: product,
+});
+
+export const removeProductFavoriteAction = id => ({
+	type:REMOVE_PRODUCT_FAVORITE,
+	payload: id,
+});
+
+
 
 export const getProductsByCategoryIdAction = products => ({
 	type: GET_PRODUCTS_BY_CATEGORY_ID,

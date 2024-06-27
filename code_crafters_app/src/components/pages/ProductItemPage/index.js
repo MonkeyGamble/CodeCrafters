@@ -14,6 +14,7 @@ import {
 	decrementProductCountAction,
 } from '../../../store/basketReducer.jsx';
 import { useBasketActions } from '../../../asyncActions/basket';
+import { addProductFavorite } from '../../../asyncActions/products';
 
 export default function ProductItemPage() {
 	const { id } = useParams();
@@ -21,6 +22,7 @@ export default function ProductItemPage() {
 	const product = useSelector(state => state.products.product);
 	const categories = useSelector(state => state.categories.allCategories);
 	const { addProductToBasket } = useBasketActions();
+
 
 	useEffect(() => {
 		dispatch(getProductById(id));
@@ -30,6 +32,8 @@ export default function ProductItemPage() {
 	if (!product) {
 		return <div>Loading...</div>;
 	}
+	const handelAddProductFavorite = (product) => {dispatch(addProductFavorite(product));
+	//console.log(product)};
 
 	const handleIncrement = () => {
 		dispatch(incrementProductCountAction(product.id));
@@ -71,7 +75,7 @@ export default function ProductItemPage() {
 				<div className={s.product_description}>
 					<div className={s.product_header}>
 						<h1>{product.title}</h1>
-						<img src={like} alt='like' />
+						<img  onClick={ handelAddProductFavorite(product)} src={like} alt='like' />
 					</div>
 					<div className={s.price_section}>
 						{product.discont_price ? (
@@ -115,4 +119,4 @@ export default function ProductItemPage() {
 			</div>
 		</div>
 	);
-}
+	}}

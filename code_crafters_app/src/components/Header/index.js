@@ -9,7 +9,6 @@ import Basket from '../Basket/index';
 import { useNavigate } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
-=======
 import React, { useState} from 'react';
 import axios from 'axios';
 import DailyDealModal from '../ModalWindow/DailyDealModal';

@@ -13,8 +13,9 @@ import {
 export default function DiscountItemsPage() {
 	const dispatch = useDispatch();
 	const filters = useSelector(state => state.products.filters);
-	const discountProducts = useSelector(
-		state => state.products.discountProducts
+	const allProducts = useSelector(state => state.products.allProducts);
+	const discountProducts = allProducts.filter(
+		product => product.discont_price !== null
 	);
 
 	useEffect(() => {

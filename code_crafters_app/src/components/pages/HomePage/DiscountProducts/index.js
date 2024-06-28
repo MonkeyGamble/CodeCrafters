@@ -8,9 +8,9 @@ import s from './DiscountProducts.module.css';
 
 export default function DiscountProductsHomePage() {
 	const dispatch = useDispatch();
-
-	const discountProducts = useSelector(
-		state => state.products.discountProducts
+	const allProducts = useSelector(state => state.products.allProducts);
+	const discountProducts = allProducts.filter(
+		product => product.discont_price !== null
 	);
 
 	useEffect(() => {

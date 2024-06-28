@@ -1,4 +1,3 @@
-
 import s from './ProductCard.module.css';
 import '../../Global.css';
 import like from '../../assets/img/like_white.png';
@@ -7,18 +6,27 @@ import { ROOT_URL } from '../..';
 import Basket from '../Basket';
 import { useBasketActions } from '../../asyncActions/basket';
 import { addProductFavorite } from '../../asyncActions/products';
-import { useDispatch } from 'react-redux';
-import { addProductFavoriteAction } from '../../store/productsReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	addProductFavoriteAction,
+	removeProductFavoriteAction,
+} from '../../store/productsReducer';
+import { useEffect } from 'react';
 
- 
 
 export default function ProductCard({ product, ...otherProps }) {
 	const dispatch = useDispatch();
 	const { addProductToBasket } = useBasketActions();
+	const allProducts = useSelector(state => state.products.allProducts);
+
+	// Получаем обновленный продукт из состояния
+	const updatedProduct = allProducts.find(pr => pr.id === product.id);
 
 
-	if (!product || !product.id) {
-		return null; }
+
+	// if (!product || !product.id) {
+	// 	return null;
+	// }
 
 	const handleCardClick = e => {
 		e.stopPropagation();
@@ -29,15 +37,13 @@ export default function ProductCard({ product, ...otherProps }) {
 		e.preventDefault();
 		e.stopPropagation();
 
-
 		console.log('Product to add:', product);
 		console.log('Price:', product.price);
 		console.log('Discont price:', product.discont_price);
 		console.log('Count:', product.count);
 
-				const priceToAdd = (product.discont_price || product.price) * product.count;
+		const priceToAdd = (product.discont_price || product.price) * product.count;
 		console.log('Price to add:', priceToAdd);
-
 
 		addProductToBasket({ ...product, count: 1 });
 		// console.log(
@@ -45,21 +51,24 @@ export default function ProductCard({ product, ...otherProps }) {
 		// 		product.discont_price || product.price
 		// 	}`
 		// );
-	
 	};
 
+	const handleFavoriteClick = e => {
+		e.preventDefault();
+		e.stopPropagation();
 
-const handleFavoriteClick = e => {
-	e.preventDefault();
-	e.stopPropagation();
+		if (product.isFavorite) {
+			console.log('Removing from favorites:', updatedProduct);
+			dispatch(removeProductFavoriteAction(product.id));
+		} else {
+			console.log('Adding to favorites:', updatedProduct);
+			dispatch(addProductFavoriteAction(product));
+		}
+		
+		
+	};
 
-	 
-dispatch(addProductFavoriteAction(product));
-console.log(product);
-console.log(product.isFavorite);
-}
-
-
+	
 	return (
 		<Link
 			to={`/products/${product.id}`}
@@ -78,11 +87,10 @@ console.log(product.isFavorite);
 				)}
 
 				<div className={s.like_cart}>
-					<img src={like} alt='like' onClick={handleFavoriteClick}/>
+					<img src={like} alt='like' onClick={handleFavoriteClick} />
 					<Basket product={product} onClick={handleBasketClick} />
 				</div>
 			</div>
-
 			<div className={s.product_description}>
 				<h3>{product.title}</h3>
 
@@ -123,8 +131,13 @@ console.log(product.isFavorite);
 					)}
 				</div>
 			</div>
+
+			{/* отображаем обновленный продукт (проверяем isFavorite) */}
+			<div>
+				{updatedProduct && (
+					<p>Is Favorite: {updatedProduct.isFavorite ? 'Yes' : 'No'}</p>
+				)}
+			</div>
 		</Link>
 	);
 }
-
-

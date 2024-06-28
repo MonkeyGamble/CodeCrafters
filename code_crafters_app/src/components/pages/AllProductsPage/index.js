@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import s from './AllProductsPage.module.css';
+
 import Filter from '../../Filter/index.jsx';
 import { getAllProducts } from '../../../asyncActions/products.js';
 import ProductCard from '../../ProductCard/index.jsx';

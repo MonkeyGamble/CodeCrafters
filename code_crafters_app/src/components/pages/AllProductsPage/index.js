@@ -1,26 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import s from './AllProductsPage.module.css';
-
-const ROOT_URL = 'http://localhost:3333';
+import { ROOT_URL } from '../../..';
+import like from '../../../assets/img/like_white.png';
+import { useDispatch } from 'react-redux';
+import { addProductToBasketAction } from '../../../store/basketReducer';
+import Basket from '../../Basket/index.jsx';
+import Skeleton from 'react-loading-skeleton';
 
 const AllProductsPage = () => {
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [randomAllProducts, setFilteredProducts] = useState([]);
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [isDiscounted, setIsDiscounted] = useState(false);
   const [sortOrder, setSortOrder] = useState('default');
+ 
+  
 
   useEffect(() => {
-    axios.get(`${ROOT_URL}/products/all`)
+    axios.get(`${ROOT_URL}products/all`)
       .then(response => {
         console.log('Products:', response.data);
         setProducts(response.data);
         setFilteredProducts(response.data);
+        setLoading(false);
       })
       .catch(error => {
         console.error('There was an error fetching the products!', error);
+        setLoading(false);
       });
   }, []);
 
@@ -54,7 +64,16 @@ const AllProductsPage = () => {
     console.log('Filtered Products:', filtered);
     setFilteredProducts(filtered);
   }, [minPrice, maxPrice, isDiscounted, sortOrder, products]);
-
+  const handleAddToFavorites = () => {
+    // Добавьте функциональность для добавления в избранное
+  };
+ 
+  const handleAddToBasket = (product) => {
+    // Вызов действия для добавления товара в корзину
+    dispatch(addProductToBasketAction({ ...product, count: 1 }));
+    console.log(`Товар добавлен в корзину: ${product.title}`);
+  };
+  
   return (
     <div className={`${s.sale_container} content_line`}>
       <div className={s.header_section}>
@@ -99,17 +118,42 @@ const AllProductsPage = () => {
       </div>
 
       <div className={s.cards_container}>
-        {randomAllProducts.map(product => (
+      {loading ? (
+          // Вывод скелетонов загрузки, пока данные загружаются
+          Array.from({ length: 10 }).map((_, index) => (
+            <div key={index} className={s.card}>
+              <div className={s.product_picture}>
+                <Skeleton height={200} /> {/* Пример высоты для изображения */}
+              </div>
+              <div className={s.product_description}>
+                <h3><Skeleton width={200} /></h3> {/* Пример ширины для заголовка */}
+                <div className={s.price}>
+                  <Skeleton width={100} /> {/* Пример ширины для цены */}
+                  <Skeleton width={100} /> {/* Пример ширины для скидочной цены */}
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          // Отображение реальных данных, когда они загружены
+        randomAllProducts.map(product => (
           <div key={product.id} className={s.card}>
             <div
               className={s.product_picture}
               style={{ backgroundImage: `url(${ROOT_URL + product.image})` }}
+              
             >
               {product.discont_price && product.discont_price < product.price && (
                 <div className={s.discount_size}>
                   -{Math.round((1 - product.discont_price / product.price) * 100)}%
                 </div>
               )}
+             <img 
+                src={like} 
+                alt='like' 
+                className={s.like_icon} 
+                onClick={handleAddToFavorites} 
+              />
             </div>
             <div className={s.product_description}>
               <h3>{product.title}</h3>
@@ -123,14 +167,22 @@ const AllProductsPage = () => {
                   <h2>${product.price.toFixed(2)}</h2>
                 )}
               </div>
+              <Basket 
+                product={product} 
+                onClick={() => handleAddToBasket(product)} 
+                className={s.basket_icon} 
+              />
             </div>
           </div>
-        ))}
+        ))
+      )
+      }
       </div>
+      
     </div>
   );
 }
 
+
+
 export default AllProductsPage;
-
-

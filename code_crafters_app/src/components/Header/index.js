@@ -9,8 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState} from 'react';
 import axios from 'axios';
 import DailyDealModal from '../ModalWindow/DailyDealModal';
-
-const ROOT_URL = 'http://localhost:3333'; 
+import { ROOT_URL } from '../..';
+//const ROOT_URL = 'http://localhost:3333'; 
 
 export default function Header() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +23,7 @@ export default function Header() {
 	
 	const openModal = (e) => {
 	  e.preventDefault();
-	  axios.get(`${ROOT_URL}/products/all`)
+	  axios.get(`${ROOT_URL}products/all`)
 		.then(response => {
 		  const products = response.data;
 		  const randomProduct = products[Math.floor(Math.random() * products.length)];

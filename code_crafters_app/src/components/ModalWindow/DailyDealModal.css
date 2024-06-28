@@ -16,17 +16,23 @@
     border-radius: 10px;
     padding: 20px;
     width: 90%;
-    max-width: 400px; /* Ограничение максимальной ширины */
-    max-height: 550px; /* Ограничение максимальной высоты */
+    max-width: 400px; 
+    max-height: 550px; 
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    border: none; /* Удаление зеленой рамки */
+    border: none;  
+   
   }
-  
+  .like-icon {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 90px; /* Расположение сверху */
+    right: 25px; /* Расположение справа */
+    cursor: pointer; /* Указатель при наведении */
+  }
   .close {
     position: absolute;
     top: 10px;
@@ -42,12 +48,19 @@
   }
   
   .product_picture {
-    width: 100%; /* Картинка занимает всю ширину */
-    height: 200px; /* Высота картинки */
+    width: 100%; 
+    height: 200px; 
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    margin-bottom: 10px; /* Отступ снизу */
+    margin-bottom: 10px;
+    
+    
+   
+  
+  
+    
+   
   }
   
   .priceWrapper {
@@ -55,6 +68,7 @@
     display: flex;
 	align-items: last baseline;
 	gap: 16px;
+  margin-top: 10px;
   }
   
   .discountPrice {
@@ -107,7 +121,7 @@
   
   .addToCart:hover {
     /*background-color: var(--white); */
-    background-color: #0056b3;
+    background-color: white;
 	transform: translateY(2px);
   }
   
@@ -126,7 +140,7 @@
   
   .discountBadge {
    
-    width: 68px;
+  width: 68px;
 	height: 34px;
 	border-radius: 6px;
 	background-color: var(--sale);
@@ -140,12 +154,13 @@
   }
   
   .productDetails {
-    background-color: white; /* Белый фон */
-    border-radius: 10px; /* Радиус границ */
-    padding: 10px; /* Меньший padding */
-    width: 100%; /* Ширина */
-    text-align: left; /* Выравнивание текста */
-    margin-bottom: 10px; /* Отступ снизу */
+    background-color: white; 
+    border-radius: 10px; 
+    padding: 10px; 
+    width: 100%; 
+    text-align: left; 
+    margin-bottom: 10px; 
+    
   }
   
   .productDetails h2 {

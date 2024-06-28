@@ -20,7 +20,26 @@
 	height: 1px;
 	background-color: var(--grey_divider);
 }
-
+.like_icon {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 10px; /* Расположение сверху */
+    right: 10px; /* Расположение справа */
+    cursor: pointer; /* Указатель при наведении */
+    width: 48px; /* Ширина иконки */
+    height: 48px; /* Высота иконки */
+    z-index: 10; /* Убедитесь, что иконка отображается поверх других элементов */
+}
+.basket_icon {
+	position: absolute; /* Абсолютное позиционирование */
+    top: 70px; /* Расположение сверху */
+    right: 10px; /* Расположение справа */
+    cursor: pointer; /* Указатель при наведении */
+    width: 48px; /* Ширина иконки */
+    height: 48px; /* Высота иконки */
+    z-index: 10; /* Убедитесь, что иконка отображается поверх других элементов */
+		
+	
+}
 .second_button {
 	width: 118px;
 	height: 36px;
@@ -172,9 +191,13 @@ h1 {
 	border: 1px solid var(--grey_divider);
 	border-radius: 12px;
 	cursor: pointer;
+	position: relative;
 }
 
 .product_picture {
+	position: relative;
+  background-size: cover;
+  background-position: center;
 	width: 314px;
 	height: 284px;
 	display: flex;

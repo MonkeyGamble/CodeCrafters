@@ -1,4 +1,5 @@
 .modal {
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,41 +75,39 @@
   .discountPrice {
     
     font-size: 40px;
+
 	font-weight: 600;
 
 	color: var(--text_black);
-  }
-  
-  .originalPrice {
-   
-    font-size: 20px;
+}
+
+.originalPrice {
+	font-size: 20px;
 	font-weight: 500;
 
 	color: var(--grey);
 	text-decoration: line-through;
-  }
-  
-  .addToCartWrapper {
-   background-color: white;
-    border-radius: 10px;
-    padding: 10px;
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;  
-    margin-bottom: 10px;  
-    
-   
-  }
-  
-  .addToCart {
-    /*padding: 10px 20px; 
+}
+
+.addToCartWrapper {
+	background-color: white;
+	border-radius: 10px;
+	padding: 10px;
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.addToCart {
+	/*padding: 10px 20px; 
     background-color: var(--white); 
     color: var(--black); 
     border: none; 
     border-radius: 5px; 
     cursor: pointer;
     font-weight: bold;*/
-    /*padding: 10px 20px; */
+	/*padding: 10px 20px; */
 	background-color: var(--white);
 	border: none;
 	border-radius: 5px;
@@ -117,6 +116,7 @@
 	font-weight: bold;
 	font-family: 'Montserrat';
 	cursor: pointer;
+
   }
   
   .addToCart:hover {
@@ -141,6 +141,7 @@
   .discountBadge {
    
   width: 68px;
+
 	height: 34px;
 	border-radius: 6px;
 	background-color: var(--sale);
@@ -151,6 +152,7 @@
 	font-size: 20px;
 	font-weight: 600;
 	letter-spacing: 3%;
+
   }
   
   .productDetails {
@@ -168,3 +170,4 @@
     color: var(--black); /* Черный цвет текста */
     margin: 10px 0; /* Отступы */
   }
+

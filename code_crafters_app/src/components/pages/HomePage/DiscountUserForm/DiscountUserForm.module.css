@@ -9,22 +9,20 @@
 	margin-right: auto;
 	display: flex;
 	flex-direction: column;
-	color: var(--white);
+	color: var(--text_white);
 }
-
 
 .discount_user_form h2 {
 	color: var(--text_white);
 	letter-spacing: 1px;
 }
 
-
 .first_order {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
 	margin: 32px 32px 24px 32px;
 	font-size: 64px;
-	color: var(--white);
+	color: var(--text_white);
 	display: flex;
 	justify-content: center;
 }
@@ -37,26 +35,27 @@
 	flex-direction: column;
 	gap: 10px;
 	align-items: flex-end;
-
-
 }
 
 .input,
 .submitButton {
 	width: 516px;
 	height: 58px;
-
-	border: 1px solidvar(--white);
-
+	border: 1px solid var(--white);
 	padding: 16px;
 	margin: 5px auto;
-	color: var(--white);
+	color: var(--text_white);
 	font-size: 20px;
 	border-radius: 5px;
 	background: transparent;
 	outline: none;
 	cursor: pointer;
+}
 
+input::placeholder {
+	font-size: 20px;
+	font-weight: 500;
+	color: var(--text_white); /* Цвет текста placeholder */
 }
 
 .input.error {
@@ -66,7 +65,7 @@
 .errorMessage {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-	color: var(--white);
+	color: var(--text_white);
 	font-size: 16px;
 	text-align: right;
 	width: 53%; /* Ensure error message takes up full width */
@@ -76,7 +75,7 @@
 
 .successMessage {
 	width: 49%;
-	color: var(--white);
+	color: var(--text_white);
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
 	font-size: 16px;
@@ -85,213 +84,18 @@
 
 .submitButton {
 	background-color: var(--white);
+	font-family: 'Montserrat', sans-serif;
 	border: none;
 	padding: 10px 20px;
 	margin-top: 10px;
 	border-radius: 5px;
 	transition: background-color 0.3s;
-	color: var(--black);
+	color: var(--text_black);
 	font-weight: 600;
 	font-size: 20px;
 	cursor: pointer;
 }
 
 .submitButton:hover {
-
 	background-color: #e0e0e0;
-
 }
-
-/*
- 
- .discount_user_form {
-	max-width: 1360px;
-	height: 486px;
-	text-align: center;
-	background-image: url('../../../../assets/img/discountform1.png');
-	border-radius: 10px;
-	margin-top: 80px;
-	margin-left: auto;
-	margin-right: auto;
-	display: flex;
-	flex-direction: column;
-	color: white;
-  }
-  
-  .first_order {
-	font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-	margin: 32px 32px 24px 32px;
-    font-size: 64px;
-	color: white;
-	display: flex; 
-    justify-content: center;
-  }
-  
-
-  .form {
-	width: 1296px;
-	height: 388px;
-	margin:  0px 32px ;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	align-items: flex-end;
-  }
-  
-  .input,
-  .submitButton {
-	width: 300px;
-	
-	margin: 5px auto;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	background: none;
-	color: white;
-
-	width: 516px;
-    height: 58px;
-	border: 1px solid white;
-	Padding: 16px, 32px, 16px, 32px;
-    Gap: 10px;
-	
-	font-size: 20px;
-	border-radius: 5px;
-    background: transparent;
-    outline: 1px;
-    cursor: pointer;
-  }
-  
-  .input.error {
-	border-color: white;
-  }
-  
-  .errorMessage {
-
-	
-		font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-	width: 516px;
-    height: 20px;
-	color: white;
-	margin: 5px auto;
-	font-size: 16px;
-	text-align: right;
-	width: 80%;
-	
-  }
-  
-  .successMessage {
-	color: white;
-	width: 516px;	
-    height: 20px;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-	
-  }
-  .submitButton {
-	background-color: white;
-	border: none;
-	padding: 10px 20px;
-	margin-top: 10px;
-	border-radius: 5px;
-	transition: background-color 0.3s;
-	color: #424436;
-	font-weight: 600px;
-	font-size: 20px;
-	transition: background-color 0.3s ease;
-	cursor: pointer;
-  }
- */
-
-/*
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-
-
-.discount_user_form {
-    max-width: 1360px;
-	height: 486px;
-	text-align: center;
-	background-image: url('../../../../assets/img/discountform1.png');
-    border-radius: 10px;
-	margin-top: 80px; 
-	margin-left: auto;
-	margin-right: auto;
-    display: flex;
-	flex-direction: column;
-}
-
-  .discount_user_form h2 {
-	font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-
-	margin: 32px 32px 24px 32px;
-    font-size: 64px;
-	color: white;
-	display: flex; 
-    justify-content: center;
-}
-.form_wrapper {
-width: 1296px;
-height: 388px;
-gap: 32px;
-opacity: 0px;
-position: absolute;
-display: flex;
-align-items: flex-end;
-}
-.form {
-
-	width: 516px;
-	height: 324px;
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	gap: 10px;
-	max-width: 0px;
-	margin: auto;
-	border-radius: 10px;
-}
-
-  
-.discount_user_form input, .discount_user_form button {
-	width: 516px;
-    height: 58px;
-	border: 1px solid white;
-	Padding: 16px, 32px, 16px, 32px;
-    Gap: 10px;
-	
-	font-size: 20px;
-	border-radius: 5px;
-    background: transparent;
-    outline: 1px;
-    cursor: pointer;
-}    
-
-.submitButton {
-	background-color: white;
-	color: black;
-	cursor: pointer;
-	font-weight: bold;
-	transition: background-color 0.3s ease;
-	cursor: pointer;
-  }
-  
-.successMessage {
-width: 516px;	
-height: 20px;
-color: white;
-font-family: "Montserrat", sans-serif;
-font-weight: 500;
-font-size: 16px;
-
-}
-
-*/

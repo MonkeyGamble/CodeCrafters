@@ -36,8 +36,8 @@ export default function SubmitForm({ style, button }) {
 	const phone_input = register('phoneNumber', {
 		required: '',
 		pattern: {
-			value: /^[0-9]+$/,
-			message: 'Номер телефона должен содержать только цифры',
+			value: /^\+?[0-9]+$/,
+			message: 'Номер телефона может содержать только цифры и знак +',
 		},
 	});
 
@@ -57,7 +57,6 @@ export default function SubmitForm({ style, button }) {
 					<input
 						{...name_input}
 						placeholder='Name'
-						//className={errors.name && 'error'}
 						className={errors.name ? style.error : style.input}
 					/>
 				</label>
@@ -71,7 +70,6 @@ export default function SubmitForm({ style, button }) {
 					<input
 						{...phone_input}
 						placeholder='Phone number'
-						// className={errors.phone_number && 'error'}
 						className={errors.phoneNumber ? style.error : style.input}
 					/>
 				</label>
@@ -85,7 +83,6 @@ export default function SubmitForm({ style, button }) {
 					<input
 						{...email_input}
 						placeholder='Email'
-						//className={errors.email && 'error'}
 						className={errors.email ? style.error : style.input}
 					/>
 				</label>

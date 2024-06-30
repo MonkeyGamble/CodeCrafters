@@ -103,7 +103,11 @@ export default function ShoppingCartPage() {
 						<h3>Total</h3>
 						<p className={s.total_price}>${basketPrice.toFixed(2)}</p>
 					</div>
-					<SubmitForm style={s} button='Order' />
+					<SubmitForm
+						style={s}
+						button='Order'
+						onSuccess='Ordered successfully'
+					/>
 				</div>
 			</div>
 		</div>

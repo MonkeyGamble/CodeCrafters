@@ -196,7 +196,7 @@ h1 {
 .errorMessage {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-	color: var(--white);
+	color: red;
 	font-size: 16px;
 	text-align: right;
 	width: 53%; /* Ensure error message takes up full width */

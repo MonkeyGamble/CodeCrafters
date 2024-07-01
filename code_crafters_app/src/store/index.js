@@ -5,10 +5,12 @@ import { thunk } from 'redux-thunk';
 import { categoriesReducer } from './categoriesReducer';
 import { basketReducer } from './basketReducer';
 import { composeWithDevTools } from '@redux-devtools/extension';
+import { modalWindowReducer } from './modalWindowReducer';
 
 const rootReducer = combineReducers({
 	theme: themeReducer,
 	products: productsReducer,
+	modalWindow: modalWindowReducer,
 	categories: categoriesReducer,
 	basket: basketReducer,
 });
@@ -24,5 +26,5 @@ export default store;
 // Корзина. (добавление элемента в корзину, изменение count каждого элемента, удаление продукта, очистка списка продукта после нажатия на “купить”)
 // Описание продукта (получение продукта, изменение сво-ва count (инкремент, декремент))
 // Список категорий (получение списка категорий)
-// Модальное окно (открыть, закрыть окно)
+//Модальное окно (открыть, закрыть окно)
 // Тема приложение (переключение темы с темной на светлую, с светлой на темную)

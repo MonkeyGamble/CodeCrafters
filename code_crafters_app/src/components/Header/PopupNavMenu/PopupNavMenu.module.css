@@ -1,0 +1,74 @@
+.modal_menu {
+	position: fixed;
+	display: none;
+	right: -282px;
+	top: 0;
+	height: 100%;
+	width: 282px;
+	transition: right 0.3s ease-in-out;
+	z-index: 100;
+	background-color: var(--white);
+}
+
+.cross {
+	font-size: 22px;
+	display: none;
+}
+
+.modal_menu.active {
+	display: block;
+	height: 100%;
+	width: 282px;
+	background-color: var(--white);
+	right: 0;
+	z-index: 100;
+	padding: 100px 20px 20px 32px;
+}
+
+.cross.active {
+	display: block;
+	position: absolute;
+	top: 11px;
+	right: 11px;
+	cursor: pointer;
+}
+
+.nav_menu.active,
+.discount.active {
+	display: block;
+}
+
+.nav_menu.active {
+	display: flex;
+	flex-direction: column;
+	gap: 36px;
+	margin-bottom: 42px;
+}
+.nav_menu.active a {
+	text-decoration: none;
+}
+
+.discount.active {
+	width: 211px;
+	height: 42px;
+	font-size: 24px;
+	font-weight: 500;
+	display: grid;
+	place-items: center;
+	cursor: pointer;
+	background-color: var(--green);
+	border-radius: 6px;
+	color: var(--text_white);
+	padding: 6px 16px;
+}
+.nav_menu.active li {
+	font-size: 24px;
+	font-weight: 500;
+	list-style-type: none;
+	color: var(--text_black);
+}
+
+.nav_menu.active li:hover {
+	transform: scale(1.02);
+	transition: 0.1s;
+}

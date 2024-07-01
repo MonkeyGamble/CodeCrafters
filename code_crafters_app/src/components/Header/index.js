@@ -13,6 +13,7 @@ import { closeModalAction, openModalAction } from '../../store/modalReducer';
 import axios from 'axios';
 import DailyDealModal from '../ModalWindow/DailyDealModal';
 import { ROOT_URL } from '../..';
+import PopupNavMenu from './PopupNavMenu';
 
 export default function Header() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -90,36 +91,11 @@ export default function Header() {
 					<Basket onClick={handleBasketClick} />
 				</NavLink>
 
-				{/* <RxHamburgerMenu className={s.burger} /> */}
-
-				<div className={`${s.modal_menu} ${isPopupOpen ? s.active : ''}`}>
-					<RxCross2
-						className={`${s.cross} ${isPopupOpen ? s.active : ''}`}
-						onClick={handlePopupMenu}
-					/>
-					<nav>
-						<ul className={`${s.nav_menu} ${isPopupOpen ? s.active : ''}`}>
-							<NavLink to='/'>
-								<li>Main Page</li>
-							</NavLink>
-							<NavLink to='/all_categories'>
-								<li>Categories</li>
-							</NavLink>
-							<NavLink to='/all_products'>
-								<li>All Products</li>
-							</NavLink>
-							<NavLink to='/all_sales'>
-								<li>All Sales</li>
-							</NavLink>
-						</ul>
-					</nav>
-					<div
-						className={`${s.discount} ${isPopupOpen ? s.active : ''}`}
-						onClick={openModal}
-					>
-						1 day discount!
-					</div>
-				</div>
+				<PopupNavMenu
+					isPopupOpen={isPopupOpen}
+					handlePopupMenu={handlePopupMenu}
+					openModal={openModal}
+				/>
 				<RxHamburgerMenu className={s.burger} onClick={handlePopupMenu} />
 			</div>
 

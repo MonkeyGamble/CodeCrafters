@@ -99,6 +99,7 @@ export default function Header() {
 				isOpen={isModalOpen}
 				onRequestClose={closeModal}
 				product={product}
+				type={'deal'}
 			/>
 		</header>
 	);

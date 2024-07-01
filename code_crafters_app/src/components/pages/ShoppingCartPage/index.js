@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import s from './ShoppingCartPage.module.css';
 import '../../../Global.css';
 import { Link } from 'react-router-dom';
@@ -12,9 +13,12 @@ import {
 } from '../../../store/basketReducer';
 import SubmitForm from '../../SubmitForm/index.jsx';
 import { clearBasketAction } from '../../../store/basketReducer';
+import DailyDealModal from '../../ModalWindow/DailyDealModal.js';
 
 export default function ShoppingCartPage() {
 	const dispatch = useDispatch();
+	const [showModal, setShowModal] = useState(false);
+
 	const basketItems = useSelector(state => state.basket.basket.items);
 
 	const basketPrice = useSelector(state => state.basket.basket.totalPrice);
@@ -43,6 +47,7 @@ export default function ShoppingCartPage() {
 	const handleOrderSuccess = () => {
 		// Очистка корзины после успешного заказа
 		dispatch(clearBasketAction());
+		setShowModal(true);
 	};
 
 	return (
@@ -115,6 +120,13 @@ export default function ShoppingCartPage() {
 						onSuccess='Ordered successfully'
 						onSuccessAction={handleOrderSuccess} // Передача функции для обработки успешного заказа
 					/>
+					{showModal && (
+						<DailyDealModal
+							isOpen={true}
+							onRequestClose={() => setShowModal(false)}
+							type='ordered_successfully'
+						/>
+					)}
 				</div>
 			</div>
 		</div>

@@ -150,3 +150,24 @@
 	top: 16px;
 	left: 16px;
 }
+
+.congratulations {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.congratulations h2,
+.congratulations p {
+	color: var(--text_white);
+	font-weight: 600;
+}
+
+.congratulations h2 {
+	font-size: 40px;
+	margin-bottom: 8px;
+}
+
+.congratulations p {
+	font-size: 20px;
+}

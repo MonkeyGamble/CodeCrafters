@@ -1,0 +1,105 @@
+
+  /* Styles for the discount block */
+  .discount_user_form {
+	max-width: 1360px;
+	height: 486px;
+	text-align: center;
+	background-image: url('../../../../assets/img/discountform1.png');
+	background-size: cover;
+	background-position: center;
+	border-radius: 10px;
+	margin-top: 80px;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  /* Styles for the heading */
+  .discount_user_form h2 {
+	margin: 32px;
+	font-size: 64px;
+	color: white;
+	text-align: center;
+  }
+  
+  /* Styles for the form container */
+  .discount_user_form .form-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+  }
+  
+  /* Styles for the form */
+  .discount_user_form form {
+	width: 516px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 16px;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+  }
+  
+  /* Styles for the input fields */
+  .discount_user_form input {
+	width: 100%;
+	height: 48px;
+	border: 1px solid #ccc;
+	padding: 12px;
+	font-size: 16px;
+	border-radius: 5px;
+  }
+  
+  /* Styles for the button */
+  .discount_user_form button {
+	width: 100%;
+	height: 48px;
+	border: none;
+	background-color: #007BFF;
+	color: white;
+	font-size: 16px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+  }
+  
+  .discount_user_form button:hover {
+	background-color: #0056b3;
+  }
+  
+  /* Styles for the success message */
+  .discount_user_form .success-message {
+	color: green;
+	font-size: 14px;
+	margin-top: 8px;
+  }
+
+
+  @media (max-width: 1000px) {
+  /* .cards_container {
+    gap: 20px;
+  } */
+  .sale_container {
+    padding: 0 20px;
+  }
+  .card {
+    width: 225px;
+    height: 398px;
+  }
+  .product_picture {
+    width: 223px;
+    height: 250px;
+  }
+  .product_description {
+    padding: 20px;
+    gap: 12px;
+  }
+  .price {
+    gap: 12px;
+  }
+}

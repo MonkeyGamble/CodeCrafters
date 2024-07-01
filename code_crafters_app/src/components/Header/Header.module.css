@@ -1,10 +1,19 @@
+.content_line {
+	max-width: 1440px;
+	margin: 0 auto;
+}
+
 .container {
 	padding: 30px 40px 28px 40px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	background-color: var(--white);
+
 	position: relative;
+
+	border-bottom: 1px solid var(--grey_divider);
+
 }
 
 .header_left {
@@ -30,6 +39,9 @@
 	flex-direction: column;
 	gap: 12px;
 	align-items: center;
+}
+.header_center a {
+	text-decoration: none;
 }
 
 .discount {
@@ -57,6 +69,7 @@
 	text-decoration: none;
 	color: inherit;
 	display: inline-block;
+	color: var(--text_black);
 }
 
 .nav_menu a:hover {

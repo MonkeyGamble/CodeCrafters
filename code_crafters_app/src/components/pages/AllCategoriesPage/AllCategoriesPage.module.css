@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.content_line {
+	max-width: 1360px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.categoryList a {
+	text-decoration: none;
+	text-align: center;
+	color: var(--text_black);
+}
+
+.mainPageButton,
+.categoriesPageButton {
+	width: 120px;
+	height: 36px;
+
+	border-radius: 5px;
+	background-color: transparent;
+	border: 1px solid var(--grey_divider);
+	color: var(--grey_divider);
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 500;
+	font-family: 'Montserrat', sans-serif;
+}
+.line {
+	width: 16px;
+	height: 1px;
+	background-color: var(--grey_divider);
+}
+
+.categoryImage {
+	width: 248px;
+	height: 350px;
+	border-radius: 10px;
+	display: block;
+	object-fit: cover;
+}
+.my_button {
+	display: none;
+}
+.nav_buttons {
+	display: flex;
+	align-items: center;
+}
+
+.header h2 {
+	font-size: 64px;
+	color: var(--text_black);
+	margin: 0;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+}
+.categoryItem p {
+	font-family: 'Montserrat', sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-weight: 500;
+	margin-top: 10px;
+	font-size: 20px;
+}
+
+.categoryList {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+@media (max-width: 1000px) {
+	.categoryItem img {
+		width: 306px;
+		height: 250px;
+	}
+}
+@media (max-width: 768px) {
+	.categoryItem img {
+		width: 354px;
+		height: 250px;
+	}
+}
+@media (max-width: 480px) {
+	.categoryItem img {
+		width: 210px;
+		height: 254px;
+	}
+}
+@media (max-width: 360px) {
+	.categoryItem img {
+		width: 320px;
+		height: 220px;
+	}
+}

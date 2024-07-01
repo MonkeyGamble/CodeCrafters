@@ -6,17 +6,20 @@ import s from './DiscountedItemsPage.module.css';
 import { Link } from 'react-router-dom';
 import Filter from '../../Filter';
 
+
 export default function DiscountItemsPage() {
 	const dispatch = useDispatch();
 
 	const discountProducts = useSelector(
 		state => state.products.discountProducts
 	);
+	
 
 	useEffect(() => {
 		dispatch(getAllProducts());
 	}, [dispatch]);
-
+	
+	  
 	return (
 		<div className={`${s.discount_wrapper} content_line`}>
 			<div className={s.nav_buttons}>

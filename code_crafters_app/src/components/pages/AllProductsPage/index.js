@@ -6,7 +6,8 @@ import like from '../../../assets/img/like_white.png';
 import { useDispatch } from 'react-redux';
 import { addProductToBasketAction } from '../../../store/basketReducer';
 import Basket from '../../Basket/index.jsx';
-import Skeleton from 'react-loading-skeleton';
+import ProductSkeleton from '../../ProductSkeleton/ProductSkeleton.js';
+
 
 const AllProductsPage = () => {
   const dispatch = useDispatch();
@@ -121,22 +122,11 @@ const AllProductsPage = () => {
       {loading ? (
           // Вывод скелетонов загрузки, пока данные загружаются
           Array.from({ length: 10 }).map((_, index) => (
-            <div key={index} className={s.card}>
-              <div className={s.product_picture}>
-                <Skeleton height={200} /> {/* Пример высоты для изображения */}
-              </div>
-              <div className={s.product_description}>
-                <h3><Skeleton width={200} /></h3> {/* Пример ширины для заголовка */}
-                <div className={s.price}>
-                  <Skeleton width={100} /> {/* Пример ширины для цены */}
-                  <Skeleton width={100} /> {/* Пример ширины для скидочной цены */}
-                </div>
-              </div>
-            </div>
+            <ProductSkeleton key={index} />
           ))
         ) : (
-          // Отображение реальных данных, когда они загружены
-        randomAllProducts.map(product => (
+          
+      randomAllProducts.map(product => (
           <div key={product.id} className={s.card}>
             <div
               className={s.product_picture}
@@ -175,8 +165,8 @@ const AllProductsPage = () => {
             </div>
           </div>
         ))
-      )
-      }
+    )}
+      
       </div>
       
     </div>

@@ -87,3 +87,4 @@ const defaultState = {
 	type: SET_CURRENT_PRODUCT,
 	payload: product,
 	});
+	

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import s from './ProductItem.module.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,105 +14,132 @@ import {
 	decrementProductCountAction,
 } from '../../../store/basketReducer.jsx';
 import { useBasketActions } from '../../../asyncActions/basket';
+import ProductSkeleton from '../../ProductSkeleton/ProductSkeleton';
 
 export default function ProductItemPage() {
-	const { id } = useParams();
-	const dispatch = useDispatch();
-	const product = useSelector(state => state.products.product);
-	const categories = useSelector(state => state.categories.allCategories);
-	const { addProductToBasket } = useBasketActions();
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    const product = useSelector(state => state.products.product);
+    const categories = useSelector(state => state.categories.allCategories);
+    const { addProductToBasket } = useBasketActions();
+    const [loading, setLoading] = useState(true);
 
-	useEffect(() => {
-		dispatch(getProductById(id));
-		dispatch(getAllCategories());
-	}, [dispatch, id]);
+    useEffect(() => {
+        const fetchData = async () => {
+            console.log('Fetch data started'); // Логируем начало загрузки
+            setLoading(true); // Устанавливаем состояние загрузки в true
 
-	if (!product) {
-		return <div>Loading...</div>;
-	}
+            try {
+                // Запускаем асинхронные запросы
+                await dispatch(getProductById(id));
+                await dispatch(getAllCategories());
 
-	const handleIncrement = () => {
-		dispatch(incrementProductCountAction(product.id));
-	};
+                console.log('Product and categories fetched'); // Логируем успешное получение данных
+            } catch (error) {
+                console.error('Ошибка при загрузке данных', error); // Логируем ошибки
+            } finally {
+                setLoading(false); // Устанавливаем состояние загрузки в false после завершения
+                console.log('Fetch data ended'); // Логируем окончание загрузки
+            }
+        };
 
-	const handleDecrement = () => {
-		dispatch(decrementProductCountAction(product.id));
-	};
+        fetchData(); // Вызов функции загрузки данных
+    }, [dispatch, id]);
 
-	return (
-		<div className={`${s.product_wrapper} content_line`}>
-			<div className={s.nav_buttons}>
-				<Link to='/'>
-					<button className={s.main_button}>Main page</button>
-				</Link>
-				<div className={s.nav_line}></div>
-				<Link to='/all_categories'>
-					<button className={s.section_button}>Categories</button>
-				</Link>
-				<div className={s.nav_line}></div>
-				<Link
-					to={`/categories/${
-						categories.find(category => category.id === product.categoryId)?.id
-					}`}
-				>
-					<button className={s.category_name_button}>
-						{
-							categories.find(category => category.id === product.categoryId)
-								?.title
-						}
-					</button>
-				</Link>
-				<div className={s.nav_line}></div>
-				<button className={s.product_name_button}>{product.title}</button>
-			</div>
+    const handleIncrement = () => {
+        dispatch(incrementProductCountAction(product.id));
+    };
 
-			<div className={s.product_card}>
-				<img src={`${ROOT_URL}${product.image}`} alt={product.title} />
-				<div className={s.product_description}>
-					<div className={s.product_header}>
-						<h1>{product.title}</h1>
-						<img src={like} alt='like' />
-					</div>
-					<div className={s.price_section}>
-						{product.discont_price ? (
-							<>
-								<div className={s.product_price}>
-									<h2>${product.discont_price}</h2>
-									<h5>${product.price}</h5>
-								</div>
-								<div className={s.discount_size}>
-									-
-									{Math.round(
-										(1 - product.discont_price / product.price) * 100
-									)}
-									%
-								</div>
-							</>
-						) : (
-							<h2>${product.price}</h2>
-						)}
-					</div>
-					<div className={s.add_to_cart}>
-						<Counter
-							count={product.count}
-							onIncrement={handleIncrement}
-							onDecrement={handleDecrement}
-						/>
-						{/* Передаем productId в Counter */}
-						<button
-							className={s.add_button}
-							onClick={() => {
-								addProductToBasket(product);
-								console.log('Added product: ', product);
-							}}
-						>
-							Add to cart
-						</button>
-					</div>
+    const handleDecrement = () => {
+        dispatch(decrementProductCountAction(product.id));
+    };
 
-					<p>{product.description}</p>
-				</div>
-			</div>
-		</div>
-	);
+    return (
+        <div className={`${s.product_wrapper} content_line`}>
+            {loading ? (
+                // Показать 10 скелетонов загрузки
+                Array.from({ length: 10 }).map((_, index) => (
+                    <ProductSkeleton key={index} />
+                ))
+            ) : (
+                <div>
+                    <div className={s.nav_buttons}>
+                        <Link to='/'>
+                            <button className={s.main_button}>Main page</button>
+                        </Link>
+                        <div className={s.nav_line}></div>
+                        <Link to='/all_categories'>
+                            <button className={s.section_button}>Categories</button>
+                        </Link>
+                        <div className={s.nav_line}></div>
+                        <Link
+                            to={`/categories/${
+                                categories.find(category => category.id === product.categoryId)?.id
+                            }`}
+                        >
+                            <button className={s.category_name_button}>
+                                {
+                                    categories.find(category => category.id === product.categoryId)
+                                        ?.title
+                                }
+                            </button>
+                        </Link>
+                        <div className={s.nav_line}></div>
+                        <button className={s.product_name_button}>{product.title}</button>
+                    </div>
+
+                    <div className={s.product_card}>
+                        <img src={`${ROOT_URL}${product.image}`} alt={product.title} />
+                        <div className={s.product_description}>
+                            <div className={s.product_header}>
+                                <h1>{product.title}</h1>
+                                <img src={like} alt='like' />
+                            </div>
+                            <div className={s.price_section}>
+                                {product.discont_price ? (
+                                    <>
+                                        <div className={s.product_price}>
+                                            <h2>${product.discont_price}</h2>
+                                            <h5>${product.price}</h5>
+                                        </div>
+                                        <div className={s.discount_size}>
+                                            -
+                                            {Math.round(
+                                                (1 - product.discont_price / product.price) * 100
+                                            )}
+                                            %
+                                        </div>
+                                    </>
+                                ) : (
+                                    <h2>${product.price}</h2>
+                                )}
+                            </div>
+                            <div className={s.add_to_cart}>
+                                <Counter
+                                    count={product.count}
+                                    onIncrement={handleIncrement}
+                                    onDecrement={handleDecrement}
+                                />
+                                <button
+                                    className={s.add_button}
+                                    onClick={() => {
+                                        addProductToBasket(product);
+                                        console.log('Added product: ', product);
+                                    }}
+                                >
+                                    Add to cart
+                                </button>
+                            </div>
+
+                            <p>{product.description}</p>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
 }
+
+
+
+

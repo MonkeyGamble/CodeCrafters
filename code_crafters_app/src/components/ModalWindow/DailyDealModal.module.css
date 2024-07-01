@@ -16,7 +16,6 @@
 	border-radius: 12px;
 	padding: 32px;
 	width: 548px;
-	/* height: 700px; */
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -29,7 +28,7 @@
 	position: absolute;
 	top: 32px;
 	right: 32px;
-	color: white; /* Цвет крестика */
+	color: var(--text_white); /* Цвет крестика */
 	font-size: 44px;
 	cursor: pointer;
 }
@@ -42,7 +41,7 @@
 .modalHeader {
 	width: 424px;
 	text-align: left;
-	color: white; /* Белый цвет текста */
+	color: var(--text_white); /* Белый цвет текста */
 	margin-bottom: 10px; /* Отступ снизу */
 }
 
@@ -54,11 +53,11 @@
 }
 
 .productDetails {
-	background-color: white;
-	border-radius: 10px;
+	background-color: var(--white);
+	border-radius: 12px;
 	width: 100%;
 	text-align: left;
-	margin-bottom: 10px;
+	/* margin-bottom: 10px; */
 	position: relative;
 }
 
@@ -116,6 +115,7 @@
 }
 
 .addToCart {
+	width: 100%;
 	background-color: var(--white);
 	border: none;
 	border-radius: 6px;

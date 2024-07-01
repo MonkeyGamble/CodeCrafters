@@ -124,11 +124,10 @@ const DailyDealModal = ({
 								<h3 className={s.discountPrice}>${discountPrice}</h3>
 								<h5 className={s.originalPrice}>${price}</h5>
 							</div>
-
-							<button className={s.addToCart} onClick={handleAddToCart}>
-								{isAdded ? 'Added product to basket' : 'Add to Cart'}
-							</button>
 						</div>
+						<button className={s.addToCart} onClick={handleAddToCart}>
+							{isAdded ? 'Added product to basket' : 'Add to Cart'}
+						</button>
 					</>
 				) : (
 					<div className={s.congratulations}>

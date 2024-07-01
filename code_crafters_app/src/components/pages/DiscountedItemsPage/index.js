@@ -6,7 +6,6 @@ import s from './DiscountedItemsPage.module.css';
 import { Link } from 'react-router-dom';
 import Filter from '../../Filter';
 import { useFilters } from '../../Filter/useFilters';
-import { filterProducts } from '../../Filter/filterUtils';
 import {
 	setFiltersAction,
 	filterProductsAction,
@@ -14,9 +13,6 @@ import {
 
 export default function DiscountItemsPage() {
 	const dispatch = useDispatch();
-	const discountProducts = useSelector(
-		state => state.products.discountProducts
-	);
 	const filteredProducts = useSelector(
 		state => state.products.filteredProducts
 	);

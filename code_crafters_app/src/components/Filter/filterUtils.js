@@ -1,5 +1,5 @@
 export const filterProducts = (products, filters) => {
-	return products.filter(product => {
+	let filtered = products.filter(product => {
 		let isMatch = true;
 
 		if (filters.minPrice) {
@@ -26,4 +26,24 @@ export const filterProducts = (products, filters) => {
 
 		return isMatch;
 	});
+
+	const { sortOrder } = filters;
+
+	if (sortOrder === 'priceAsc') {
+		filtered = filtered.sort((a, b) => {
+			const priceA = a.discont_price !== null ? a.discont_price : a.price;
+			const priceB = b.discont_price !== null ? b.discont_price : b.price;
+			return priceA - priceB;
+		});
+	} else if (sortOrder === 'priceDesc') {
+		filtered = filtered.sort((a, b) => {
+			const priceA = a.discont_price !== null ? a.discont_price : a.price;
+			const priceB = b.discont_price !== null ? b.discont_price : b.price;
+			return priceB - priceA;
+		});
+	} else if (sortOrder === 'alphabetical') {
+		filtered = filtered.sort((a, b) => a.title.localeCompare(b.title));
+	}
+
+	return filtered;
 };

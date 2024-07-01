@@ -6,7 +6,6 @@ import Filter from '../../Filter/index.jsx';
 import { getAllProducts } from '../../../asyncActions/products.js';
 import ProductCard from '../../ProductCard/index.jsx';
 import { useFilters } from '../../Filter/useFilters.js';
-import { filterProducts } from '../../Filter/filterUtils.js';
 import {
 	setFiltersAction,
 	filterProductsAction,
@@ -14,7 +13,6 @@ import {
 
 export default function AllProductsPage() {
 	const dispatch = useDispatch();
-	const allProducts = useSelector(state => state.products.allProducts);
 	const filteredProducts = useSelector(
 		state => state.products.filteredProducts
 	);

@@ -13,9 +13,11 @@ import { closeModalAction, openModalAction } from '../../store/modalReducer';
 import axios from 'axios';
 import DailyDealModal from '../ModalWindow/DailyDealModal';
 import { ROOT_URL } from '../..';
+import PopupNavMenu from './PopupNavMenu';
 
 export default function Header() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isPopupOpen, setIsPopupOpen] = useState(false);
 	const [product, setProduct] = useState(null);
 	const navigate = useNavigate();
 	const isLight = useSelector(state => state.theme.isLight);
@@ -24,23 +26,28 @@ export default function Header() {
 		navigate('/shopping_cart', { state: { from: 'Header' } });
 	};
 
-	const openModal = (e) => {
-	  e.preventDefault();
-	  axios.get(`${ROOT_URL}products/all`)
-		.then(response => {
-		  const products = response.data;
-		  const randomProduct = products[Math.floor(Math.random() * products.length)];
-		  setProduct(randomProduct);
-		  setIsModalOpen(true);
-		})
-		.catch(error => {
-		  console.error('Error fetching products:', error);
-		});
-
+	const openModal = e => {
+		e.preventDefault();
+		axios
+			.get(`${ROOT_URL}products/all`)
+			.then(response => {
+				const products = response.data;
+				const randomProduct =
+					products[Math.floor(Math.random() * products.length)];
+				setProduct(randomProduct);
+				setIsModalOpen(true);
+			})
+			.catch(error => {
+				console.error('Error fetching products:', error);
+			});
 	};
 
 	const closeModal = () => {
 		setIsModalOpen(false);
+	};
+
+	const handlePopupMenu = () => {
+		setIsPopupOpen(!isPopupOpen);
 	};
 
 	return (
@@ -77,51 +84,21 @@ export default function Header() {
 			</div>
 
 			<div className={s.header_right}>
-
 				<NavLink to='/liked_products'>
-					<img src={like} alt='like' />
+					<img src={isLight ? like : like_darkTheme} alt='like' />
 				</NavLink>
 				<NavLink to='/shopping_cart' className={s.shopping_cart}>
-					<img src={shopping_cart} alt='cart' />
+					<Basket onClick={handleBasketClick} />
 				</NavLink>
 
-				<RxHamburgerMenu className={s.burger} onClick={modalMenuOpenHandler} />
-
-				<div className={`${s.modal_menu} ${isModalOpen ? s.active : ''}`}>
-					<RxCross2
-						className={`${s.cross} ${isModalOpen ? s.active : ''}`}
-						onClick={modalMenuCloseHandler}
-					/>
-					<nav>
-						<ul className={`${s.nav_menu} ${isModalOpen ? s.active : ''}`}>
-							<NavLink to='/'>
-								<li>Main Page</li>
-							</NavLink>
-							<NavLink to='/categories'>
-								<li>Categories</li>
-							</NavLink>
-							<NavLink to='/all_products'>
-								<li>All Products</li>
-							</NavLink>
-							<NavLink to='/all_sales'>
-								<li>All Sales</li>
-							</NavLink>
-						</ul>
-					</nav>
-					<div className={`${s.discount} ${isModalOpen ? s.active : ''}`}>
-						1 day discount!
-					</div>
-				</div>
-
-				<Link to='/liked_products'>
-					<img src={isLight ? like : like_darkTheme} alt='like' />
-				</Link>
-				<Link to='/shopping_cart' className={s.shopping_cart}>
-					<Basket onClick={handleBasketClick} />
-				</Link>
-				<RxHamburgerMenu className={s.burger} />
-
+				<PopupNavMenu
+					isPopupOpen={isPopupOpen}
+					handlePopupMenu={handlePopupMenu}
+					openModal={openModal}
+				/>
+				<RxHamburgerMenu className={s.burger} onClick={handlePopupMenu} />
 			</div>
+
 			<DailyDealModal
 				isOpen={isModalOpen}
 				onRequestClose={closeModal}

@@ -13,7 +13,7 @@
 	position: relative;
 
 	border-bottom: 1px solid var(--grey_divider);
-
+	margin-bottom: 40px;
 }
 
 .header_left {
@@ -153,17 +153,17 @@
 	.container {
 		padding: 12px 20px;
 	}
- .modal_menu {
-        position: fixed;
-        right: -282px;
-        top: 0;
-        height: 100%;
-        width: 282px;
-        transition: right 0.3s ease-in-out;
-        z-index: 100;
-        background-color: var(--white);
-        display: none; /* Скрываем модальное меню по умолчанию */
-    }
+	.modal_menu {
+		position: fixed;
+		right: -282px;
+		top: 0;
+		height: 100%;
+		width: 282px;
+		transition: right 0.3s ease-in-out;
+		z-index: 100;
+		background-color: var(--white);
+		display: none; /* Скрываем модальное меню по умолчанию */
+	}
 
 	.modal_menu.active {
 		right: 0;
@@ -229,12 +229,9 @@
 		font-size: 44px;
 		cursor: pointer;
 	}
- .nav_menu {
-        display: none;
-    }
-
-
-
+	.nav_menu {
+		display: none;
+	}
 }
 
 @media (max-width: 340px) {

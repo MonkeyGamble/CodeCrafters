@@ -38,7 +38,7 @@ export default function AllProductsPage() {
 	}, [filters, dispatch]);
 
 	return (
-		<div className={`${s.sale_container} content_line`}>
+		<div className={`${s.all_products_container} content_line`}>
 			<div className={s.nav_buttons}>
 				<Link to='/'>
 					<button className={s.first_button}>Main page</button>
@@ -49,9 +49,8 @@ export default function AllProductsPage() {
 				</Link>
 			</div>
 
-			<div className={s.header_section}>
-				<h1>All Products</h1>
-			</div>
+			<h1>All Products</h1>
+
 			<Filter
 				filters={localFilters}
 				onFilterChange={handleFilterChange}

@@ -7,6 +7,7 @@ const defaultState = {
 
 const ADD_PRODUCT_TO_BASKET = 'ADD_PRODUCT_TO_BASKET';
 const REMOVE_PRODUCT_FROM_BASKET = 'REMOVE_PRODUCT_FROM_BASKET';
+const CLEAR_BASKET = 'CLEAR_BASKET';
 const INCR_PRODUCT_COUNT = 'INCR_PRODUCT_COUNT';
 const DECR_PRODUCT_COUNT = 'DECR_PRODUCT_COUNT';
 
@@ -23,11 +24,9 @@ export const basketReducer = (state = defaultState, action) => {
 			);
 
 			const priceToAdd =
-				(productToAdd.discont_price || productToAdd.price) *
-				(productToAdd.count || 1);
-
-			const totalPriceToAdd =
-				(productToAdd.discont_price || productToAdd.price) * productToAdd.count;
+				parseFloat(productToAdd.discont_price || productToAdd.price) *
+				productToAdd.count;
+			const totalPriceToAdd = priceToAdd;
 
 			console.log('Price to add:', priceToAdd);
 			console.log('TotalPriceToAdd:', totalPriceToAdd);
@@ -87,6 +86,14 @@ export const basketReducer = (state = defaultState, action) => {
 				},
 			};
 		}
+		case CLEAR_BASKET:
+			return {
+				...state,
+				basket: {
+					items: [],
+					totalPrice: 0,
+				},
+			};
 		case INCR_PRODUCT_COUNT: {
 			const product = state.basket.items.find(
 				item => item.id === action.payload
@@ -97,7 +104,8 @@ export const basketReducer = (state = defaultState, action) => {
 				item.id === action.payload ? { ...item, count: item.count + 1 } : item
 			);
 			const updatedTotalPrice =
-				state.basket.totalPrice + (product.discont_price || product.price);
+				state.basket.totalPrice +
+				parseFloat(product.discont_price || product.price);
 
 			return {
 				...state,
@@ -121,7 +129,9 @@ export const basketReducer = (state = defaultState, action) => {
 			);
 			const updatedTotalPrice =
 				state.basket.totalPrice -
-				(product.count > 1 ? product.discont_price || product.price : 0);
+				(product.count > 1
+					? parseFloat(product.discont_price || product.price)
+					: 0);
 
 			return {
 				...state,
@@ -145,6 +155,10 @@ export const addProductToBasketAction = product => ({
 export const removeProductFromBasketAction = id => ({
 	type: REMOVE_PRODUCT_FROM_BASKET,
 	payload: id,
+});
+
+export const clearBasketAction = () => ({
+	type: CLEAR_BASKET,
 });
 
 export const incrementProductCountAction = id => ({

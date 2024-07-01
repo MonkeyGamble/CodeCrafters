@@ -1,7 +1,5 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-
 
 * {
 	padding: 0;
@@ -11,26 +9,24 @@
 
 .categories {
 	display: flex;
-    flex-direction: column;
-    gap: 40px;
-    margin-top: 80px;
-  }
-  
+	flex-direction: column;
+	gap: 40px;
+	margin-top: 80px;
+}
 
 .line {
-	flex: 1; 
+	flex: 1;
 	height: 1px;
-	background-color: #dddddd;
+	background-color: var(--grey_divider);
 	margin: 0 0 0 32px;
-
-	}
+}
 
 .my_button {
 	width: 142px;
 	height: 36px;
 	border-radius: 6px;
 	background-color: transparent;
-	border: 1px solid #dddddd;
+	border: 1px solid var(--grey_divider);
 	color: var(--grey);
 	font-optical-sizing: auto;
 	font-style: normal;
@@ -55,6 +51,7 @@
 .header h2 {
 	font-weight: 700;
 	font-size: 64px;
+	color: var(--text_black);
 }
 
 .categoryList {
@@ -73,12 +70,9 @@
 }
 .categoryItem {
 	text-align: center;
+}
 
-
-  }
-  
-  .categoryImage {
-
+.categoryImage {
 	width: 316px;
 	height: 350px;
 	object-fit: cover;

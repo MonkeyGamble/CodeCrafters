@@ -10,6 +10,7 @@
 	border-radius: 30px;
 	position: relative;
 	z-index: 1;
+	cursor: pointer;
 }
 .circle {
 	width: 28px;

@@ -1,0 +1,21 @@
+.modal_menu {
+	display: none;
+	position: fixed;
+	right: -282px;
+	transition: right 0.3s ease-in-out;
+}
+
+.cross {
+	font-size: 22px;
+}
+
+@media (max-width: 480px) {
+	.modal_menu.active {
+		display: inline;
+		height: 100%;
+		width: 282px;
+		background-color: var(--white);
+		right: 0;
+		z-index: 100;
+	}
+}

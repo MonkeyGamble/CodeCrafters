@@ -8,7 +8,7 @@ import Basket from '../Basket';
 import { useBasketActions } from '../../asyncActions/basket';
 import { addProductFavorite } from '../../asyncActions/products';
 import { useDispatch } from 'react-redux';
-import { addProductFavoriteAction } from '../../store/productsReducer';
+import { addProductFavoriteAction, removeProductFavoriteAction } from '../../store/productsReducer';
 
  
 
@@ -46,16 +46,14 @@ export default function ProductCard({ product, ...otherProps }) {
 	};
 
 
-const handleFavoriteClick = e => {
-	e.preventDefault();
-	e.stopPropagation();
-
-	 
-dispatch(addProductFavoriteAction(product));
-console.log(product);
-console.log(product.isFavorite);
-}
-
+	const handleFavoriteClick = e => {
+		e.preventDefault();
+		e.stopPropagation();
+		dispatch(addProductFavoriteAction(product));
+		console.log(product);
+		console.log(product.isFavorite);
+	}
+	
 
 	return (
 		<Link

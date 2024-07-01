@@ -32,7 +32,12 @@ export default function ProductItemPage() {
 	if (!product) {
 		return <div>Loading...</div>;
 	}
-	const handelAddProductFavorite = (product) => {dispatch(addProductFavorite(product));
+
+	const handleAddProductFavorite = () => {
+        dispatch(addProductFavorite(product)); // Вызываем экшен для добавления в избранное
+    };
+
+	//const handleAddProductFavorite = (product) => {dispatch(addProductFavorite(product));
 	//console.log(product)};
 
 	const handleIncrement = () => {
@@ -75,7 +80,7 @@ export default function ProductItemPage() {
 				<div className={s.product_description}>
 					<div className={s.product_header}>
 						<h1>{product.title}</h1>
-						<img  onClick={ handelAddProductFavorite(product)} src={like} alt='like' />
+						<img  onClick={ handleAddProductFavorite} src={like} alt='like' />
 					</div>
 					<div className={s.price_section}>
 						{product.discont_price ? (
@@ -119,4 +124,4 @@ export default function ProductItemPage() {
 			</div>
 		</div>
 	);
-	}}
+	}

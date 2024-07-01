@@ -3,6 +3,7 @@ const defaultState = {
 	productsFromCategory: {},
 	discountProducts: [],
 	product: { count: 1, isFavorite: false },
+	favoriteProducts: [],
 };
 
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
@@ -27,8 +28,45 @@ export const productsReducer = (state = defaultState, action) => {
 			};
 
 
-		
-  case ADD_PRODUCT_FAVORITE:
+
+/*
+
+			case 'ADD_PRODUCT_FAVORITE':
+				return {
+					...state,
+					favoriteProducts: [...state.favoriteProducts, action.payload],
+					allProducts: state.allProducts.map(product =>
+						product.id === action.payload.id
+							? { ...product, isFavorite: true }
+							: product
+					),
+				};
+	
+*/
+
+case ADD_PRODUCT_FAVORITE:
+    return {
+        ...state,
+        favoriteProducts: [...state.favoriteProducts, action.payload]
+    };
+
+
+
+
+case 'REMOVE_PRODUCT_FAVORITE':
+				return {
+					...state,
+					favoriteProducts: state.favoriteProducts.filter(product => product.id !== action.payload.id),
+					allProducts: state.allProducts.map(product =>
+						product.id === action.payload
+							? { ...product, isFavorite: false }
+							: product
+					),
+				};
+
+/*
+
+  case 'ADD_PRODUCT_FAVORITE':
 	
   return {
     ...state,
@@ -40,31 +78,8 @@ export const productsReducer = (state = defaultState, action) => {
 };
 			 
 		
-			/*case ADD_PRODUCT_FAVORITE:
-				if (state.favoriteProducts.find(product => product.id === action.payload.id)) {
-					return state;
-				} else {
-					return {
-						...state,
-						favoriteProducts: [...state.favoriteProducts, action.payload],
-					};
-				}
-	
-			case REMOVE_PRODUCT_FAVORITE:
-				return {
-					...state,
-					favoriteProducts: state.favoriteProducts.filter(
-						product => product.id !== action.payload.id
-					),
-				};
-
-			*/
-			// case ADD_PRODUCT_FAVORITE:
-			// 	if (state.favoriteProducts.includes(action.payload)) { return state; }
-			// 	 else {
-			// 		return { ...state, favoriteProducts: [...state.favoriteProducts, action.payload], }; }
-
-			case REMOVE_PRODUCT_FAVORITE: 
+		
+ case REMOVE_PRODUCT_FAVORITE: 
 			return {
 				...state,
 				favoriteProducts: state.favoriteProducts.filter(
@@ -74,6 +89,10 @@ export const productsReducer = (state = defaultState, action) => {
 			
 			
 			
+
+*/
+		
+
 			
 			
 			

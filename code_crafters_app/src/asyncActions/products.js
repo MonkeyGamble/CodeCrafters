@@ -36,11 +36,29 @@ export function getProductById(id) {
 	};
 }
 
+
+export function addProductFavorite(product) {
+    return function (dispatch) {
+        dispatch(addProductFavoriteAction(product));
+    };
+}
+
+export function removeProductFavorite(id) {
+    return function (dispatch) {
+        dispatch(removeProductFavoriteAction(id));
+    };
+}
+
+/*
+
 export function addProductFavorite(product) { return function(dispatch) { 
 	dispatch(addProductFavoriteAction(product)); }; }
 
 export function removeProductFavorite(id) { 
 		return function(dispatch) { dispatch(removeProductFavoriteAction(id)); }; }
+
+
+*/
 
 
 export function getProductsByCategoryId(id) {

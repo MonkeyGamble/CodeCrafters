@@ -6,105 +6,92 @@ import { ROOT_URL } from '../..';
 import Basket from '../Basket';
 import { useBasketActions } from '../../asyncActions/basket';
 
-
 export default function ProductCard({ product, loading, ...otherProps }) {
-    const { addProductToBasket } = useBasketActions();
+	const { addProductToBasket } = useBasketActions();
 
-    const handleCardClick = e => {
-        e.stopPropagation();
-        // Если кликнули на карточку продукта внутри Link, предотвращаем всплытие события
-    };
+	const handleCardClick = e => {
+		e.stopPropagation();
+		// Если кликнули на карточку продукта внутри Link, предотвращаем всплытие события
+	};
 
-<<<<<<< HEAD
-    const handleBasketClick = e => {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('Product to add:', product);
-        console.log('Price:', product.price);
-        console.log('Discount price:', product.discount_price);
-        console.log('Count:', product.count);
-        const priceToAdd = (product.discount_price || product.price) * product.count;
-        console.log('Price to add:', priceToAdd);
-        addProductToBasket({ ...product, count: 1 });
-        console.log(
-            `Added to basket: ${product.title}, price: ${
-                product.discount_price || product.price
-            }`
-        );
-    };
-=======
+	const handleBasketClick = e => {
+		e.preventDefault();
+		e.stopPropagation();
 		console.log('Product to add:', product);
 		console.log('Price:', product.price);
-		console.log('Discont price:', product.discont_price);
+		console.log('Discount price:', product.discount_price);
 		console.log('Count:', product.count);
-
-				const priceToAdd = (product.discont_price || product.price) * product.count;
+		const priceToAdd =
+			(product.discount_price || product.price) * product.count;
 		console.log('Price to add:', priceToAdd);
->>>>>>> origin/sprint4/diana
+		addProductToBasket({ ...product, count: 1 });
+		console.log(
+			`Added to basket: ${product.title}, price: ${
+				product.discount_price || product.price
+			}`
+		);
+	};
 
-    return (
-        <Link
-            to={`/products/${product.id}`}
-            className={s.card}
-            onClick={handleCardClick}
-            {...otherProps}
-        >
-            
-                    <div
-                        className={s.product_picture}
-                        style={{ backgroundImage: `url(${ROOT_URL + product.image})` }}
-                    >
-                        {product.discount_price && (
-                            <div className={s.discount_size}>
-                                -{Math.round((1 - product.discount_price / product.price) * 100)}%
-                            </div>
-                        )}
-                        <div className={s.like_cart}>
-                            <img src={like} alt='like' />
-                            <Basket product={product} onClick={handleBasketClick} />
-                        </div>
-                    </div>
-                    <div className={s.product_description}>
-                        <h3>{product.title}</h3>
-                        <div className={s.price}>
-                            {product.discount_price ? (
-                                <>
-                                    <h2
-                                        style={{
-                                            fontSize: '40px',
-                                            fontWeight: '600',
-                                            color: 'var(--text_black)',
-                                        }}
-                                    >
-                                        ${product.discount_price.toFixed(2)}
-                                    </h2>
-                                    <h5
-                                        style={{
-                                            fontSize: '20px',
-                                            fontWeight: '500',
-                                            color: 'var(--grey)',
-                                            textDecoration: 'line-through',
-                                        }}
-                                    >
-                                        ${product.price.toFixed(2)}
-                                    </h5>
-                                </>
-                            ) : (
-                                <h5
-                                    style={{
-                                        fontSize: '40px',
-                                        fontWeight: '600',
-                                        color: 'var(--text_black)',
-                                        textDecoration: 'none',
-                                    }}
-                                >
-                                    ${product.price.toFixed(2)}
-                                </h5>
-                            )}
-                        </div>
-                    </div>
-                
-           
-        </Link>
-    );
+	return (
+		<Link
+			to={`/products/${product.id}`}
+			className={s.card}
+			onClick={handleCardClick}
+			{...otherProps}
+		>
+			<div
+				className={s.product_picture}
+				style={{ backgroundImage: `url(${ROOT_URL + product.image})` }}
+			>
+				{product.discount_price && (
+					<div className={s.discount_size}>
+						-{Math.round((1 - product.discount_price / product.price) * 100)}%
+					</div>
+				)}
+				<div className={s.like_cart}>
+					<img src={like} alt='like' />
+					<Basket product={product} onClick={handleBasketClick} />
+				</div>
+			</div>
+			<div className={s.product_description}>
+				<h3>{product.title}</h3>
+				<div className={s.price}>
+					{product.discount_price ? (
+						<>
+							<h2
+								style={{
+									fontSize: '40px',
+									fontWeight: '600',
+									color: 'var(--text_black)',
+								}}
+							>
+								${product.discount_price.toFixed(2)}
+							</h2>
+							<h5
+								style={{
+									fontSize: '20px',
+									fontWeight: '500',
+									color: 'var(--grey)',
+									textDecoration: 'line-through',
+								}}
+							>
+								${product.price.toFixed(2)}
+							</h5>
+						</>
+					) : (
+						<h5
+							style={{
+								fontSize: '40px',
+								fontWeight: '600',
+								color: 'var(--text_black)',
+								textDecoration: 'none',
+							}}
+						>
+							${product.price.toFixed(2)}
+						</h5>
+					)}
+				</div>
+			</div>
+		</Link>
+	);
 }

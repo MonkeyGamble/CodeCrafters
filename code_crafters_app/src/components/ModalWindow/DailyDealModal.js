@@ -6,7 +6,8 @@ import s from './DailyDealModal.module.css';
 import { setCurrentProductAction } from '../../store/productsReducer';
 import { addProductToBasketAction } from '../../store/basketReducer';
 import like from '../../assets/img/like_white.png';
-import ProductCard from '../ProductCard';
+
+import { RxCross2 } from 'react-icons/rx';
 
 const DailyDealModal = ({
 	isOpen,
@@ -91,18 +92,9 @@ const DailyDealModal = ({
 
 	return (
 		<div className={s.modal} onClick={handleModalClick}>
-			
-      
-      
-      
-      
-      <div className={s.modalContent}>
+			<div className={s.modalContent}>
+				<RxCross2 className={s.close} onClick={onRequestClose} />
 
-
-
-				<span className={s.close} onClick={onRequestClose}>
-					&times;
-				</span>
 				{loading ? (
 					<div className={s.spinner}>Loading...</div>
 				) : (
@@ -110,7 +102,6 @@ const DailyDealModal = ({
 						<div className={s.modalHeader}>
 							<h2>50% discount on product of the day!</h2>
 						</div>
-
 						<div className={s.productDetails}>
 							<div className={s.discountBadge}>-50%</div>
 
@@ -127,21 +118,17 @@ const DailyDealModal = ({
 								className={s.like_icon}
 								onClick={handleAddToFavorites}
 							/>
+
 							<h2>{displayedProduct.title}</h2>
+
 							<div className={s.priceWrapper}>
 								<h3 className={s.discountPrice}>${discountPrice}</h3>
 								<h5 className={s.originalPrice}>${price}</h5>
 							</div>
 						</div>
-						<div className={s.addToCartWrapper}>
-							{isAdded ? (
-								<div>Added product to basket</div>
-							) : (
-								<button className={s.addToCart} onClick={handleAddToCart}>
-									Add to Cart
-								</button>
-							)}
-						</div>
+						<button className={s.addToCart} onClick={handleAddToCart}>
+							{isAdded ? 'Added product to basket' : 'Add to Cart'}
+						</button>
 					</>
 				)}
 			</div>

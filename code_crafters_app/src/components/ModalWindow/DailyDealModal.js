@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ROOT_URL } from '../..';
 import s from './DailyDealModal.module.css';
 import { setCurrentProductAction } from '../../store/productsReducer';
@@ -9,14 +9,7 @@ import { RxCross2 } from 'react-icons/rx';
 import { getAllProducts } from '../../asyncActions/products';
 import { useModalWindow } from '../../asyncActions/modalWindow';
 
-const DailyDealModal = ({
-	isOpen,
-	onRequestClose,
-	product,
-	setCurrentProduct,
-	addToBasket,
-	type,
-}) => {
+const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 	const dispatch = useDispatch();
 	const [currentProductLocal, setCurrentProductLocal] = useState(null);
 	const [loading, setLoading] = useState(false);
@@ -24,6 +17,7 @@ const DailyDealModal = ({
 	const [favorites, setFavorites] = useState([]); // Добавлено состояние для избранного
 	const { getRandomProduct } = useModalWindow();
 	const products = useSelector(state => state.products.allProducts);
+	const product = useSelector(state => state.products.currentProduct);
 
 	useEffect(() => {
 		dispatch(getAllProducts());
@@ -33,18 +27,11 @@ const DailyDealModal = ({
 		if (isOpen && !product) {
 			setLoading(true);
 			const randomProduct = getRandomProduct(products);
-			setCurrentProduct(randomProduct);
+			dispatch(setCurrentProductAction(randomProduct));
 			setCurrentProductLocal(randomProduct);
 			setLoading(false);
 		}
-	}, [
-		dispatch,
-		isOpen,
-		product,
-		getRandomProduct,
-		products,
-		setCurrentProduct,
-	]);
+	}, [dispatch, isOpen, product, getRandomProduct, products]);
 
 	useEffect(() => {
 		if (!isOpen) {
@@ -79,7 +66,7 @@ const DailyDealModal = ({
 			count: 1,
 			discont_price: discountPrice, // Устанавливаем скидочную цену
 		};
-		addToBasket(productToAdd);
+		dispatch(addProductToBasketAction(productToAdd));
 		setIsAdded(true); // Обновляем состояние после добавления товара
 		console.log('Added product to basket:', productToAdd);
 	};
@@ -149,13 +136,4 @@ const DailyDealModal = ({
 	);
 };
 
-const mapStateToProps = state => ({
-	product: state.products.currentProduct || null,
-});
-
-const mapDispatchToProps = dispatch => ({
-	setCurrentProduct: product => dispatch(setCurrentProductAction(product)),
-	addToBasket: product => dispatch(addProductToBasketAction(product)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(DailyDealModal);
+export default DailyDealModal;

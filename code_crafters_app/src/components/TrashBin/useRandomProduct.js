@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { openModalAction } from '../store/modalWindowReducer';
-import { getAllProducts } from '../asyncActions/products';
+import { openModalAction } from '../../store/modalWindowReducer';
+import { getAllProducts } from '../../asyncActions/products';
 
 export default function useRandomProduct() {
 	const dispatch = useDispatch();

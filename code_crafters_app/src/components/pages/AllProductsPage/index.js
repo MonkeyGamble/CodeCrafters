@@ -1,22 +1,41 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import s from './AllProductsPage.module.css';
-
 import Filter from '../../Filter/index.jsx';
 import { getAllProducts } from '../../../asyncActions/products.js';
 import ProductCard from '../../ProductCard/index.jsx';
+import { useFilters } from '../../Filter/useFilters.js';
+import {
+	setFiltersAction,
+	filterProductsAction,
+} from '../../../store/productsReducer.js';
 
-const AllProductsPage = () => {
+export default function AllProductsPage() {
 	const dispatch = useDispatch();
-	const filters = useSelector(state => state.products.filters);
 	const filteredProducts = useSelector(
 		state => state.products.filteredProducts
 	);
+	const filters = useSelector(state => state.products.filters);
+
+	const [localFilters, handleFilterChange] = useFilters({
+		minPrice: '',
+		maxPrice: '',
+		isDiscounted: false,
+		sortOrder: 'default',
+	});
 
 	useEffect(() => {
 		dispatch(getAllProducts());
 	}, [dispatch]);
+
+	useEffect(() => {
+		dispatch(setFiltersAction(localFilters));
+	}, [localFilters, dispatch]);
+
+	useEffect(() => {
+		dispatch(filterProductsAction());
+	}, [filters, dispatch]);
 
 	return (
 		<div className={`${s.sale_container} content_line`}>
@@ -34,10 +53,9 @@ const AllProductsPage = () => {
 				<h1>All Products</h1>
 			</div>
 			<Filter
-				minPrice={filters.minPrice}
-				maxPrice={filters.maxPrice}
-				isDiscounted={filters.isDiscounted}
-				sortOrder={filters.sortOrder}
+				filters={localFilters}
+				onFilterChange={handleFilterChange}
+				showDiscountedItemsFilter={true}
 			/>
 
 			<div className={s.cards_container}>
@@ -47,6 +65,4 @@ const AllProductsPage = () => {
 			</div>
 		</div>
 	);
-};
-
-export default AllProductsPage;
+}

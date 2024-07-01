@@ -1,27 +1,21 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import s from './Filter.module.css';
-import {
-	setFiltersAction,
-	filterProductsAction,
-} from '../../store/productsReducer';
+import { filterProductsAction } from '../../store/productsReducer';
 
-const Filter = ({ showDiscountedItemsFilter = true, ...otherProps }) => {
+const Filter = ({
+	filters,
+	onFilterChange,
+	showDiscountedItemsFilter = true,
+}) => {
 	const dispatch = useDispatch();
-	const filters = useSelector(state => state.products.filters);
-	const products = useSelector(state => state.products.allProducts);
 
 	useEffect(() => {
 		dispatch(filterProductsAction());
-	}, [filters, products, dispatch]);
+	}, [filters, dispatch]);
 
 	const handleFilterChange = (key, value) => {
-		dispatch(
-			setFiltersAction({
-				...filters,
-				[key]: value,
-			})
-		);
+		onFilterChange(key, value);
 	};
 
 	return (
@@ -30,13 +24,13 @@ const Filter = ({ showDiscountedItemsFilter = true, ...otherProps }) => {
 				<p>Цена</p>
 				<input
 					type='text'
-					placeholder='от'
+					placeholder='From'
 					value={filters.minPrice}
 					onChange={e => handleFilterChange('minPrice', e.target.value)}
 				/>
 				<input
 					type='text'
-					placeholder='до'
+					placeholder='to'
 					value={filters.maxPrice}
 					onChange={e => handleFilterChange('maxPrice', e.target.value)}
 				/>
@@ -60,10 +54,10 @@ const Filter = ({ showDiscountedItemsFilter = true, ...otherProps }) => {
 					value={filters.sortOrder}
 					onChange={e => handleFilterChange('sortOrder', e.target.value)}
 				>
-					<option value='default'>по умолчанию</option>
-					<option value='priceAsc'>по цене (возрастание)</option>
-					<option value='priceDesc'>по цене (убывание)</option>
-					<option value='alphabetical'>по алфавиту</option>
+					<option value='default'>by default</option>
+					<option value='priceAsc'>price: low-high</option>
+					<option value='priceDesc'>price: high-low</option>
+					<option value='alphabetical'>alphabetical</option>
 				</select>
 			</div>
 		</section>

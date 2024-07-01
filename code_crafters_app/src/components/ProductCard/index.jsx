@@ -1,3 +1,4 @@
+
 import s from './ProductCard.module.css';
 import '../../Global.css';
 import like from '../../assets/img/like_white.png';
@@ -5,9 +6,19 @@ import { Link } from 'react-router-dom';
 import { ROOT_URL } from '../..';
 import Basket from '../Basket';
 import { useBasketActions } from '../../asyncActions/basket';
+import { addProductFavorite } from '../../asyncActions/products';
+import { useDispatch } from 'react-redux';
+import { addProductFavoriteAction, removeProductFavoriteAction } from '../../store/productsReducer';
+
+ 
 
 export default function ProductCard({ product, ...otherProps }) {
+	const dispatch = useDispatch();
 	const { addProductToBasket } = useBasketActions();
+
+
+	if (!product || !product.id) {
+		return null; }
 
 	const handleCardClick = e => {
 		e.stopPropagation();
@@ -18,6 +29,7 @@ export default function ProductCard({ product, ...otherProps }) {
 		e.preventDefault();
 		e.stopPropagation();
 
+
 		console.log('Product to add:', product);
 		console.log('Price:', product.price);
 		console.log('Discont price:', product.discont_price);
@@ -26,13 +38,25 @@ export default function ProductCard({ product, ...otherProps }) {
 				const priceToAdd = (product.discont_price || product.price) * product.count;
 		console.log('Price to add:', priceToAdd);
 
+
 		addProductToBasket({ ...product, count: 1 });
-		console.log(
-			`Added to basket: ${product.title}, price: ${
-				product.discont_price || product.price
-			}`
-		);
+		// console.log(
+		// 	`Added to basket: ${product.title}, price: ${
+		// 		product.discont_price || product.price
+		// 	}`
+		// );
+	
 	};
+
+
+	const handleFavoriteClick = e => {
+		e.preventDefault();
+		e.stopPropagation();
+		dispatch(addProductFavoriteAction(product));
+		console.log(product);
+		console.log(product.isFavorite);
+	}
+	
 
 	return (
 		<Link
@@ -52,7 +76,7 @@ export default function ProductCard({ product, ...otherProps }) {
 				)}
 
 				<div className={s.like_cart}>
-					<img src={like} alt='like' />
+					<img src={like} alt='like' onClick={handleFavoriteClick}/>
 					<Basket product={product} onClick={handleBasketClick} />
 				</div>
 			</div>
@@ -100,3 +124,5 @@ export default function ProductCard({ product, ...otherProps }) {
 		</Link>
 	);
 }
+
+

@@ -1,6 +1,4 @@
-// components/Header/Header.js
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import s from './Header.module.css';
 import ThemeButton from './ThemeButton/index';
@@ -11,13 +9,12 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import Basket from '../Basket/index';
 import DailyDealModal from '../ModalWindow/DailyDealModal';
-import { ROOT_URL } from '../..';
 import PopupNavMenu from './PopupNavMenu';
 import {
 	openModalAction,
 	closeModalAction,
-} from '../../store/modalWindowReducer'; // Правильно импортируем действия для модального окна
-import axios from 'axios';
+} from '../../store/modalWindowReducer';
+import { getAllProducts } from '../../asyncActions/products';
 
 export default function Header() {
 	const dispatch = useDispatch();
@@ -25,25 +22,17 @@ export default function Header() {
 	const isLight = useSelector(state => state.theme.isLight);
 	const isModalOpen = useSelector(state => state.modalWindow.isOpen);
 	const product = useSelector(state => state.modalWindow.product);
+	const products = useSelector(state => state.products.allProducts);
 	const navigate = useNavigate();
 
-	const handleBasketClick = () => {
-		navigate('/shopping_cart', { state: { from: 'Header' } });
-	};
+	useEffect(() => {
+		dispatch(getAllProducts());
+	}, [dispatch]);
 
 	const openModal = e => {
 		e.preventDefault();
-		axios
-			.get(`${ROOT_URL}products/all`)
-			.then(response => {
-				const products = response.data;
-				const randomProduct =
-					products[Math.floor(Math.random() * products.length)];
-				dispatch(openModalAction(randomProduct)); // Диспатчим действие для открытия модального окна
-			})
-			.catch(error => {
-				console.error('Error fetching products:', error);
-			});
+		const randomProduct = products[Math.floor(Math.random() * products.length)];
+		dispatch(openModalAction(randomProduct)); // Диспатчим действие для открытия модального окна
 	};
 
 	const closeModal = () => {
@@ -52,6 +41,10 @@ export default function Header() {
 
 	const handlePopupMenu = () => {
 		setIsPopupOpen(!isPopupOpen);
+	};
+
+	const handleBasketClick = () => {
+		navigate('/shopping_cart', { state: { from: 'Header' } });
 	};
 
 	return (

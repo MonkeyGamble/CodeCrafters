@@ -15,6 +15,7 @@ export default function ProductCard({ product, loading, ...otherProps }) {
         // Если кликнули на карточку продукта внутри Link, предотвращаем всплытие события
     };
 
+<<<<<<< HEAD
     const handleBasketClick = e => {
         e.preventDefault();
         e.stopPropagation();
@@ -31,6 +32,15 @@ export default function ProductCard({ product, loading, ...otherProps }) {
             }`
         );
     };
+=======
+		console.log('Product to add:', product);
+		console.log('Price:', product.price);
+		console.log('Discont price:', product.discont_price);
+		console.log('Count:', product.count);
+
+				const priceToAdd = (product.discont_price || product.price) * product.count;
+		console.log('Price to add:', priceToAdd);
+>>>>>>> origin/sprint4/diana
 
     return (
         <Link

@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import s from './AllProductsPage.module.css';
+<<<<<<< HEAD
 import { ROOT_URL } from '../../..';
 import like from '../../../assets/img/like_white.png';
 import { useDispatch } from 'react-redux';
@@ -8,60 +10,56 @@ import { addProductToBasketAction } from '../../../store/basketReducer';
 import Basket from '../../Basket/index.jsx';
 import ProductSkeleton from '../../ProductSkeleton/ProductSkeleton.js';
 
+=======
+
+import Filter from '../../Filter/index.jsx';
+import { getAllProducts } from '../../../asyncActions/products.js';
+import ProductCard from '../../ProductCard/index.jsx';
+>>>>>>> origin/sprint4/diana
 
 const AllProductsPage = () => {
-  const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState([]);
-  const [randomAllProducts, setFilteredProducts] = useState([]);
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
-  const [isDiscounted, setIsDiscounted] = useState(false);
-  const [sortOrder, setSortOrder] = useState('default');
- 
-  
+	const dispatch = useDispatch();
+	const filters = useSelector(state => state.products.filters);
+	const filteredProducts = useSelector(
+		state => state.products.filteredProducts
+	);
 
-  useEffect(() => {
-    axios.get(`${ROOT_URL}products/all`)
-      .then(response => {
-        console.log('Products:', response.data);
-        setProducts(response.data);
-        setFilteredProducts(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('There was an error fetching the products!', error);
-        setLoading(false);
-      });
-  }, []);
+	useEffect(() => {
+		dispatch(getAllProducts());
+	}, [dispatch]);
 
-  useEffect(() => {
-    let filtered = [...products];
+	return (
+		<div className={`${s.sale_container} content_line`}>
+			<div className={s.nav_buttons}>
+				<Link to='/'>
+					<button className={s.first_button}>Main page</button>
+				</Link>
+				<div className={s.nav_line}></div>
+				<Link to='/all_products'>
+					<button className={s.second_button}>All products</button>
+				</Link>
+			</div>
 
-    if (minPrice !== '') {
-      filtered = filtered.filter(p => (p.discont_price !== null ? p.discont_price : p.price) >= parseFloat(minPrice));
-    }
-    if (maxPrice !== '') {
-      filtered = filtered.filter(p => (p.discont_price !== null ? p.discont_price : p.price) <= parseFloat(maxPrice));
-    }
-    if (isDiscounted) {
-      filtered = filtered.filter(p => p.discont_price !== null && p.discont_price < p.price);
-    }
+			<div className={s.header_section}>
+				<h1>All Products</h1>
+			</div>
+			<Filter
+				minPrice={filters.minPrice}
+				maxPrice={filters.maxPrice}
+				isDiscounted={filters.isDiscounted}
+				sortOrder={filters.sortOrder}
+			/>
 
-    switch (sortOrder) {
-      case 'priceAsc':
-        filtered.sort((a, b) => (a.discont_price !== null ? a.discont_price : a.price) - (b.discont_price !== null ? b.discont_price : b.price));
-        break;
-      case 'priceDesc':
-        filtered.sort((a, b) => (b.discont_price !== null ? b.discont_price : b.price) - (a.discont_price !== null ? a.discont_price : a.price));
-        break;
-      case 'alphabetical':
-        filtered.sort((a, b) => a.title.localeCompare(b.title));
-        break;
-      default:
-        break;
-    }
+			<div className={s.cards_container}>
+				{filteredProducts.map(product => (
+					<ProductCard key={product.id} product={product} />
+				))}
+			</div>
+		</div>
+	);
+};
 
+<<<<<<< HEAD
     console.log('Filtered Products:', filtered);
     setFilteredProducts(filtered);
   }, [minPrice, maxPrice, isDiscounted, sortOrder, products]);
@@ -176,3 +174,6 @@ const AllProductsPage = () => {
 
 
 export default AllProductsPage;
+=======
+export default AllProductsPage;
+>>>>>>> origin/sprint4/diana

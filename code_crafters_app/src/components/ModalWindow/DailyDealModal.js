@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import './DailyDealModal.css';
 import { ROOT_URL } from '../..';
+
 import { setCurrentProductAction } from '../../store/productsReducer';
 import { addProductToBasketAction } from '../../store/basketReducer';
 import like from '../../assets/img/like_white.png';
@@ -37,7 +38,9 @@ const DailyDealModal = ({ isOpen, onRequestClose, product, setCurrentProduct, ad
     }
   }, [isOpen]);
 
-  if (!isOpen || (loading && !product)) return null;
+
+	if (!isOpen || (loading && !product)) return null;
+
 
   const displayedProduct = product || currentProductLocal;
 
@@ -52,8 +55,13 @@ const DailyDealModal = ({ isOpen, onRequestClose, product, setCurrentProduct, ad
     return discountedPrice;
   };
 
-  const price = displayedProduct.price !== undefined ? displayedProduct.price.toFixed(2) : '';
-  const discountPrice = calculateDiscountPrice(price);
+
+	const price =
+		displayedProduct.price !== undefined
+			? displayedProduct.price.toFixed(2)
+			: '';
+	const discountPrice = calculateDiscountPrice(price);
+
 
   const handleAddToCart = () => {
     const productToAdd = {
@@ -71,11 +79,12 @@ const DailyDealModal = ({ isOpen, onRequestClose, product, setCurrentProduct, ad
     console.log('Added product to favorites:', displayedProduct);
   };
 
-  const handleModalClick = (e) => {
-    if (e.target.className === 'modal') {
-      onRequestClose();
-    }
-  };
+
+	const handleModalClick = e => {
+		if (e.target.className === 'modal') {
+			onRequestClose();
+		}
+	};
 
   return (
     <div className="modal" onClick={handleModalClick}>
@@ -129,3 +138,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DailyDealModal);
+

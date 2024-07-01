@@ -2,8 +2,18 @@ const defaultState = {
 	allProducts: [],
 	productsFromCategory: {},
 	discountProducts: [],
+
 	currentProduct: null, // Добавлено поле currentProduct
 	product: { count: 1 },
+      favoriteProducts: [],
+	filteredProducts: [],
+	product: { count: 1 },
+	filters: {
+		minPrice: '',
+		maxPrice: '',
+		isDiscounted: false,
+		sortOrder: 'default',
+	},
 	};
   
   const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
@@ -12,6 +22,8 @@ const defaultState = {
   const INCR_PRODUCT_COUNT = 'INCR_PRODUCT_COUNT';
   const DECR_PRODUCT_COUNT = 'DECR_PRODUCT_COUNT';
   const SET_CURRENT_PRODUCT = 'SET_CURRENT_PRODUCT';
+const SET_FILTERS = 'SET_FILTERS';
+const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
   
   export const productsReducer = (state = defaultState, action) => {
 	console.log('productsReducer state:', state, 'action:', action);
@@ -56,10 +68,66 @@ const defaultState = {
 		...state,
 		currentProduct: action.payload,
 	  };
+      case SET_FILTERS:
+			return {
+				...state,
+				filters: {
+					...state.filters,
+					...action.payload,
+				},
+			};
+		case FILTER_PRODUCTS:
+			// let filtered = state.filteredProducts.slice(); // Копируем массив для фильтрации
+			let filtered = state.allProducts.slice();
+
+			const { minPrice, maxPrice, isDiscounted, sortOrder } = state.filters;
+
+			if (minPrice) {
+				filtered = filtered.filter(product =>
+					product.discont_price
+						? product.discont_price >= minPrice
+						: product.price >= minPrice
+				);
+			}
+
+			if (maxPrice) {
+				filtered = filtered.filter(product =>
+					product.discont_price
+						? product.discont_price <= maxPrice
+						: product.price <= maxPrice
+				);
+			}
+
+			if (isDiscounted) {
+				filtered = filtered.filter(product => product.discont_price !== null);
+			}
+
+			if (sortOrder === 'priceAsc') {
+				filtered = filtered.sort((a, b) => {
+					const priceA = a.discont_price !== null ? a.discont_price : a.price;
+					const priceB = b.discont_price !== null ? b.discont_price : b.price;
+					return priceA - priceB;
+				});
+			} else if (sortOrder === 'priceDesc') {
+				filtered = filtered.sort((a, b) => {
+					const priceA = a.discont_price !== null ? a.discont_price : a.price;
+					const priceB = b.discont_price !== null ? b.discont_price : b.price;
+					return priceB - priceA;
+				});
+			} else if (sortOrder === 'alphabetical') {
+				filtered = filtered.sort((a, b) => a.title.localeCompare(b.title));
+			}
+			return {
+				...state,
+				filteredProducts: filtered,
+				discountProducts: filtered,
+			};
 	  default:
 	  return state;
-	}
-	};
+
+
+
+
   
   export const getAllProductsAction = products => ({
 	type: GET_ALL_PRODUCTS,
@@ -81,10 +149,27 @@ const defaultState = {
   
   export const decrementProductCountAction = () => ({
 	type: DECR_PRODUCT_COUNT,
+
   });
   
   export const setCurrentProductAction = product => ({
 	type: SET_CURRENT_PRODUCT,
 	payload: product,
 	});
+<<<<<<< HEAD
 	
+=======
+
+});
+
+export const setFiltersAction = filters => ({
+	type: SET_FILTERS,
+	payload: filters,
+});
+
+export const filterProductsAction = filteredProducts => ({
+	type: FILTER_PRODUCTS,
+	payload: filteredProducts,
+});
+
+>>>>>>> origin/sprint4/diana

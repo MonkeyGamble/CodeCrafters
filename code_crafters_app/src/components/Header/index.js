@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import s from './Header.module.css';
 import ThemeButton from './ThemeButton/index';
 import logo from '../../assets/img/logo.png';
@@ -10,35 +10,15 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 import Basket from '../Basket/index';
 import DailyDealModal from '../ModalWindow/DailyDealModal';
 import PopupNavMenu from './PopupNavMenu';
-import {
-	openModalAction,
-	closeModalAction,
-} from '../../store/modalWindowReducer';
-import { getAllProducts } from '../../asyncActions/products';
+import { useModalWindow } from '../../asyncActions/modalWindow';
 
 export default function Header() {
-	const dispatch = useDispatch();
 	const [isPopupOpen, setIsPopupOpen] = useState(false);
-
 	const isLight = useSelector(state => state.theme.isLight);
 	const isModalOpen = useSelector(state => state.modalWindow.isOpen);
 	const product = useSelector(state => state.modalWindow.product);
-	const products = useSelector(state => state.products.allProducts);
 	const navigate = useNavigate();
-
-	useEffect(() => {
-		dispatch(getAllProducts());
-	}, [dispatch]);
-
-	const openModal = e => {
-		e.preventDefault();
-		const randomProduct = products[Math.floor(Math.random() * products.length)];
-		dispatch(openModalAction(randomProduct)); // Диспатчим действие для открытия модального окна
-	};
-
-	const closeModal = () => {
-		dispatch(closeModalAction()); // Диспатчим действие для закрытия модального окна
-	};
+	const { openModalWithRandomProduct, closeModal } = useModalWindow();
 
 	const handlePopupMenu = () => {
 		setIsPopupOpen(!isPopupOpen);
@@ -58,7 +38,7 @@ export default function Header() {
 			</div>
 
 			<div className={s.header_center}>
-				<Link to='#' onClick={openModal}>
+				<Link to='#' onClick={openModalWithRandomProduct}>
 					<div className={s.discount}>1 day discount!</div>
 				</Link>
 
@@ -91,7 +71,7 @@ export default function Header() {
 				<PopupNavMenu
 					isPopupOpen={isPopupOpen}
 					handlePopupMenu={handlePopupMenu}
-					openModal={openModal}
+					openModal={openModalWithRandomProduct}
 				/>
 			</div>
 

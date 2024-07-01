@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import axios from 'axios';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { ROOT_URL } from '../..';
 import s from './DailyDealModal.module.css';
 import { setCurrentProductAction } from '../../store/productsReducer';
 import { addProductToBasketAction } from '../../store/basketReducer';
 import like from '../../assets/img/like_white.png';
-
 import { RxCross2 } from 'react-icons/rx';
+import { getAllProducts } from '../../asyncActions/products';
+import { useModalWindow } from '../../asyncActions/modalWindow';
 
 const DailyDealModal = ({
 	isOpen,
@@ -17,30 +17,34 @@ const DailyDealModal = ({
 	addToBasket,
 	type,
 }) => {
+	const dispatch = useDispatch();
 	const [currentProductLocal, setCurrentProductLocal] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [isAdded, setIsAdded] = useState(false);
 	const [favorites, setFavorites] = useState([]); // Добавлено состояние для избранного
+	const { getRandomProduct } = useModalWindow();
+	const products = useSelector(state => state.products.allProducts);
+
+	useEffect(() => {
+		dispatch(getAllProducts());
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (isOpen && !product) {
 			setLoading(true);
-			axios
-				.get(`${ROOT_URL}products/all`)
-				.then(response => {
-					const products = response.data;
-					const randomProduct =
-						products[Math.floor(Math.random() * products.length)];
-					setCurrentProduct(randomProduct);
-					setCurrentProductLocal(randomProduct);
-					setLoading(false);
-				})
-				.catch(error => {
-					console.error('Error fetching products:', error);
-					setLoading(false);
-				});
+			const randomProduct = getRandomProduct(products);
+			setCurrentProduct(randomProduct);
+			setCurrentProductLocal(randomProduct);
+			setLoading(false);
 		}
-	}, [isOpen, product, setCurrentProduct]);
+	}, [
+		dispatch,
+		isOpen,
+		product,
+		getRandomProduct,
+		products,
+		setCurrentProduct,
+	]);
 
 	useEffect(() => {
 		if (!isOpen) {
@@ -125,7 +129,11 @@ const DailyDealModal = ({
 								<h5 className={s.originalPrice}>${price}</h5>
 							</div>
 						</div>
-						<button className={s.addToCart} onClick={handleAddToCart}>
+						<button
+							className={s.addToCart}
+							onClick={handleAddToCart}
+							disabled={isAdded}
+						>
 							{isAdded ? 'Added product to basket' : 'Add to Cart'}
 						</button>
 					</>

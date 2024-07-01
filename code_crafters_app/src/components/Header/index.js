@@ -19,6 +19,7 @@ import { getAllProducts } from '../../asyncActions/products';
 export default function Header() {
 	const dispatch = useDispatch();
 	const [isPopupOpen, setIsPopupOpen] = useState(false);
+
 	const isLight = useSelector(state => state.theme.isLight);
 	const isModalOpen = useSelector(state => state.modalWindow.isOpen);
 	const product = useSelector(state => state.modalWindow.product);
@@ -86,13 +87,12 @@ export default function Header() {
 				<NavLink to='/shopping_cart' className={s.shopping_cart}>
 					<Basket onClick={handleBasketClick} />
 				</NavLink>
-
+				<RxHamburgerMenu className={s.burger} onClick={handlePopupMenu} />
 				<PopupNavMenu
 					isPopupOpen={isPopupOpen}
 					handlePopupMenu={handlePopupMenu}
 					openModal={openModal}
 				/>
-				<RxHamburgerMenu className={s.burger} onClick={handlePopupMenu} />
 			</div>
 
 			<DailyDealModal

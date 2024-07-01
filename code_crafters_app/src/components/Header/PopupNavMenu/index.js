@@ -1,9 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { RxCross2 } from 'react-icons/rx';
 import s from './PopupNavMenu.module.css';
 
 const PopupNavMenu = ({ isPopupOpen, handlePopupMenu, openModal }) => {
+	console.log('isPopupOpen: ', isPopupOpen);
 	return (
 		<div className={`${s.modal_menu} ${isPopupOpen ? s.active : ''}`}>
 			<RxCross2
@@ -12,18 +13,18 @@ const PopupNavMenu = ({ isPopupOpen, handlePopupMenu, openModal }) => {
 			/>
 			<nav>
 				<ul className={`${s.nav_menu} ${isPopupOpen ? s.active : ''}`}>
-					<NavLink to='/'>
+					<Link to='/'>
 						<li>Main Page</li>
-					</NavLink>
-					<NavLink to='/all_categories'>
+					</Link>
+					<Link to='/all_categories'>
 						<li>Categories</li>
-					</NavLink>
-					<NavLink to='/all_products'>
+					</Link>
+					<Link to='/all_products'>
 						<li>All Products</li>
-					</NavLink>
-					<NavLink to='/all_sales'>
+					</Link>
+					<Link to='/all_sales'>
 						<li>All Sales</li>
-					</NavLink>
+					</Link>
 				</ul>
 			</nav>
 			<div

@@ -1,3 +1,4 @@
+import { filterProducts } from '../components/Filter/filterUtils';
 const defaultState = {
 	allProducts: [],
 	productsFromCategory: {},
@@ -24,7 +25,6 @@ const SET_FILTERS = 'SET_FILTERS';
 const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
 
 export const productsReducer = (state = defaultState, action) => {
-	console.log('productsReducer state:', state, 'action:', action);
 	switch (action.type) {
 		case GET_ALL_PRODUCTS:
 			const discountProducts = action.payload.filter(
@@ -75,49 +75,15 @@ export const productsReducer = (state = defaultState, action) => {
 				},
 			};
 		case FILTER_PRODUCTS:
-			let filtered = state.allProducts.slice();
+			const filteredProducts = filterProducts(state.allProducts, state.filters);
+			const discountFilteredProducts = filteredProducts.filter(
+				product => product.discont_price !== null
+			);
 
-			const { minPrice, maxPrice, isDiscounted, sortOrder } = state.filters;
-
-			if (minPrice) {
-				filtered = filtered.filter(product =>
-					product.discont_price
-						? product.discont_price >= minPrice
-						: product.price >= minPrice
-				);
-			}
-
-			if (maxPrice) {
-				filtered = filtered.filter(product =>
-					product.discont_price
-						? product.discont_price <= maxPrice
-						: product.price <= maxPrice
-				);
-			}
-
-			if (isDiscounted) {
-				filtered = filtered.filter(product => product.discont_price !== null);
-			}
-
-			if (sortOrder === 'priceAsc') {
-				filtered = filtered.sort((a, b) => {
-					const priceA = a.discont_price !== null ? a.discont_price : a.price;
-					const priceB = b.discont_price !== null ? b.discont_price : b.price;
-					return priceA - priceB;
-				});
-			} else if (sortOrder === 'priceDesc') {
-				filtered = filtered.sort((a, b) => {
-					const priceA = a.discont_price !== null ? a.discont_price : a.price;
-					const priceB = b.discont_price !== null ? b.discont_price : b.price;
-					return priceB - priceA;
-				});
-			} else if (sortOrder === 'alphabetical') {
-				filtered = filtered.sort((a, b) => a.title.localeCompare(b.title));
-			}
 			return {
 				...state,
-				filteredProducts: filtered,
-				discountProducts: filtered,
+				filteredProducts: filteredProducts,
+				discountProducts: discountFilteredProducts,
 			};
 		default:
 			return state;

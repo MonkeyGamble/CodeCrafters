@@ -1,21 +1,18 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import themeReducer from './themeButtonReducer';
 import { productsReducer } from './productsReducer';
-import { modalReducer } from './modalReducer';
 import { thunk } from 'redux-thunk';
 import { categoriesReducer } from './categoriesReducer';
 import { basketReducer } from './basketReducer';
 import { composeWithDevTools } from '@redux-devtools/extension';
+import { modalWindowReducer } from './modalWindowReducer';
 
 const rootReducer = combineReducers({
 	theme: themeReducer,
 	products: productsReducer,
-
-	modal: modalReducer,
-
+	modalWindow: modalWindowReducer,
 	categories: categoriesReducer,
 	basket: basketReducer,
-
 });
 
 const store = createStore(

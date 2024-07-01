@@ -1,5 +1,5 @@
 import { openModalAction, closeModalAction } from '../store/modalWindowReducer';
-import { setCurrentProductAction } from '../store/productsReducer';
+import { setCurrentProductAction } from '../../store/productsReducer';
 
 export const openModal = (
 	dispatch,

@@ -11,6 +11,7 @@ import {
 	decrementProductCountAction,
 } from '../../../store/basketReducer';
 import SubmitForm from '../../SubmitForm/index.jsx';
+import { clearBasketAction } from '../../../store/basketReducer';
 
 export default function ShoppingCartPage() {
 	const dispatch = useDispatch();
@@ -38,6 +39,11 @@ export default function ShoppingCartPage() {
 
 	console.log('Basket Items: ', basketItems);
 	console.log('Basket TotalPrice: ', basketPrice);
+
+	const handleOrderSuccess = () => {
+		// Очистка корзины после успешного заказа
+		dispatch(clearBasketAction());
+	};
 
 	return (
 		<div className={`${s.shopping_cart_wrapper} content_line`}>
@@ -107,6 +113,7 @@ export default function ShoppingCartPage() {
 						style={s}
 						button='Order'
 						onSuccess='Ordered successfully'
+						onSuccessAction={handleOrderSuccess} // Передача функции для обработки успешного заказа
 					/>
 				</div>
 			</div>

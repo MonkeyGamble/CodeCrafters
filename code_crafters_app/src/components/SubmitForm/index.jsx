@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import errorIcon from '../../assets/img/x-octagonn.png';
 
-export default function SubmitForm({ style, button, onSuccess }) {
+export default function SubmitForm({
+	style,
+	button,
+	onSuccess,
+	onSuccessAction,
+}) {
 	const [buttonText, setButtonText] = useState(button);
 	const [fontSize, setFontSize] = useState('20px');
 	const [submitError, setSubmitError] = useState('');
@@ -32,6 +37,9 @@ export default function SubmitForm({ style, button, onSuccess }) {
 			setSubmitError('');
 			setButtonText(onSuccess);
 			setFontSize('16px');
+			if (typeof onSuccessAction === 'function') {
+				onSuccessAction(); // Вызываем функцию обработки успешного заказа
+			}
 		}
 	};
 

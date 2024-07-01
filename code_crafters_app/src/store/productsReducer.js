@@ -29,20 +29,6 @@ export const productsReducer = (state = defaultState, action) => {
 
 
 
-/*
-
-			case 'ADD_PRODUCT_FAVORITE':
-				return {
-					...state,
-					favoriteProducts: [...state.favoriteProducts, action.payload],
-					allProducts: state.allProducts.map(product =>
-						product.id === action.payload.id
-							? { ...product, isFavorite: true }
-							: product
-					),
-				};
-	
-*/
 
 case ADD_PRODUCT_FAVORITE:
     return {

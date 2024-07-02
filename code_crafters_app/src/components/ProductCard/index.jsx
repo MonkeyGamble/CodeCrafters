@@ -6,7 +6,7 @@ import { ROOT_URL } from '../..';
 import Basket from '../Basket';
 import { useBasketActions } from '../../asyncActions/basket';
 // import { addProductFavorite } from '../../asyncActions/products';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
 	addProductFavoriteAction,
 	removeProductFavoriteAction,
@@ -15,6 +15,11 @@ import {
 export default function ProductCard({ product, ...otherProps }) {
 	const dispatch = useDispatch();
 	const { addProductToBasket } = useBasketActions();
+	const isFavorite = useSelector(state =>
+		state.products.favoriteProducts.some(
+			favProduct => favProduct.id === product.id
+		)
+	);
 
 	if (!product || !product.id) {
 		return null;
@@ -41,6 +46,8 @@ export default function ProductCard({ product, ...otherProps }) {
 			dispatch(addProductFavoriteAction(updatedProduct));
 		}
 		console.log('productId: ', product.id);
+		console.log('product.isFavorite: ', product.isFavorite ? 'true' : 'false');
+		console.log('product.isFavoriteFromRedux: ', isFavorite ? 'true' : 'false');
 	};
 
 	return (

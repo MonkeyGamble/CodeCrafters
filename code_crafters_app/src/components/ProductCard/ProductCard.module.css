@@ -72,31 +72,10 @@
 
 .like_cart img {
 	cursor: pointer;
-	
 }
 
 .price {
 	display: flex;
 	align-items: last baseline;
 	gap: 16px;
-}
-
-
-
-/* 
-.price h2 {
-
-	font-size: 40px; */
-	/* font-weight: 600; */
-
-	/* color: var(--text_black); 
-}*/
-/* 
-
-.price h5 {
-	font-size: 20px;
-	font-weight: 500;
-
-	color: var(--grey);
-	text-decoration: line-through;
 }

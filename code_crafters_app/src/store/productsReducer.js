@@ -43,7 +43,6 @@ export const productsReducer = (state = defaultState, action) => {
 
 		case ADD_PRODUCT_FAVORITE:
 			const productToAdd = { ...action.payload, isFavorite: true };
-			console.log('Adding to favorites:', productToAdd);
 			if (
 				state.favoriteProducts.some(product => product.id === productToAdd.id)
 			) {

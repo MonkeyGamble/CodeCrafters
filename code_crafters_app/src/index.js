@@ -7,7 +7,9 @@ import darkColors from './darkColors';
 import { Provider } from 'react-redux';
 import store from './store/index';
 
-export const ROOT_URL = 'http://localhost:3333/';
+// export const ROOT_URL = 'http://localhost:3333/';
+
+export const ROOT_URL = 'https://telran-backend.onrender.com/';
 
 // const setCSSVariables = colors => {
 // 	const root = document.documentElement;

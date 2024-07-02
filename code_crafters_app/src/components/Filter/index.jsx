@@ -21,7 +21,7 @@ const Filter = ({
 	return (
 		<section className={s.filter}>
 			<div className={s.filter_price}>
-				<p>Цена</p>
+				<p>Price</p>
 				<input
 					type='text'
 					placeholder='From'

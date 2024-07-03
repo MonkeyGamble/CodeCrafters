@@ -2,10 +2,14 @@
 	position: relative;
 }
 
+.basket_container:active {
+	transform: translateY(2px) scale(1.1);
+}
+
 img {
 	cursor: pointer;
 	width: 48px;
 	height: 48px;
-	object-fit: cover;
+	object-fit: contain;
+	object-position: center;
 }
-

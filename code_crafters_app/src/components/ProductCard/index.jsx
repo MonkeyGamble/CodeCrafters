@@ -9,10 +9,6 @@ import {
 	addProductFavoriteAction,
 	removeProductFavoriteAction,
 } from '../../store/productsReducer';
-import {
-	addProductToBasketAction,
-	removeProductFromBasketAction,
-} from '../../store/basketReducer';
 import { useBasketActions } from '../../asyncActions/basket';
 
 export default function ProductCard({ product, ...otherProps }) {

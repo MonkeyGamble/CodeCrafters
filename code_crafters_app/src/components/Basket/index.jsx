@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import shopping_cart from '../../assets/img/shopping_cart_white.png';
 import shopping_cart_dark from '../../assets/img/shopping_cart_darkTheme.png'; // Добавили новую картинку
 import { useSelector } from 'react-redux';
+import s from './Basket.module.css';
 
-export default function Basket({ product, onClick, ...otherProps }) {
+export default function Basket({ product, onClick, showCount, ...otherProps }) {
 	const isLight = useSelector(state => state.theme.isLight);
+	const basketItems = useSelector(state => state.basket.basket.items);
+	const basketItemsCount = useSelector(state => state.basket.basket.itemsCount);
+
+	// useEffect(() => {
+	// 	console.log(basketItems);
+	// }, ['Basket Items: ' + basketItems]);
+
+	// const basketItemsCount = basketItems ? basketItems.length : 0;
+
 	const handleClick = e => {
 		e.preventDefault();
 		e.stopPropagation();
@@ -15,8 +25,11 @@ export default function Basket({ product, onClick, ...otherProps }) {
 		}
 	};
 	return (
-		<div onClick={handleClick} {...otherProps}>
+		<div onClick={handleClick} {...otherProps} className={s.basket_container}>
 			<img src={isLight ? shopping_cart : shopping_cart_dark} alt='cart' />
+			{basketItemsCount > 0 && showCount && (
+				<div className={s.circle_counter}>{basketItemsCount}</div>
+			)}
 		</div>
 	);
 }

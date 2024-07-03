@@ -61,5 +61,9 @@
 	padding: 8px 16px;
 	font-size: 16px;
 	font-weight: 500;
-	color: var(--text_black);
+	color: var(--form_text_black);
+}
+
+option {
+	color: var(--form_text_black);
 }

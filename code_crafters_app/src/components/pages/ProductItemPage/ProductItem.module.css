@@ -47,7 +47,9 @@
 
 .product_description p {
 	font-size: 16px;
-	line-height: 150%;
+	line-height: 160%;
+
+	color: var(--text_black);
 }
 .product_header {
 	display: flex;
@@ -80,6 +82,7 @@
 h2 {
 	font-size: 64px;
 	font-weight: bold;
+	color: var(--text_black);
 }
 h5 {
 	font-size: 40px;

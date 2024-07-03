@@ -9,7 +9,10 @@ const lightColors = {
 	text_black: '#424436',
 	text_white: '#ffffff',
 	text_grey: '#8B8B8B',
+	form_white: '#fffff1',
+	form_text_black: '#424436',
+	counter_white: '#ffffff',
+	basket_card: '#ffffff',
 };
 
 export default lightColors;
-

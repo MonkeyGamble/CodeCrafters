@@ -1,7 +1,3 @@
-
-
-
-
 import { filterProducts } from '../components/Filter/filterUtils';
 const defaultState = {
 	allProducts: [],

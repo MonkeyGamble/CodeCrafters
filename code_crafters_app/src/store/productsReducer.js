@@ -1,3 +1,7 @@
+
+
+
+
 import { filterProducts } from '../components/Filter/filterUtils';
 const defaultState = {
 	allProducts: [],
@@ -201,3 +205,6 @@ export const filterProductsAction = filteredProducts => ({
 	type: FILTER_PRODUCTS,
 	payload: filteredProducts,
 });
+
+
+ 

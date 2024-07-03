@@ -74,6 +74,10 @@
 	cursor: pointer;
 }
 
+.like_active {
+	filter: brightness(0) saturate(100%) invert(65%) sepia(9%) saturate(2673%) hue-rotate(28deg) brightness(90%) contrast(88%);
+
+  }
 .price {
 	display: flex;
 	align-items: last baseline;

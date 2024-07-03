@@ -65,7 +65,7 @@ export default function Header() {
 					<img src={isLight ? like : like_darkTheme} alt='like' />
 				</NavLink>
 				<NavLink to='/shopping_cart' className={s.shopping_cart}>
-					<Basket onClick={handleBasketClick} />
+					<Basket onClick={handleBasketClick} showCount={true} />
 				</NavLink>
 				<RxHamburgerMenu className={s.burger} onClick={handlePopupMenu} />
 				<PopupNavMenu

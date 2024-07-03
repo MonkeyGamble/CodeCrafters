@@ -2,6 +2,7 @@ const defaultState = {
 	basket: {
 		items: [],
 		totalPrice: 0,
+		itemsCount: 0, // Добавляем новое свойство для количества товаров в корзине
 	},
 };
 
@@ -16,20 +17,12 @@ export const basketReducer = (state = defaultState, action) => {
 		case ADD_PRODUCT_TO_BASKET: {
 			const productToAdd = action.payload;
 
-			console.log('Product to add:', productToAdd);
-			console.log('TotalPrice before update:', state.basket.totalPrice);
-
 			const existingProductIndex = state.basket.items.findIndex(
 				item => item.id === productToAdd.id
 			);
 
-			const priceToAdd =
-				parseFloat(productToAdd.discont_price || productToAdd.price) *
-				productToAdd.count;
-			const totalPriceToAdd = priceToAdd;
-
-			console.log('Price to add:', priceToAdd);
-			console.log('TotalPriceToAdd:', totalPriceToAdd);
+			const totalPriceToAdd =
+				(productToAdd.discont_price || productToAdd.price) * productToAdd.count;
 
 			if (existingProductIndex !== -1) {
 				const updatedItems = state.basket.items.map((item, index) =>
@@ -39,8 +32,10 @@ export const basketReducer = (state = defaultState, action) => {
 				);
 
 				const updatedTotalPrice = state.basket.totalPrice + totalPriceToAdd;
-
-				console.log('Updated state:', state);
+				const updatedItemsCount = updatedItems.reduce(
+					(count, item) => count + item.count,
+					0
+				);
 
 				return {
 					...state,
@@ -48,15 +43,24 @@ export const basketReducer = (state = defaultState, action) => {
 						...state.basket,
 						items: updatedItems,
 						totalPrice: updatedTotalPrice,
+						itemsCount: updatedItemsCount,
 					},
 				};
 			} else {
+				const updatedItems = [...state.basket.items, { ...productToAdd }];
+				const updatedTotalPrice = state.basket.totalPrice + totalPriceToAdd;
+				const updatedItemsCount = updatedItems.reduce(
+					(count, item) => count + item.count,
+					0
+				);
+
 				return {
 					...state,
 					basket: {
 						...state.basket,
-						items: [...state.basket.items, { ...productToAdd }],
-						totalPrice: state.basket.totalPrice + totalPriceToAdd,
+						items: updatedItems,
+						totalPrice: updatedTotalPrice,
+						itemsCount: updatedItemsCount,
 					},
 				};
 			}
@@ -76,6 +80,10 @@ export const basketReducer = (state = defaultState, action) => {
 				state.basket.totalPrice -
 				(productToRemove.discont_price || productToRemove.price) *
 					productToRemove.count;
+			const updatedItemsCount = updatedItems.reduce(
+				(count, item) => count + item.count,
+				0
+			);
 
 			return {
 				...state,
@@ -83,6 +91,7 @@ export const basketReducer = (state = defaultState, action) => {
 					...state.basket,
 					items: updatedItems,
 					totalPrice: updatedTotalPrice,
+					itemsCount: updatedItemsCount,
 				},
 			};
 		}
@@ -104,8 +113,11 @@ export const basketReducer = (state = defaultState, action) => {
 				item.id === action.payload ? { ...item, count: item.count + 1 } : item
 			);
 			const updatedTotalPrice =
-				state.basket.totalPrice +
-				parseFloat(product.discont_price || product.price);
+				state.basket.totalPrice + (product.discont_price || product.price);
+			const updatedItemsCount = updatedItems.reduce(
+				(count, item) => count + item.count,
+				0
+			);
 
 			return {
 				...state,
@@ -113,6 +125,7 @@ export const basketReducer = (state = defaultState, action) => {
 					...state.basket,
 					items: updatedItems,
 					totalPrice: updatedTotalPrice,
+					itemsCount: updatedItemsCount,
 				},
 			};
 		}
@@ -129,9 +142,11 @@ export const basketReducer = (state = defaultState, action) => {
 			);
 			const updatedTotalPrice =
 				state.basket.totalPrice -
-				(product.count > 1
-					? parseFloat(product.discont_price || product.price)
-					: 0);
+				(product.count > 1 ? product.discont_price || product.price : 0);
+			const updatedItemsCount = updatedItems.reduce(
+				(count, item) => count + item.count,
+				0
+			);
 
 			return {
 				...state,
@@ -139,6 +154,7 @@ export const basketReducer = (state = defaultState, action) => {
 					...state.basket,
 					items: updatedItems,
 					totalPrice: updatedTotalPrice,
+					itemsCount: updatedItemsCount,
 				},
 			};
 		}

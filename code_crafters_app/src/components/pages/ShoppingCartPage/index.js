@@ -54,7 +54,7 @@ export default function ShoppingCartPage() {
 			{basketItems.length === 0 ? (
 				<div className={s.empty_cart}>
 					<p>Looks like you have no items in your basket currently.</p>
-					<Link to='/'>
+					<Link to='/all_products'>
 						<button>Continue Shopping</button>
 					</Link>
 				</div>

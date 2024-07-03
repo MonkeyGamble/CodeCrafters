@@ -1,6 +1,18 @@
+.basket_container {
+	position: relative;
+}
+
 img {
 	cursor: pointer;
 	width: 48px;
 	height: 48px;
 	object-fit: cover;
+}
+
+.circle_counter {
+	height: 26px;
+	width: 26px;
+	background-color: var(--green);
+	border-radius: 50%;
+	color: var(--text_white);
 }

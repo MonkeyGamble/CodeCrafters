@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import s from './ProductCard.module.css';
@@ -7,92 +6,101 @@ import { Link } from 'react-router-dom';
 import { ROOT_URL } from '../..';
 import Basket from '../Basket';
 import {
-  addProductFavoriteAction,
-  removeProductFavoriteAction,
+	addProductFavoriteAction,
+	removeProductFavoriteAction,
 } from '../../store/productsReducer';
+import {
+	addProductToBasketAction,
+	removeProductFromBasketAction,
+} from '../../store/basketReducer';
 
 export default function ProductCard({ product, ...otherProps }) {
-  const dispatch = useDispatch();
-  const isFavorite = useSelector((state) =>
-    state.products.favoriteProducts.some((favProduct) => favProduct.id === product.id)
-  );
+	const dispatch = useDispatch();
+	const isFavorite = useSelector(state =>
+		state.products.favoriteProducts.some(
+			favProduct => favProduct.id === product.id
+		)
+	);
+	const inBasket = useSelector(state =>
+		state.basket.basket.items.some(baskProduct => baskProduct.id === product.id)
+	);
+	const basketItemsCount = useSelector(state => state.basket.basket.itemsCount);
 
-  if (!product || !product.id) {
-    return null;
-  }
+	if (!product || !product.id) {
+		return null;
+	}
 
-  const handleCardClick = (e) => {
-    e.stopPropagation();
-    // Если кликнули на карточку продукта внутри Link, предотвращаем всплытие события
-  };
+	const handleCardClick = e => {
+		e.stopPropagation();
+		// Если кликнули на карточку продукта внутри Link, предотвращаем всплытие события
+	};
 
-  const handleBasketClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    // Добавление продукта в корзину
-  };
+	const handleBasketClick = e => {
+		e.preventDefault();
+		e.stopPropagation();
+		if (inBasket) {
+			dispatch(removeProductFromBasketAction(product.id));
+		} else {
+			dispatch(addProductToBasketAction(product));
+		}
+	};
 
-  const handleFavoriteClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const updatedProduct = { ...product, isFavorite: !isFavorite };
-    if (isFavorite) {
-      dispatch(removeProductFavoriteAction(product.id));
-    } else {
-      dispatch(addProductFavoriteAction(updatedProduct));
-    }
-  };
+	const handleFavoriteClick = e => {
+		e.preventDefault();
+		e.stopPropagation();
+		const updatedProduct = { ...product, isFavorite: !isFavorite };
+		if (isFavorite) {
+			dispatch(removeProductFavoriteAction(product.id));
+		} else {
+			dispatch(addProductFavoriteAction(updatedProduct));
+		}
+	};
 
-  return (
-    <Link
-      to={`/products/${product.id}`}
-      className={s.card}
-      onClick={handleCardClick}
-      {...otherProps}
-    >
-      <div
-        className={s.product_picture}
-        style={{ backgroundImage: `url(${ROOT_URL + product.image})` }}
-      >
-        {product.discont_price && (
-          <div className={s.discount_size}>
-            -{Math.round((1 - product.discont_price / product.price) * 100)}%
-          </div>
-        )}
+	return (
+		<Link
+			to={`/products/${product.id}`}
+			className={s.card}
+			onClick={handleCardClick}
+			{...otherProps}
+		>
+			<div
+				className={s.product_picture}
+				style={{ backgroundImage: `url(${ROOT_URL + product.image})` }}
+			>
+				{product.discont_price && (
+					<div className={s.discount_size}>
+						-{Math.round((1 - product.discont_price / product.price) * 100)}%
+					</div>
+				)}
 
-        <div className={s.like_cart}>
-          <img
-            src={like}
-            alt='like'
-            className={isFavorite ? s.like_active : s.like}
-            onClick={handleFavoriteClick}
-          />
-          <Basket product={product} onClick={handleBasketClick} />
-        </div>
-      </div>
+				<div className={s.like_cart}>
+					<img
+						src={like}
+						alt='like'
+						className={isFavorite ? s.like_active : s.like}
+						onClick={handleFavoriteClick}
+					/>
+					<Basket product={product} onClick={handleBasketClick} />
+				</div>
+			</div>
 
-      <div className={s.product_description}>
-        <h3>{product.title}</h3>
+			<div className={s.product_description}>
+				<h3>{product.title}</h3>
 
-        <div className={s.price}>
-          {product.discont_price ? (
-            <>
-              <h2>${product.discont_price.toFixed(2)}</h2>
-              <h5>${product.price.toFixed(2)}</h5>
-            </>
-          ) : (
-            <h5>${product.price.toFixed(2)}</h5>
-          )}
-        </div>
-      </div>
-    </Link>
-  );
+				<div className={s.price}>
+					{product.discont_price ? (
+						<>
+							<h2>${product.discont_price.toFixed(2)}</h2>
+							<h5>${product.price.toFixed(2)}</h5>
+						</>
+					) : (
+						<h4>${product.price.toFixed(2)}</h4>
+					)}
+				</div>
+			</div>
+		</Link>
+	);
 }
-
-
-
-
-
 
 /*
 
@@ -226,8 +234,6 @@ export default function ProductCard({ product, ...otherProps }) {
 
 
 */
-
-
 
 /*
 import s from './ProductCard.module.css';

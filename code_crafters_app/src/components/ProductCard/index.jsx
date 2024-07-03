@@ -10,6 +10,7 @@ import {
 	removeProductFavoriteAction,
 } from '../../store/productsReducer';
 import { useBasketActions } from '../../asyncActions/basket';
+import Like from '../Like';
 
 export default function ProductCard({ product, ...otherProps }) {
 	const dispatch = useDispatch();
@@ -71,12 +72,8 @@ export default function ProductCard({ product, ...otherProps }) {
 				)}
 
 				<div className={s.like_cart}>
-					<img
-						src={like}
-						alt='like'
-						className={isFavorite ? s.like_active : s.like}
-						onClick={handleFavoriteClick}
-					/>
+					<Like product={product} onClick={handleFavoriteClick} />
+
 					<Basket product={product} onClick={handleBasketClick} />
 				</div>
 			</div>

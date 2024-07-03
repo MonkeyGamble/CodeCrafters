@@ -11,6 +11,7 @@ import Basket from '../Basket/index';
 import DailyDealModal from '../ModalWindow/DailyDealModal';
 import PopupNavMenu from './PopupNavMenu';
 import { useModalWindow } from '../../asyncActions/modalWindow';
+import Like from '../Like';
 
 export default function Header() {
 	const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -26,6 +27,9 @@ export default function Header() {
 
 	const handleBasketClick = () => {
 		navigate('/shopping_cart', { state: { from: 'Header' } });
+	};
+	const handleLikeClick = () => {
+		navigate('/liked_products', { state: { from: 'Header' } });
 	};
 
 	return (
@@ -61,16 +65,12 @@ export default function Header() {
 			</div>
 
 			<div className={s.header_right}>
-				<NavLink to='/liked_products'>
-					<img src={isLight ? like : like_darkTheme} alt='like' />
-				</NavLink>
-				<NavLink to='/shopping_cart' className={s.shopping_cart}>
-					<Basket
-						onClick={handleBasketClick}
-						showCount={true}
-						darkTheme={!isLight}
-					/>
-				</NavLink>
+				<Like onClick={handleLikeClick} showCount={true} darkTheme={!isLight} />
+				<Basket
+					onClick={handleBasketClick}
+					showCount={true}
+					darkTheme={!isLight}
+				/>
 				<RxHamburgerMenu className={s.burger} onClick={handlePopupMenu} />
 				<PopupNavMenu
 					isPopupOpen={isPopupOpen}

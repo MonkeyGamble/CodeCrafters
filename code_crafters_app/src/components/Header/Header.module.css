@@ -84,7 +84,7 @@
 
 .header_right {
 	display: flex;
-	align-items: center;
+	align-items: flex-end;
 	gap: 24px;
 }
 .header_right a {

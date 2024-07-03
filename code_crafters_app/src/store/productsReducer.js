@@ -1,11 +1,13 @@
 import { filterProducts } from '../components/Filter/filterUtils';
+
 const defaultState = {
 	allProducts: [],
 	productsFromCategory: {},
 	discountProducts: [],
 	product: { count: 1 },
 	favoriteProducts: [],
-	currentProduct: null, // Добавлено поле currentProduct
+	favoriteProductsCount: 0, // Добавлено поле кол-ва продуктов в Избранных
+	currentProduct: null,
 	filteredProducts: [],
 	filters: {
 		minPrice: '',
@@ -25,8 +27,6 @@ const REMOVE_PRODUCT_FAVORITE = 'REMOVE_PRODUCT_FAVORITE';
 const SET_CURRENT_PRODUCT = 'SET_CURRENT_PRODUCT';
 const SET_FILTERS = 'SET_FILTERS';
 const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
-// const SET_FAVORITE_PRODUCTS_FROM_LOCAL_STORAGE =
-// 'SET_FAVORITE_PRODUCTS_FROM_LOCAL_STORAGE';
 
 export const productsReducer = (state = defaultState, action) => {
 	switch (action.type) {
@@ -53,6 +53,7 @@ export const productsReducer = (state = defaultState, action) => {
 			return {
 				...state,
 				favoriteProducts: [...state.favoriteProducts, productToAdd],
+				favoriteProductsCount: state.favoriteProductsCount + 1, // Увеличение счётчика
 				allProducts: state.allProducts.map(product =>
 					product.id === action.payload.id
 						? { ...product, isFavorite: true }
@@ -68,6 +69,7 @@ export const productsReducer = (state = defaultState, action) => {
 			return {
 				...state,
 				favoriteProducts: updatedFavoriteProducts,
+				favoriteProductsCount: state.favoriteProductsCount - 1, // Уменьшение счётчика
 			};
 
 		case GET_PRODUCT_BY_ID:
@@ -114,20 +116,12 @@ export const productsReducer = (state = defaultState, action) => {
 			const discountFilteredProducts = filteredProducts.filter(
 				product => product.discont_price !== null
 			);
-			const filteredFavoriteProducts = filteredProducts.filter(
-				product => product.isFavorite
-			);
 
 			return {
 				...state,
 				filteredProducts: filteredProducts,
 				discountProducts: discountFilteredProducts,
 			};
-		// case SET_FAVORITE_PRODUCTS_FROM_LOCAL_STORAGE:
-		// 	return {
-		// 		...state,
-		// 		favoriteProducts: action.payload,
-		// 	};
 		default:
 			return state;
 	}
@@ -144,35 +138,22 @@ export const getProductByIdAction = product => ({
 });
 
 export const addProductFavoriteAction = product => {
-	return (dispatch, getState) => {
+	return dispatch => {
 		dispatch({
 			type: ADD_PRODUCT_FAVORITE,
 			payload: product,
 		});
-
-		// Сохранение в localStorage
-		// const { favoriteProducts } = getState().products;
-		// localStorage.setItem('favoriteProducts', JSON.stringify(favoriteProducts));
 	};
 };
 
 export const removeProductFavoriteAction = productId => {
-	return (dispatch, getState) => {
+	return dispatch => {
 		dispatch({
 			type: REMOVE_PRODUCT_FAVORITE,
 			payload: { id: productId },
 		});
-
-		// Сохранение в localStorage
-		// const { favoriteProducts } = getState().products;
-		// localStorage.setItem('favoriteProducts', JSON.stringify(favoriteProducts));
 	};
 };
-
-// export const setFavoriteProductsFromLocalStorageAction = favoriteProducts => ({
-// 	type: SET_FAVORITE_PRODUCTS_FROM_LOCAL_STORAGE,
-// 	payload: favoriteProducts,
-// });
 
 export const getProductsByCategoryIdAction = products => ({
 	type: GET_PRODUCTS_BY_CATEGORY_ID,
@@ -201,6 +182,3 @@ export const filterProductsAction = filteredProducts => ({
 	type: FILTER_PRODUCTS,
 	payload: filteredProducts,
 });
-
-
- 

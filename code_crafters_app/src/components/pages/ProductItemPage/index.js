@@ -7,10 +7,13 @@ import { getAllCategories } from '../../../asyncActions/categories';
 import { Link } from 'react-router-dom';
 import { ROOT_URL } from '../../..';
 import '../../../Global.css';
-import like from '../../../assets/img/like_white.png';
 import Counter from '../../Counter/index.jsx';
 import { useBasketActions } from '../../../asyncActions/basket';
-import { addProductFavorite } from '../../../asyncActions/products';
+import {
+	addProductFavoriteAction,
+	removeProductFavoriteAction,
+} from '../../../store/productsReducer.js';
+import Like from '../../Like/index.jsx';
 
 export default function ProductItemPage() {
 	const { id } = useParams();
@@ -19,7 +22,11 @@ export default function ProductItemPage() {
 	const categories = useSelector(state => state.categories.allCategories);
 	const { addProductToBasket } = useBasketActions();
 	const [count, setCount] = useState(1); // Локальное состояние для количества товара
-
+	const isFavorite = useSelector(state =>
+		state.products.favoriteProducts.some(
+			favProduct => favProduct.id === product.id
+		)
+	);
 	useEffect(() => {
 		dispatch(getProductById(id));
 		dispatch(getAllCategories());
@@ -29,8 +36,15 @@ export default function ProductItemPage() {
 		return <div>Loading...</div>;
 	}
 
-	const handleAddProductFavorite = () => {
-		dispatch(addProductFavorite(product)); // Вызываем экшен для добавления в избранное
+	const handleFavoriteClick = e => {
+		// e.preventDefault();
+		// e.stopPropagation();
+		const updatedProduct = { ...product, isFavorite: !isFavorite };
+		if (isFavorite) {
+			dispatch(removeProductFavoriteAction(product.id));
+		} else {
+			dispatch(addProductFavoriteAction(updatedProduct));
+		}
 	};
 
 	const handleIncrement = () => {
@@ -78,7 +92,8 @@ export default function ProductItemPage() {
 				<div className={s.product_description}>
 					<div className={s.product_header}>
 						<h1>{product.title}</h1>
-						<img onClick={handleAddProductFavorite} src={like} alt='like' />
+
+						<Like onClick={handleFavoriteClick} product={product} />
 					</div>
 					<div className={s.price_section}>
 						{product.discont_price ? (

@@ -15,4 +15,12 @@ img {
 	background-color: var(--green);
 	border-radius: 50%;
 	color: var(--text_white);
+	font-size: 12px;
+	font-weight: 600;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	left: 0;
+	top: 7px;
 }

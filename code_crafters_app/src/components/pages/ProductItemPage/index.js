@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './ProductItem.module.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,10 +9,6 @@ import { ROOT_URL } from '../../..';
 import '../../../Global.css';
 import like from '../../../assets/img/like_white.png';
 import Counter from '../../Counter/index.jsx';
-import {
-	incrementProductCountAction,
-	decrementProductCountAction,
-} from '../../../store/basketReducer.jsx';
 import { useBasketActions } from '../../../asyncActions/basket';
 import { addProductFavorite } from '../../../asyncActions/products';
 
@@ -22,7 +18,7 @@ export default function ProductItemPage() {
 	const product = useSelector(state => state.products.product);
 	const categories = useSelector(state => state.categories.allCategories);
 	const { addProductToBasket } = useBasketActions();
-
+	const [count, setCount] = useState(1); // Локальное состояние для количества товара
 
 	useEffect(() => {
 		dispatch(getProductById(id));
@@ -34,18 +30,20 @@ export default function ProductItemPage() {
 	}
 
 	const handleAddProductFavorite = () => {
-        dispatch(addProductFavorite(product)); // Вызываем экшен для добавления в избранное
-    };
-
-	//const handleAddProductFavorite = (product) => {dispatch(addProductFavorite(product));
-	//console.log(product)};
+		dispatch(addProductFavorite(product)); // Вызываем экшен для добавления в избранное
+	};
 
 	const handleIncrement = () => {
-		dispatch(incrementProductCountAction(product.id));
+		setCount(prevCount => prevCount + 1);
 	};
 
 	const handleDecrement = () => {
-		dispatch(decrementProductCountAction(product.id));
+		setCount(prevCount => (prevCount > 1 ? prevCount - 1 : 1));
+	};
+
+	const handleAddToCart = () => {
+		const productToAdd = { ...product, count };
+		addProductToBasket(productToAdd);
 	};
 
 	return (
@@ -80,7 +78,7 @@ export default function ProductItemPage() {
 				<div className={s.product_description}>
 					<div className={s.product_header}>
 						<h1>{product.title}</h1>
-						<img  onClick={ handleAddProductFavorite} src={like} alt='like' />
+						<img onClick={handleAddProductFavorite} src={like} alt='like' />
 					</div>
 					<div className={s.price_section}>
 						{product.discont_price ? (
@@ -103,18 +101,12 @@ export default function ProductItemPage() {
 					</div>
 					<div className={s.add_to_cart}>
 						<Counter
-							count={product.count}
+							count={count}
 							onIncrement={handleIncrement}
 							onDecrement={handleDecrement}
 						/>
 						{/* Передаем productId в Counter */}
-						<button
-							className={s.add_button}
-							onClick={() => {
-								addProductToBasket(product);
-								console.log('Added product: ', product);
-							}}
-						>
+						<button className={s.add_button} onClick={handleAddToCart}>
 							Add to cart
 						</button>
 					</div>
@@ -124,4 +116,4 @@ export default function ProductItemPage() {
 			</div>
 		</div>
 	);
-	}
+}

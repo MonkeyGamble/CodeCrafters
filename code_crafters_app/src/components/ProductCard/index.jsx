@@ -13,6 +13,7 @@ import {
 	addProductToBasketAction,
 	removeProductFromBasketAction,
 } from '../../store/basketReducer';
+import { useBasketActions } from '../../asyncActions/basket';
 
 export default function ProductCard({ product, ...otherProps }) {
 	const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export default function ProductCard({ product, ...otherProps }) {
 	const inBasket = useSelector(state =>
 		state.basket.basket.items.some(baskProduct => baskProduct.id === product.id)
 	);
-	const basketItemsCount = useSelector(state => state.basket.basket.itemsCount);
+	const { addProductToBasket, removeProductFromBasket } = useBasketActions();
 
 	if (!product || !product.id) {
 		return null;
@@ -39,9 +40,9 @@ export default function ProductCard({ product, ...otherProps }) {
 		e.preventDefault();
 		e.stopPropagation();
 		if (inBasket) {
-			dispatch(removeProductFromBasketAction(product.id));
+			removeProductFromBasket(product.id);
 		} else {
-			dispatch(addProductToBasketAction(product));
+			addProductToBasket({ ...product, count: 1 });
 		}
 	};
 

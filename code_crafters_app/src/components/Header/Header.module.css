@@ -87,6 +87,9 @@
 	align-items: center;
 	gap: 24px;
 }
+.header_right a {
+	text-decoration: none;
+}
 
 .burger {
 	display: none;

@@ -13,7 +13,6 @@ export default function Basket({
 	darkTheme,
 	...otherProps
 }) {
-	// const isLight = useSelector(state => state.theme.isLight);
 	const basketItemsCount = useSelector(
 		state => state.basket.basket.itemsCount || 0
 	);

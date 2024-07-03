@@ -1,6 +1,28 @@
+.basket_container {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 img {
 	cursor: pointer;
 	width: 48px;
 	height: 48px;
 	object-fit: cover;
+}
+
+.circle_counter {
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	background-color: var(--green);
+	color: var(--text_white);
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	left: 0;
+	top: 3;
 }

@@ -6,7 +6,10 @@ import { categoriesReducer } from './categoriesReducer';
 import { basketReducer } from './basketReducer';
 import { composeWithDevTools } from '@redux-devtools/extension';
 import { modalWindowReducer } from './modalWindowReducer';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
+// Корневой редьюсер
 const rootReducer = combineReducers({
 	theme: themeReducer,
 	products: productsReducer,
@@ -15,16 +18,23 @@ const rootReducer = combineReducers({
 	basket: basketReducer,
 });
 
+// Конфигурация для persist
+const persistConfig = {
+	key: 'root',
+	storage,
+	// whitelist: ['basket', 'favoriteProducts'],
+};
+
+// Создание persisted редьюсера
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// Создание хранилища
 const store = createStore(
-	rootReducer,
+	persistedReducer,
 	composeWithDevTools(applyMiddleware(thunk))
 );
 
-export default store;
+// Создание persistor
+const persistor = persistStore(store);
 
-// Список продуктов (для категории, для всех продуктов, для продуктов со скидкой, фаворитные продукты). Получение списков продуктов, фильтрация
-// Корзина. (добавление элемента в корзину, изменение count каждого элемента, удаление продукта, очистка списка продукта после нажатия на “купить”)
-// Описание продукта (получение продукта, изменение сво-ва count (инкремент, декремент))
-// Список категорий (получение списка категорий)
-//Модальное окно (открыть, закрыть окно)
-// Тема приложение (переключение темы с темной на светлую, с светлой на темную)
+export { store, persistor };

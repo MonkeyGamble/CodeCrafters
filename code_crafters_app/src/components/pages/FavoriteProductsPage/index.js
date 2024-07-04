@@ -23,6 +23,7 @@ export default function FavoriteProductsPage() {
 		isDiscounted: true,
 		sortOrder: 'default',
 	});
+
 	useEffect(() => {
 		dispatch(getAllProducts());
 	}, [dispatch]);
@@ -37,34 +38,45 @@ export default function FavoriteProductsPage() {
 
 	return (
 		<div className={`${s.favorite_wrapper} content_line`}>
-			
 			<div className={s.nav_buttons}>
 				<Link to='/'>
 					<button className={s.first_button}>Main page</button>
 				</Link>
 				<div className={s.nav_line}></div>
-				<Link to='/favorite_products '>
-					<button className={s.second_button}>Favorite products </button>
+				<Link to='/favorite_products'>
+					<button className={s.second_button}>Favorite products</button>
 				</Link>
 			</div>
 
 			<h1>Liked products</h1>
 
-			<Filter
-				filters={localFilters}
-				onFilterChange={handleFilterChange}
-				showDiscountedItemsFilter={false}
-			/>
-			
-			<div className={s.productsList}>
-				{favoriteProducts.map(product => (
-					<ProductCard
-						key={product.id}
-						product={product}
-						header='Favorite products'
+			{favoriteProducts.length === 0 ? (
+				<div className={s.empty_cart}>
+					<p>
+						Looks like you have no items in your favorite products currently.
+					</p>
+					<Link to='/all_products'>
+						<button>Continue Shopping</button>
+					</Link>
+				</div>
+			) : (
+				<>
+					<Filter
+						filters={localFilters}
+						onFilterChange={handleFilterChange}
+						showDiscountedItemsFilter={false}
 					/>
-				))}
-			</div>
+					<div className={s.productsList}>
+						{favoriteProducts.map(product => (
+							<ProductCard
+								key={product.id}
+								product={product}
+								header='Favorite products'
+							/>
+						))}
+					</div>
+				</>
+			)}
 		</div>
 	);
 }

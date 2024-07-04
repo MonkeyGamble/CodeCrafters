@@ -63,37 +63,13 @@ export default function ProductItemPage() {
 
 	return (
 		<div className={`${s.product_wrapper} content_line`}>
-			{/* <BreadCrumbs
+			<BreadCrumbs
 				product={product}
 				sectionName='Categories'
 				categoryName={
 					categories.find(category => category.id === product.categoryId)?.title
 				}
-			/> */}
-			<div className={s.nav_buttons}>
-				<Link to='/'>
-					<button className={s.main_button}>Main page</button>
-				</Link>
-				<div className={s.nav_line}></div>
-				<Link to='/all_categories'>
-					<button className={s.section_button}>Categories</button>
-				</Link>
-				<div className={s.nav_line}></div>
-				<Link
-					to={`/categories/${
-						categories.find(category => category.id === product.categoryId)?.id
-					}`}
-				>
-					<button className={s.category_name_button}>
-						{
-							categories.find(category => category.id === product.categoryId)
-								?.title
-						}
-					</button>
-				</Link>
-				<div className={s.nav_line}></div>
-				<button className={s.product_name_button}>{product.title}</button>
-			</div>
+			/>
 
 			<div className={s.product_card}>
 				<img src={`${ROOT_URL}${product.image}`} alt={product.title} />

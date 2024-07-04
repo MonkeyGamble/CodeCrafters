@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import DiscountProducts from '../../Common/DiscountProducts';
 import { getAllProducts } from '../../../redux/actions/products';
 import s from './DiscountedItemsPage.module.css';
-import { Link } from 'react-router-dom';
 import Filter from '../../UI/Filter';
 import { useFilters } from '../../UI/Filter/useFilters';
 import {
 	setFiltersAction,
 	filterProductsAction,
 } from '../../../redux/reducers/productsReducer';
+import BreadCrumbs from '../../UI/BreadCrumbs';
 
 export default function DiscountItemsPage() {
 	const dispatch = useDispatch();
@@ -39,28 +39,22 @@ export default function DiscountItemsPage() {
 
 	return (
 		<div className={`${s.discount_wrapper} content_line`}>
-			<div className={s.nav_buttons}>
-				<Link to='/'>
-					<button className={s.first_button}>Main page</button>
-				</Link>
-				<div className={s.nav_line}></div>
-				<Link to='/all_sales'>
-					<button className={s.second_button}>All sales</button>
-				</Link>
-			</div>
+			<BreadCrumbs sectionName='All sales' />
 
-			<DiscountProducts
-				products={filteredProducts}
-				header='Discounted Items'
-				styles={s}
-				filter={
-					<Filter
-						filters={localFilters}
-						onFilterChange={handleFilterChange}
-						showDiscountedItemsFilter={false}
-					/>
-				}
-			/>
+			<div className={s.cards_wrapper}>
+				<DiscountProducts
+					products={filteredProducts}
+					header='Discounted Items'
+					styles={s}
+					filter={
+						<Filter
+							filters={localFilters}
+							onFilterChange={handleFilterChange}
+							showDiscountedItemsFilter={false}
+						/>
+					}
+				/>
+			</div>
 		</div>
 	);
 }

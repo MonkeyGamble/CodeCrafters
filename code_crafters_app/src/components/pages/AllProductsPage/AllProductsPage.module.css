@@ -43,6 +43,10 @@ h1 {
 	color: var(--text_black);
 }
 
+.line {
+	display: none;
+}
+
 .cards_container {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(316px, 1fr));

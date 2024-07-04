@@ -28,7 +28,6 @@ export default function DiscountItemsPage() {
 	useEffect(() => {
 		dispatch(getAllProducts());
 	}, [dispatch]);
-
 	useEffect(() => {
 		dispatch(setFiltersAction(localFilters));
 	}, [localFilters, dispatch]);

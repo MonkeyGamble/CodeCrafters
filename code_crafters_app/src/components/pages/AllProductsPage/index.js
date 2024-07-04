@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import s from './AllProductsPage.module.css';
@@ -10,6 +10,7 @@ import {
 	setFiltersAction,
 	filterProductsAction,
 } from '../../../store/productsReducer.js';
+import ProductSkeleton from '../../ProductSkeleton/ProductSkeleton.js';
 
 export default function AllProductsPage() {
 	const dispatch = useDispatch();
@@ -17,17 +18,13 @@ export default function AllProductsPage() {
 		state => state.products.filteredProducts
 	);
 	const filters = useSelector(state => state.products.filters);
-
 	const [localFilters, handleFilterChange] = useFilters({
 		minPrice: '',
 		maxPrice: '',
 		isDiscounted: false,
 		sortOrder: 'default',
 	});
-
-	useEffect(() => {
-		dispatch(getAllProducts());
-	}, [dispatch]);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		dispatch(setFiltersAction(localFilters));
@@ -36,6 +33,15 @@ export default function AllProductsPage() {
 	useEffect(() => {
 		dispatch(filterProductsAction());
 	}, [filters, dispatch]);
+
+	useEffect(() => {
+		// Simulate loading delay for demonstration
+		const timer = setTimeout(() => {
+			setLoading(false);
+		}, 1000); // Adjust the time as needed
+
+		return () => clearTimeout(timer);
+	}, []);
 
 	return (
 		<div className={`${s.all_products_container} content_line`}>
@@ -58,9 +64,13 @@ export default function AllProductsPage() {
 			/>
 
 			<div className={s.cards_container}>
-				{filteredProducts.map(product => (
-					<ProductCard key={product.id} product={product} />
-				))}
+				{loading
+					? Array.from({ length: 10 }).map((_, index) => (
+							<ProductSkeleton key={index} />
+					  ))
+					: filteredProducts.map(product => (
+							<ProductCard key={product.id} product={product} />
+					  ))}
 			</div>
 		</div>
 	);

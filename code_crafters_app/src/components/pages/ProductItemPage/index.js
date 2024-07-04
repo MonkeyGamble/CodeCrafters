@@ -5,16 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProductById } from '../../../asyncActions/products';
 import { getAllCategories } from '../../../asyncActions/categories';
 import { Link } from 'react-router-dom';
-import { ROOT_URL } from '../../..';
-import '../../../Global.css';
+import { ROOT_URL } from '../../../Global'; // Поправил путь импорта
 import Counter from '../../Counter/index.jsx';
 import { useBasketActions } from '../../../asyncActions/basket';
+import ProductSkeleton from '../../ProductSkeleton/ProductSkeleton';
 import {
 	addProductFavoriteAction,
 	removeProductFavoriteAction,
 } from '../../../store/productsReducer.js';
 import Like from '../../Like/index.jsx';
-import BreadCrumbs from '../../UI/BreadCrumbs/index.jsx';
 
 export default function ProductItemPage() {
 	const { id } = useParams();
@@ -28,18 +27,23 @@ export default function ProductItemPage() {
 			favProduct => favProduct.id === product.id
 		)
 	);
+	const [loading, setLoading] = useState(true);
+
 	useEffect(() => {
 		dispatch(getProductById(id));
 		dispatch(getAllCategories());
 	}, [dispatch, id]);
 
-	if (!product) {
-		return <div>Loading...</div>;
-	}
+	useEffect(() => {
+		// Имитация задержки загрузки данных
+		const timer = setTimeout(() => {
+			setLoading(false);
+		}, 1000);
 
-	const handleFavoriteClick = e => {
-		// e.preventDefault();
-		// e.stopPropagation();
+		return () => clearTimeout(timer);
+	}, []);
+
+	const handleFavoriteClick = () => {
 		const updatedProduct = { ...product, isFavorite: !isFavorite };
 		if (isFavorite) {
 			dispatch(removeProductFavoriteAction(product.id));
@@ -63,13 +67,7 @@ export default function ProductItemPage() {
 
 	return (
 		<div className={`${s.product_wrapper} content_line`}>
-			{/* <BreadCrumbs
-				product={product}
-				sectionName='Categories'
-				categoryName={
-					categories.find(category => category.id === product.categoryId)?.title
-				}
-			/> */}
+			{/* Навигационная панель */}
 			<div className={s.nav_buttons}>
 				<Link to='/'>
 					<button className={s.main_button}>Main page</button>
@@ -95,48 +93,59 @@ export default function ProductItemPage() {
 				<button className={s.product_name_button}>{product.title}</button>
 			</div>
 
-			<div className={s.product_card}>
-				<img src={`${ROOT_URL}${product.image}`} alt={product.title} />
-				<div className={s.product_description}>
-					<div className={s.product_header}>
-						<h1>{product.title}</h1>
-
-						<Like onClick={handleFavoriteClick} product={product} />
-					</div>
-					<div className={s.price_section}>
-						{product.discont_price ? (
-							<>
-								<div className={s.product_price}>
-									<h2>${product.discont_price}</h2>
-									<h5>${product.price}</h5>
-								</div>
-								<div className={s.discount_size}>
-									-
-									{Math.round(
-										(1 - product.discont_price / product.price) * 100
-									)}
-									%
-								</div>
-							</>
-						) : (
-							<h2>${product.price}</h2>
-						)}
-					</div>
-					<div className={s.add_to_cart}>
-						<Counter
-							count={count}
-							onIncrement={handleIncrement}
-							onDecrement={handleDecrement}
-						/>
-						{/* Передаем productId в Counter */}
-						<button className={s.add_button} onClick={handleAddToCart}>
-							Add to cart
-						</button>
-					</div>
-
-					<p>{product.description}</p>
+			{/* Отображение контента или скелетонов загрузки */}
+			{loading ? (
+				<div className={s.skeleton_container}>
+					{Array.from({ length: 10 }).map((_, index) => (
+						<ProductSkeleton key={index} />
+					))}
 				</div>
-			</div>
+			) : (
+				<div className={s.product_card}>
+					{/* Изображение товара */}
+					<img src={`${ROOT_URL}${product.image}`} alt={product.title} />
+					<div className={s.product_description}>
+						<div className={s.product_header}>
+							{/* Заголовок и кнопка Like */}
+							<h1>{product.title}</h1>
+							<Like onClick={handleFavoriteClick} product={product} />
+						</div>
+						<div className={s.price_section}>
+							{/* Цена товара */}
+							{product.discount_price ? (
+								<>
+									<div className={s.product_price}>
+										<h2>${product.discount_price}</h2>
+										<h5>${product.price}</h5>
+									</div>
+									<div className={s.discount_size}>
+										-
+										{Math.round(
+											(1 - product.discount_price / product.price) * 100
+										)}
+										%
+									</div>
+								</>
+							) : (
+								<h2>${product.price}</h2>
+							)}
+						</div>
+						{/* Счетчик и кнопка добавления в корзину */}
+						<div className={s.add_to_cart}>
+							<Counter
+								count={count}
+								onIncrement={handleIncrement}
+								onDecrement={handleDecrement}
+							/>
+							<button className={s.add_button} onClick={handleAddToCart}>
+								Add to cart
+							</button>
+						</div>
+						{/* Описание товара */}
+						<p>{product.description}</p>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 }

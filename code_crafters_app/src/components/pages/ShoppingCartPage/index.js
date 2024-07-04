@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useBasketActions } from '../../../asyncActions/basket';
 import { ROOT_URL } from '../../..';
 import Counter from '../../Counter';
-import { FaTimes } from 'react-icons/fa'; // Правильный импорт иконки крестика
+import { FaTimes } from 'react-icons/fa';
 import {
 	incrementProductCountAction,
 	decrementProductCountAction,

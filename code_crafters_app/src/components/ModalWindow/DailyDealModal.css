@@ -79,23 +79,23 @@
 	font-weight: 600;
 
 	color: var(--text_black);
-<<<<<<< HEAD
+
   }
 
   .originalPrice {
 
     font-size: 20px;
-=======
+
 }
 
 .originalPrice {
 	font-size: 20px;
->>>>>>> origin/sprint4/diana
+
 	font-weight: 500;
 
 	color: var(--grey);
 	text-decoration: line-through;
-<<<<<<< HEAD
+
   }
 
   .addToCartWrapper {
@@ -112,7 +112,7 @@
 
   .addToCart {
     /*padding: 10px 20px; 
-=======
+
 }
 
 .addToCartWrapper {
@@ -127,7 +127,7 @@
 
 .addToCart {
 	/*padding: 10px 20px; 
->>>>>>> origin/sprint4/diana
+
     background-color: var(--white); 
     color: var(--black); 
     border: none; 

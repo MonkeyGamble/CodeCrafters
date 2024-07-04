@@ -141,7 +141,7 @@ h1 {
 	align-items: center;
 }
 
-/* .cards_container {
+ /*.cards_container {*/
 
 .filter_price p,
 .filter_sort label {
@@ -215,7 +215,8 @@ h1 {
 	background-position: center;
 }
 
-.product_description {
+
+ .product_description {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
@@ -229,7 +230,8 @@ h1 {
 	color: var(--text_black);
 	white-space: nowrap; 
 	text-overflow: ellipsis; 
-}
+} 
+
 
 .discount_size {
 	width: 68px;
@@ -306,7 +308,43 @@ h1 {
 	color: var(--text_black);
 	cursor: pointer;
 }
+.discount_size {
+	position: absolute;
+	left: 16px;
+	top: 16px;
+	width: 68px;
+	height: 34px;
+	border-radius: 6px;
 
+	background-color: var(--sale);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--text_white);
+
+	font-size: 20px;
+	font-weight: 600;
+	letter-spacing: 3%;
+}
+
+.like_cart {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.like_cart img {
+	cursor: pointer;
+}
+
+.price {
+	display: flex;
+	align-items: last baseline;
+	gap: 16px;
+}
 @media (max-width: 1000px) {
 	.sale_container {
 		padding: 0 20px;
@@ -332,7 +370,7 @@ h1 {
 		gap: 12px;
 	}
 }
-*/
+
 @media (max-width: 768px) {
 	.cards_container {
 		display: grid;

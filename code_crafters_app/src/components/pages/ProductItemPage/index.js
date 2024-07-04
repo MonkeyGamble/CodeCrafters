@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect } from 'react';
 import s from './ProductItem.module.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,6 +15,7 @@ import {
 } from '../../../store/basketReducer.jsx';
 import { useBasketActions } from '../../../asyncActions/basket';
 import ProductSkeleton from '../../ProductSkeleton/ProductSkeleton';
+import { startLoading, stopLoading } from '../../../store/productsReducer.js';
 
 export default function ProductItemPage() {
     const { id } = useParams();
@@ -22,29 +23,25 @@ export default function ProductItemPage() {
     const product = useSelector(state => state.products.product);
     const categories = useSelector(state => state.categories.allCategories);
     const { addProductToBasket } = useBasketActions();
-    const [loading, setLoading] = useState(true);
+    const loading = useSelector(state => state.products.loading);
+    //const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
-            console.log('Fetch data started'); // Логируем начало загрузки
-            setLoading(true); // Устанавливаем состояние загрузки в true
-
+            dispatch(startLoading());
             try {
-                // Запускаем асинхронные запросы
                 await dispatch(getProductById(id));
                 await dispatch(getAllCategories());
-
-                console.log('Product and categories fetched'); // Логируем успешное получение данных
             } catch (error) {
-                console.error('Ошибка при загрузке данных', error); // Логируем ошибки
+                console.error('Ошибка при загрузке данных', error);
             } finally {
-                setLoading(false); // Устанавливаем состояние загрузки в false после завершения
-                console.log('Fetch data ended'); // Логируем окончание загрузки
+                dispatch(stopLoading());
             }
         };
-
-        fetchData(); // Вызов функции загрузки данных
+        fetchData();
     }, [dispatch, id]);
+    console.log('Loading state:', loading);
+    
 
     const handleIncrement = () => {
         dispatch(incrementProductCountAction(product.id));
@@ -56,12 +53,14 @@ export default function ProductItemPage() {
 
     return (
         <div className={`${s.product_wrapper} content_line`}>
-            {loading ? (
-                // Показать 10 скелетонов загрузки
-                Array.from({ length: 10 }).map((_, index) => (
-                    <ProductSkeleton key={index} />
-                ))
-            ) : (
+           {loading ? (
+                    // Показать 10 скелетонов загрузки
+                    <div className={s.skeleton_container}>
+                        {Array.from({ length: 10 }).map((_, index) => (
+                            <ProductSkeleton key={index} />
+                        ))}
+                    </div>
+                ) : (
                 <div>
                     <div className={s.nav_buttons}>
                         <Link to='/'>
@@ -135,7 +134,7 @@ export default function ProductItemPage() {
                         </div>
                     </div>
                 </div>
-            )}
+        )}
         </div>
     );
 }

@@ -5,40 +5,18 @@ import { getAllProducts } from '../../../asyncActions/products';
 import s from './DiscountedItemsPage.module.css';
 import { Link } from 'react-router-dom';
 import Filter from '../../Filter';
-import {
-	setFiltersAction,
-	filterProductsAction,
-} from '../../../store/productsReducer';
-
 
 export default function DiscountItemsPage() {
 	const dispatch = useDispatch();
-	const filters = useSelector(state => state.products.filters);
+
 	const discountProducts = useSelector(
 		state => state.products.discountProducts
 	);
-<<<<<<< HEAD
-	
-=======
-		const filteredProducts = useSelector(
-			state => state.products.filteredProducts
-		);
->>>>>>> origin/sprint4/diana
 
 	useEffect(() => {
 		dispatch(getAllProducts());
 	}, [dispatch]);
-<<<<<<< HEAD
-	
-	  
-=======
 
-	const handleFilterChange = (key, value) => {
-		dispatch(setFiltersAction({ ...filters, [key]: value }));
-		dispatch(filterProductsAction());
-	};
-
->>>>>>> origin/sprint4/diana
 	return (
 		<div className={`${s.discount_wrapper} content_line`}>
 			<div className={s.nav_buttons}>
@@ -55,14 +33,7 @@ export default function DiscountItemsPage() {
 				products={discountProducts}
 				header='Discounted Items'
 				styles={s}
-				filter={
-					<Filter
-						showDiscountedItemsFilter={false}
-						minPrice={filters.minPrice}
-						maxPrice={filters.maxPrice}
-						sortOrder={filters.sortOrder}
-					/>
-				}
+				filter={<Filter />}
 			/>
 		</div>
 	);

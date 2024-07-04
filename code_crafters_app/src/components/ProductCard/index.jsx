@@ -12,7 +12,6 @@ import {
 import { useBasketActions } from '../../asyncActions/basket';
 import Like from '../Like';
 
-
 export default function ProductCard({ product, ...otherProps }) {
 	const dispatch = useDispatch();
 	const isFavorite = useSelector(state =>
@@ -29,13 +28,12 @@ export default function ProductCard({ product, ...otherProps }) {
 		return null;
 	}
 
- const handleCardClick = e => {
-        e.stopPropagation();
-        // Если кликнули на карточку продукта внутри Link, предотвращаем всплытие события
-    };
+	const handleCardClick = e => {
+		e.stopPropagation();
+		// Если кликнули на карточку продукта внутри Link, предотвращаем всплытие события
+	};
 
-
-   const handleBasketClick = e => {
+	const handleBasketClick = e => {
 		e.preventDefault();
 		e.stopPropagation();
 		if (inBasket) {
@@ -55,9 +53,6 @@ export default function ProductCard({ product, ...otherProps }) {
 			dispatch(addProductFavoriteAction(updatedProduct));
 		}
 	};
-
-
-
 
 	return (
 		<Link
@@ -358,4 +353,3 @@ export default function ProductCard({ product, ...otherProps }) {
 
 
 */
->>>>>>> development

@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useBasketActions } from '../../../asyncActions/basket';
 import { ROOT_URL } from '../../..';
 import Counter from '../../Counter';
-import { FaXmark } from 'react-icons/fa6';
+import { FaTimes } from 'react-icons/fa'; // Правильный импорт иконки крестика
 import {
 	incrementProductCountAction,
 	decrementProductCountAction,
@@ -25,6 +25,7 @@ export default function ShoppingCartPage() {
 	const handleRemoveProduct = id => {
 		removeProductFromBasket(id);
 	};
+
 	const handleIncrement = id => {
 		dispatch(incrementProductCountAction(id));
 	};
@@ -68,7 +69,7 @@ export default function ShoppingCartPage() {
 								<div className={s.product_description}>
 									<div className={s.product_header_section}>
 										<p>{product.title}</p>
-										<FaXmark
+										<FaTimes
 											className={s.xmark}
 											onClick={() => handleRemoveProduct(product.id)}
 										/>
@@ -117,15 +118,16 @@ export default function ShoppingCartPage() {
 							onSuccess='Ordered successfully'
 							onSuccessAction={handleOrderSuccess} // Передача функции для обработки успешного заказа
 						/>
-						{showModal && (
-							<DailyDealModal
-								isOpen={true}
-								onRequestClose={() => setShowModal(false)}
-								type='ordered_successfully'
-							/>
-						)}
 					</div>
 				</div>
+			)}
+
+			{showModal && (
+				<DailyDealModal
+					isOpen={true}
+					onRequestClose={() => setShowModal(false)}
+					type='ordered_successfully'
+				/>
 			)}
 		</div>
 	);

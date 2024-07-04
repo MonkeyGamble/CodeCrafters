@@ -10,6 +10,7 @@ import {
 	setFiltersAction,
 	filterProductsAction,
 } from '../../../redux/reducers/productsReducer.jsx';
+import BreadCrumbs from '../../UI/BreadCrumbs/index.jsx';
 
 export default function AllProductsPage() {
 	const dispatch = useDispatch();
@@ -39,15 +40,7 @@ export default function AllProductsPage() {
 
 	return (
 		<div className={`${s.all_products_container} content_line`}>
-			<div className={s.nav_buttons}>
-				<Link to='/'>
-					<button className={s.first_button}>Main page</button>
-				</Link>
-				<div className={s.nav_line}></div>
-				<Link to='/all_products'>
-					<button className={s.second_button}>All products</button>
-				</Link>
-			</div>
+			<BreadCrumbs sectionName='All products' />
 
 			<h1>All Products</h1>
 

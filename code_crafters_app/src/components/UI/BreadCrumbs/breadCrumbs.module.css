@@ -1,0 +1,40 @@
+.nav_buttons {
+	display: flex;
+	align-items: center;
+	/* margin-bottom: 40px; */
+	margin-top: 40px;
+}
+
+.nav_buttons button {
+	min-width: 118px;
+	cursor: pointer;
+	padding: 8px 16px;
+	border: 1px solid var(--grey_divider);
+	border-radius: 6px;
+	background-color: transparent;
+	font-size: 16px;
+}
+
+.to_homepage,
+.section_button,
+.category_name_button {
+	color: var(--text_grey);
+}
+
+.product_name_button {
+	color: var(--text_black);
+}
+
+.nav_line {
+	width: 16px;
+	height: 1px;
+	background-color: var(--grey_divider);
+}
+
+.text_black {
+	color: var(--text_black);
+}
+
+.text_grey {
+	color: var(--text_grey);
+}

@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import errorIcon from '../../assets/img/x-octagonn.png';
 
-export default function SubmitForm({ style, button }) {
+export default function SubmitForm({
+	style,
+	button,
+	onSuccess,
+	onSuccessAction,
+}) {
+	const [buttonText, setButtonText] = useState(button);
+	const [fontSize, setFontSize] = useState('20px');
+	const [submitError, setSubmitError] = useState('');
+
 	const {
 		register,
 		handleSubmit,
-		formState: { errors, isSubmitSuccessful },
+		formState: { errors },
 		reset,
+		clearErrors,
 		setError,
 	} = useForm({
 		mode: 'onSubmit',
@@ -15,6 +25,7 @@ export default function SubmitForm({ style, button }) {
 
 	const onSubmit = data => {
 		if (!data.name || !data.phoneNumber || !data.email) {
+			setSubmitError('Wrong input. Try again.');
 			setError('submit', {
 				type: 'manual',
 				message: 'Wrong input. Try again.',
@@ -22,92 +33,100 @@ export default function SubmitForm({ style, button }) {
 		} else {
 			console.log(data);
 			reset();
+			clearErrors();
+			setSubmitError('');
+			setButtonText(onSuccess);
+			setFontSize('16px');
+			if (typeof onSuccessAction === 'function') {
+				onSuccessAction(); // Вызываем функцию обработки успешного заказа
+			}
 		}
 	};
 
 	const name_input = register('name', {
-		required: '',
+		required: 'This field is required',
 		minLength: {
-			value: 5,
-			message: 'Имя не может быть короче 5 символов',
+			value: 2,
+			message: 'The name cannot be shorter than 2 characters',
 		},
 	});
 
 	const phone_input = register('phoneNumber', {
-		required: '',
+		required: 'This field is required',
 		pattern: {
-			value: /^[0-9]+$/,
-			message: 'Номер телефона должен содержать только цифры',
+			value: /^\+?[0-9]+$/,
+			message: 'The phone number can only contain numbers and a + sign',
 		},
 	});
 
 	const email_input = register('email', {
-		required: '',
+		required: 'This field is required',
 		pattern: {
 			value:
 				/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
-			message: 'Почта введена неверно',
+			message: 'Email entered incorrectly',
 		},
 	});
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-			<div>
+			<div className={style.inputContainer}>
 				<label>
 					<input
 						{...name_input}
 						placeholder='Name'
-						//className={errors.name && 'error'}
-						className={errors.name ? style.error : style.input}
+						className={`${style.input} ${errors.name ? style.error : ''}`}
 					/>
 				</label>
 				{errors.name && (
-					<p className={style.errorMessage}>{errors.name.message}</p>
+					<span className={style.errorMessage}>{errors.name.message}</span>
 				)}
 			</div>
 
-			<div>
+			<div className={style.inputContainer}>
 				<label>
 					<input
 						{...phone_input}
 						placeholder='Phone number'
-						// className={errors.phone_number && 'error'}
-						className={errors.phoneNumber ? style.error : style.input}
+						className={`${style.input} ${
+							errors.phoneNumber ? style.error : ''
+						}`}
 					/>
 				</label>
 				{errors.phoneNumber && (
-					<p className={style.errorMessage}>{errors.phoneNumber.message}</p>
+					<span className={style.errorMessage}>
+						{errors.phoneNumber.message}
+					</span>
 				)}
 			</div>
 
-			<div>
+			<div className={style.inputContainer}>
 				<label>
 					<input
 						{...email_input}
 						placeholder='Email'
-						//className={errors.email && 'error'}
-						className={errors.email ? style.error : style.input}
+						className={`${style.input} ${errors.email ? style.error : ''}`}
 					/>
 				</label>
 				{errors.email && (
-					<p className={style.errorMessage}>{errors.email.message}</p>
+					<span className={style.errorMessage}>{errors.email.message}</span>
 				)}
 			</div>
 
-			{errors.submit && (
-				<span className={style.errorMessage}>
+			{submitError && (
+				<span className={style.submitErrorMessage}>
 					<img src={errorIcon} alt='Error icon' className={style.errorIcon} />{' '}
-					Wrong input. Try again
+					{submitError}
 				</span>
 			)}
 
-			{isSubmitSuccessful && (
-				<p className={style.successMessage}>
-					The discount has been successfully sent by email
-				</p>
-			)}
-			<div>
-				<input type='submit' className={style.submitButton} value={button} />
+			<div className={style.buttonContainer}>
+				<input
+					type='submit'
+					className={style.submitButton}
+					value={buttonText}
+					style={{ fontSize }}
+				/>
 			</div>
 		</form>
 	);

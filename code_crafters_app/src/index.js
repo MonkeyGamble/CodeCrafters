@@ -5,18 +5,12 @@ import './Global.css';
 import lightColors from './lightColors';
 import darkColors from './darkColors';
 import { Provider } from 'react-redux';
-import store from './store/index';
+import { store, persistor } from './store/index'; 
+import { PersistGate } from 'redux-persist/integration/react';
 
 export const ROOT_URL = 'http://localhost:3333/';
 
-// const setCSSVariables = colors => {
-// 	const root = document.documentElement;
-// 	Object.keys(colors).forEach(key => {
-// 		root.style.setProperty(`--${key}`, colors[key]);
-// 	});
-// };
-
-// setCSSVariables(colors);
+// export const ROOT_URL = 'https://telran-backend.onrender.com/';
 
 const setCSSVariables = colors => {
 	const root = document.documentElement;
@@ -36,6 +30,8 @@ store.subscribe(() => {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<Provider store={store}>
-		<App />
+		<PersistGate loading={null} persistor={persistor}>
+			<App />
+		</PersistGate>
 	</Provider>
 );

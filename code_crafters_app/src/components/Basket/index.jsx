@@ -1,10 +1,26 @@
 import React from 'react';
 import shopping_cart from '../../assets/img/shopping_cart_white.png';
-import shopping_cart_dark from '../../assets/img/shopping_cart_darkTheme.png'; // Добавили новую картинку
+import shopping_cart_dark from '../../assets/img/shopping_cart_darkTheme.png';
+import productInBasket from '../../assets/img/shopping_cart_added.png';
 import { useSelector } from 'react-redux';
+import s from './Basket.module.css';
+import CounterCircle from '../UI/CounterCircle/CounterCircle';
 
-export default function Basket({ product, onClick, ...otherProps }) {
-	const isLight = useSelector(state => state.theme.isLight);
+export default function Basket({
+	product,
+	onClick,
+	showCount,
+	darkTheme,
+	...otherProps
+}) {
+	const basketItemsCount = useSelector(
+		state => state.basket.basket.itemsCount || 0
+	);
+	const basketItems = useSelector(state => state.basket.basket.items);
+
+	const inBasket =
+		product && basketItems.some(baskProduct => baskProduct.id === product.id);
+
 	const handleClick = e => {
 		e.preventDefault();
 		e.stopPropagation();
@@ -14,9 +30,22 @@ export default function Basket({ product, onClick, ...otherProps }) {
 			console.error('onClick is not a function');
 		}
 	};
+
 	return (
-		<div onClick={handleClick} {...otherProps}>
-			<img src={isLight ? shopping_cart : shopping_cart_dark} alt='cart' />
+		<div onClick={handleClick} {...otherProps} className={s.basket_container}>
+			<img
+				src={
+					darkTheme
+						? shopping_cart_dark
+						: inBasket
+						? productInBasket
+						: shopping_cart
+				}
+				alt='cart'
+			/>
+			{basketItemsCount > 0 && showCount && (
+				<CounterCircle count={basketItemsCount} />
+			)}
 		</div>
 	);
 }

@@ -1,0 +1,36 @@
+.like_container {
+	position: relative;
+	width: 48px;
+	height: 48px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+.like_container:active {
+	transform: translateY(2px) scale(1.1);
+}
+
+img {
+	width: 48px;
+	height: 48px;
+	cursor: pointer;
+	object-fit: contain;
+	object-position: center;
+}
+
+.circle_counter {
+	height: 26px;
+	width: 26px;
+	background-color: var(--green);
+	border-radius: 50%;
+	color: var(--text_white);
+	font-size: 12px;
+	font-weight: 600;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	left: -2px;
+	top: 7px;
+}

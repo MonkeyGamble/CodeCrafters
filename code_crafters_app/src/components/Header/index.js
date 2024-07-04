@@ -1,51 +1,35 @@
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import s from './Header.module.css';
 import ThemeButton from './ThemeButton/index';
 import logo from '../../assets/img/logo.png';
 import like from '../../assets/img/like.png';
 import like_darkTheme from '../../assets/img/like_darkTheme.png';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import Basket from '../Basket/index';
-import { useNavigate } from 'react-router-dom';
-
-import { useSelector } from 'react-redux';
-
-import React, { useState } from 'react';
-import axios from 'axios';
 import DailyDealModal from '../ModalWindow/DailyDealModal';
-
-import { ROOT_URL } from '../..';
-
+import PopupNavMenu from './PopupNavMenu';
+import { useModalWindow } from '../../asyncActions/modalWindow';
+import Like from '../Like';
 
 export default function Header() {
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [product, setProduct] = useState(null);
-	const navigate = useNavigate();
-
+	const [isPopupOpen, setIsPopupOpen] = useState(false);
 	const isLight = useSelector(state => state.theme.isLight);
+	const isModalOpen = useSelector(state => state.modalWindow.isOpen);
+	const product = useSelector(state => state.modalWindow.product);
+	const navigate = useNavigate();
+	const { openModalWithRandomProduct, closeModal } = useModalWindow();
+
+	const handlePopupMenu = () => {
+		setIsPopupOpen(!isPopupOpen);
+	};
 
 	const handleBasketClick = () => {
 		navigate('/shopping_cart', { state: { from: 'Header' } });
 	};
-
-	
-	const openModal = (e) => {
-	  e.preventDefault();
-	  axios.get(`${ROOT_URL}products/all`)
-		.then(response => {
-		  const products = response.data;
-		  const randomProduct = products[Math.floor(Math.random() * products.length)];
-		  setProduct(randomProduct);
-		  setIsModalOpen(true);
-		})
-		.catch(error => {
-		  console.error('Error fetching products:', error);
-		});
-
-	};
-
-	const closeModal = () => {
-		setIsModalOpen(false);
+	const handleLikeClick = () => {
+		navigate('/liked_products', { state: { from: 'Header' } });
 	};
 
 	return (
@@ -54,12 +38,11 @@ export default function Header() {
 				<Link to='/'>
 					<img src={logo} alt='logo' />
 				</Link>
-
 				<ThemeButton className={s.theme_button} />
 			</div>
 
 			<div className={s.header_center}>
-				<Link to='#' onClick={openModal}>
+				<Link to='#' onClick={openModalWithRandomProduct}>
 					<div className={s.discount}>1 day discount!</div>
 				</Link>
 
@@ -82,18 +65,25 @@ export default function Header() {
 			</div>
 
 			<div className={s.header_right}>
-				<Link to='/liked_products'>
-					<img src={isLight ? like : like_darkTheme} alt='like' />
-				</Link>
-				<Link to='/shopping_cart' className={s.shopping_cart}>
-					<Basket onClick={handleBasketClick} />
-				</Link>
-				<RxHamburgerMenu className={s.burger} />
+				<Like onClick={handleLikeClick} showCount={true} darkTheme={!isLight} />
+				<Basket
+					onClick={handleBasketClick}
+					showCount={true}
+					darkTheme={!isLight}
+				/>
+				<RxHamburgerMenu className={s.burger} onClick={handlePopupMenu} />
+				<PopupNavMenu
+					isPopupOpen={isPopupOpen}
+					handlePopupMenu={handlePopupMenu}
+					openModal={openModalWithRandomProduct}
+				/>
 			</div>
+
 			<DailyDealModal
 				isOpen={isModalOpen}
 				onRequestClose={closeModal}
 				product={product}
+				type={'deal'}
 			/>
 		</header>
 	);

@@ -1,0 +1,173 @@
+.modal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+}
+
+.modalContent {
+	background-color: var(--green);
+	border-radius: 12px;
+	padding: 32px;
+	width: 548px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	align-items: left;
+	border: none;
+}
+
+.close {
+	position: absolute;
+	top: 32px;
+	right: 32px;
+	color: var(--text_white); /* Цвет крестика */
+	font-size: 44px;
+	cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+	color: #555;
+}
+
+.modalHeader {
+	width: 424px;
+	text-align: left;
+	color: var(--text_white); /* Белый цвет текста */
+	margin-bottom: 10px; /* Отступ снизу */
+}
+
+.modalHeader > h2 {
+	font-size: 40px;
+	font-weight: 600;
+	line-height: 110%;
+	margin: 0;
+}
+
+.productDetails {
+	background-color: var(--white);
+	border-radius: 12px;
+	width: 100%;
+	text-align: left;
+	/* margin-bottom: 10px; */
+	position: relative;
+}
+
+.productDetails h2 {
+	font-size: 20px; /* Размер шрифта для названия товара */
+	font-weight: 500;
+	margin-left: 32px;
+	color: var(--text_black); /* Черный цвет текста */
+	margin-left: 32px;
+	width: 360px;
+	white-space: nowrap; /*Запрещаем перенос строки*/
+	text-overflow: ellipsis; /* Добавляем троеточие */
+	overflow: hidden;
+	margin-bottom: 16px;
+	/* margin: 10px 0; Отступы */
+}
+
+.like_icon {
+	position: absolute;
+	top: 16px; /* Расположение сверху */
+	right: 16px; /* Расположение справа */
+	cursor: pointer;
+}
+
+.product_picture {
+	width: 100%;
+	height: 284px;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-bottom: 20px;
+}
+
+.priceWrapper {
+	display: flex;
+	align-items: last baseline;
+	gap: 16px;
+	margin-left: 32px;
+	margin-bottom: 32px;
+}
+
+.discountPrice {
+	font-size: 40px;
+	font-weight: 600;
+	color: var(--text_black);
+}
+
+.originalPrice {
+	font-size: 20px;
+	font-weight: 500;
+	color: var(--text_grey);
+	text-decoration: line-through;
+}
+
+.addToCart {
+	width: 100%;
+	background-color: var(--form_white);
+	border: none;
+	border-radius: 6px;
+	color: var(--form_text_black);
+	font-size: 20px;
+	font-weight: 600;
+	font-family: 'Montserrat';
+	cursor: pointer;
+	padding: 16px;
+	text-align: center;
+}
+
+.addToCart:active {
+	background-color: var(--black);
+	color: var(--text_white);
+	transform: translateY(2px);
+}
+
+.discountBadge {
+	width: 68px;
+	height: 34px;
+	border-radius: 6px;
+	background-color: var(--sale);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--text_white);
+	font-size: 20px;
+	font-weight: 600;
+	letter-spacing: 3%;
+	position: absolute;
+	top: 16px;
+	left: 16px;
+}
+
+.congratulations {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.congratulations h2,
+.congratulations p {
+	color: var(--text_white);
+	font-weight: 600;
+}
+
+.congratulations h2 {
+	font-size: 40px;
+	margin-bottom: 8px;
+}
+
+.congratulations p {
+	font-size: 20px;
+}

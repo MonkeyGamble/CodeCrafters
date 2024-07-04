@@ -74,6 +74,10 @@
 	cursor: pointer;
 }
 
+.like_active {
+	filter: brightness(0) saturate(100%) invert(65%) sepia(9%) saturate(2673%)
+		hue-rotate(28deg) brightness(90%) contrast(88%);
+}
 .price {
 	display: flex;
 	align-items: last baseline;
@@ -81,16 +85,19 @@
 }
 
 .price h2 {
-	/* font-size: 40px; */
-	/* font-weight: 600; */
-
-	/* color: var(--text_black); */
+	color: var(--text_black);
+	font-size: 40px;
+	font-weight: 600;
 }
-/* 
+
 .price h5 {
+	color: var(--text_grey);
 	font-size: 20px;
 	font-weight: 500;
+}
 
-	color: var(--grey);
-	text-decoration: line-through;
-} */
+.price h4 {
+	color: var(--text_black);
+	font-size: 40px;
+	font-weight: 600;
+}

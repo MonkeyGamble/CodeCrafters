@@ -1,15 +1,14 @@
 import { useParams } from 'react-router-dom';
 import s from './ProductsFromCategoryPage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect,useState } from 'react';
+import { useEffect } from 'react';
 import { getProductsByCategoryId } from '../../../../asyncActions/products';
 import { ROOT_URL } from '../../../..';
 import '../../../../Global.css';
 import { Link } from 'react-router-dom';
 import like from '../../../../assets/img/like_white.png';
-//import shopping_cart from '../../../../assets/img/shopping_cart_white.png';
+import shopping_cart from '../../../../assets/img/shopping_cart_white.png';
 import Basket from '../../../Basket';
-import ProductSkeleton from '../../../ProductSkeleton/ProductSkeleton';
 
 export default function ProductsFromCategoryPage() {
 	const { id } = useParams();
@@ -18,29 +17,12 @@ export default function ProductsFromCategoryPage() {
 
 	const productsByCategory = useSelector(
 		store => store.products.productsFromCategory
-		
 	);
-	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		dispatch(getProductsByCategoryId(id))
-		.then(() => setLoading(false)) // После загрузки данных устанавливаем loading в false
-            .catch(error => {
-                console.error('Error fetching products:', error);
-                setLoading(false); // В случае ошибки также устанавливаем loading в false
-            });
+		dispatch(getProductsByCategoryId(id));
 	}, [dispatch, id]);
 
-	if (loading) {
-        // Пока данные загружаются, отображаем скелетон загрузки
-        return (
-            <div className={`${s.products_wrapper} content_line`}>
-                {Array.from({ length: 6 }).map((_, index) => (
-                    <ProductSkeleton key={index} />
-                ))}
-            </div>
-        );
-    }
 	return (
 		<div className={`${s.products_wrapper} content_line`}>
 			{productsByCategory.category && productsByCategory.data && (

@@ -13,11 +13,6 @@
 	background-color: transparent;
 	font-size: 16px;
 }
-.skeleton_container {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 20px; /* Пример отступа между скелетонами */
-  }
 
 .main_button,
 .section_button,

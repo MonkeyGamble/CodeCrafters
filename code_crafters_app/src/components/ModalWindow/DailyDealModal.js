@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ROOT_URL } from '../..';
 import s from './DailyDealModal.module.css';
-import { setCurrentProductAction } from '../../store/productsReducer';
+import {
+	addProductFavoriteAction,
+	removeProductFavoriteAction,
+	setCurrentProductAction,
+} from '../../store/productsReducer';
 import { addProductToBasketAction } from '../../store/basketReducer';
-import like from '../../assets/img/like_white.png';
 import { RxCross2 } from 'react-icons/rx';
 import { getAllProducts } from '../../asyncActions/products';
 import { useModalWindow } from '../../asyncActions/modalWindow';
+import Like from '../Like';
 
 const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 	const dispatch = useDispatch();
@@ -18,7 +22,11 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 	const { getRandomProduct } = useModalWindow();
 	const products = useSelector(state => state.products.allProducts);
 	const product = useSelector(state => state.products.currentProduct);
-
+	const isFavorite = useSelector(state =>
+		state.products.favoriteProducts.some(
+			favProduct => favProduct.id === product.id
+		)
+	);
 	useEffect(() => {
 		dispatch(getAllProducts());
 	}, [dispatch]);
@@ -75,7 +83,16 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 		setFavorites([...favorites, displayedProduct]);
 		console.log('Added product to favorites:', displayedProduct);
 	};
-
+	const handleFavoriteClick = e => {
+		// e.preventDefault();
+		// e.stopPropagation();
+		const updatedProduct = { ...product, isFavorite: !isFavorite };
+		if (isFavorite) {
+			dispatch(removeProductFavoriteAction(product.id));
+		} else {
+			dispatch(addProductFavoriteAction(updatedProduct));
+		}
+	};
 	const handleModalClick = e => {
 		if (e.target.className === 'modal') {
 			onRequestClose();
@@ -92,6 +109,7 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 						<div className={s.modalHeader}>
 							<h2>50% discount on product of the day!</h2>
 						</div>
+
 						<div className={s.productDetails}>
 							<div className={s.discountBadge}>-50%</div>
 
@@ -101,16 +119,10 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 									backgroundImage: `url(${ROOT_URL + displayedProduct.image})`,
 								}}
 							/>
-
-							<img
-								src={like}
-								alt='like'
-								className={s.like_icon}
-								onClick={handleAddToFavorites}
-							/>
-
+							<div className={s.like_icon}>
+								<Like onClick={handleFavoriteClick} product={product} />
+							</div>
 							<h2>{displayedProduct.title}</h2>
-
 							<div className={s.priceWrapper}>
 								<h3 className={s.discountPrice}>${discountPrice}</h3>
 								<h5 className={s.originalPrice}>${price}</h5>

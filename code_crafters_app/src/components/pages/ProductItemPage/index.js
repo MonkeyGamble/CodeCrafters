@@ -14,6 +14,7 @@ import {
 	removeProductFavoriteAction,
 } from '../../../store/productsReducer.js';
 import Like from '../../Like/index.jsx';
+import BreadCrumbs from '../../UI/BreadCrumbs/index.jsx';
 
 export default function ProductItemPage() {
 	const { id } = useParams();
@@ -62,6 +63,13 @@ export default function ProductItemPage() {
 
 	return (
 		<div className={`${s.product_wrapper} content_line`}>
+			{/* <BreadCrumbs
+				product={product}
+				sectionName='Categories'
+				categoryName={
+					categories.find(category => category.id === product.categoryId)?.title
+				}
+			/> */}
 			<div className={s.nav_buttons}>
 				<Link to='/'>
 					<button className={s.main_button}>Main page</button>

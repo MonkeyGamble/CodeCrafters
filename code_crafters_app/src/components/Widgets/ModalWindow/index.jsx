@@ -2,31 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ROOT_URL } from '../../../index';
 import s from './DailyDealModal.module.css';
-import {
-	addProductFavoriteAction,
-	removeProductFavoriteAction,
-	setCurrentProductAction,
-} from '../../../redux/reducers/productsReducer';
-import { addProductToBasketAction } from '../../../redux/reducers/basketReducer';
+import { setCurrentProductAction } from '../../../redux/reducers/productsReducer';
 import { RxCross2 } from 'react-icons/rx';
 import { getAllProducts } from '../../../redux/actions/products';
 import { useModalWindow } from '../../../redux/actions/modalWindow';
 import Like from '../../UI/Like/index';
+import useHandleBasketClick from '../../../utils/handleBasketClick';
+import useHandleFavoriteClick from '../../../utils/handleFavoriteClick';
 
 const DailyDealModal = ({ isOpen, onRequestClose, type, picture }) => {
 	const dispatch = useDispatch();
 	const [currentProductLocal, setCurrentProductLocal] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [isAdded, setIsAdded] = useState(false);
-	const [favorites, setFavorites] = useState([]);
 	const { getRandomProduct } = useModalWindow();
 	const products = useSelector(state => state.products.allProducts);
 	const product = useSelector(state => state.products.currentProduct);
-	const isFavorite = useSelector(state =>
-		state.products.favoriteProducts.some(
-			favProduct => favProduct.id === product.id
-		)
-	);
+	const handleFavoriteClick = useHandleFavoriteClick(product);
+	const handleBasketClick = useHandleBasketClick(product);
 
 	useEffect(() => {
 		dispatch(getAllProducts());
@@ -77,26 +70,17 @@ const DailyDealModal = ({ isOpen, onRequestClose, type, picture }) => {
 			: '';
 	const discountPrice = calculateDiscountPrice(price);
 
-	const handleAddToCart = () => {
+	const handleAddToCart = e => {
+		e.preventDefault();
+		e.stopPropagation();
 		const productToAdd = {
 			...displayedProduct,
 			count: 1,
 			discont_price: discountPrice,
 		};
-		dispatch(addProductToBasketAction(productToAdd));
+		handleBasketClick(e);
 		setIsAdded(true);
 		console.log('Added product to basket:', productToAdd);
-	};
-
-	const handleFavoriteClick = e => {
-		e.preventDefault();
-		e.stopPropagation();
-		const updatedProduct = { ...product, isFavorite: !isFavorite };
-		if (isFavorite) {
-			dispatch(removeProductFavoriteAction(product.id));
-		} else {
-			dispatch(addProductFavoriteAction(updatedProduct));
-		}
 	};
 
 	const handleModalClick = e => {
@@ -104,6 +88,7 @@ const DailyDealModal = ({ isOpen, onRequestClose, type, picture }) => {
 			onRequestClose();
 		}
 	};
+
 	const handleCloseModal = () => {
 		onRequestClose();
 	};
@@ -147,9 +132,9 @@ const DailyDealModal = ({ isOpen, onRequestClose, type, picture }) => {
 			) : type === 'ordered_successfully' ? (
 				<div className={s.modalContent}>
 					<div className={s.congratulations}>
-						<h2>Поздравляем!</h2>
-						<p>Ваш заказ успешно размещен на сайте.</p>
-						<p>Менеджер свяжется с вами для подтверждения заказа.</p>
+						<h2>Congratulations! </h2>
+						<p>Your order has been successfully placed on the website.</p>
+						<p>A manager will contact you shortly to confirm your order.</p>
 					</div>
 				</div>
 			) : null}

@@ -11,7 +11,6 @@ import { useBasketActions } from '../../../redux/actions/basket';
 import Like from '../../UI/Like';
 import BreadCrumbs from '../../UI/BreadCrumbs/index';
 import DailyDealModal from '../../Widgets/ModalWindow/index';
-import useHandleBasketClick from '../../../utils/handleBasketClick';
 import useHandleFavoriteClick from '../../../utils/handleFavoriteClick';
 
 export default function ProductItemPage() {
@@ -21,10 +20,7 @@ export default function ProductItemPage() {
 	const categories = useSelector(state => state.categories.allCategories);
 	const { addProductToBasket } = useBasketActions();
 	const [count, setCount] = useState(1); // Локальное состояние для количества товара
-
 	const handleFavoriteClick = useHandleFavoriteClick(product);
-	const handleBasketClick = useHandleBasketClick(product);
-
 	const [showModal, setShowModal] = useState(false);
 
 	useEffect(() => {

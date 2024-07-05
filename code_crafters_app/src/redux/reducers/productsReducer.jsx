@@ -15,6 +15,7 @@ const defaultState = {
 		isDiscounted: false,
 		sortOrder: 'default',
 	},
+	loading: false, // Добавлено состояние загрузки страницы
 };
 
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
@@ -27,9 +28,21 @@ const REMOVE_PRODUCT_FAVORITE = 'REMOVE_PRODUCT_FAVORITE';
 const SET_CURRENT_PRODUCT = 'SET_CURRENT_PRODUCT';
 const SET_FILTERS = 'SET_FILTERS';
 const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
+const START_LOADING = 'START_LOADING';
+const STOP_LOADING = 'STOP_LOADING';
 
 export const productsReducer = (state = defaultState, action) => {
 	switch (action.type) {
+		case START_LOADING:
+			return {
+				...state,
+				loading: true,
+			};
+		case STOP_LOADING:
+			return {
+				...state,
+				loading: false,
+			};
 		case GET_ALL_PRODUCTS:
 			const discountProducts = action.payload.filter(
 				product => product.discont_price !== null
@@ -126,6 +139,13 @@ export const productsReducer = (state = defaultState, action) => {
 			return state;
 	}
 };
+
+export const startLoadingAction = () => ({
+	type: START_LOADING,
+});
+export const stopLoadingAction = () => ({
+	type: STOP_LOADING,
+});
 
 export const getAllProductsAction = products => ({
 	type: GET_ALL_PRODUCTS,

@@ -4,18 +4,14 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductById } from '../../../redux/actions/products';
 import { getAllCategories } from '../../../redux/actions/categories';
-import { Link } from 'react-router-dom';
 import { ROOT_URL } from '../../../index';
 import '../../../styles/Global.css';
 import Counter from '../../UI/Counter/index';
 import { useBasketActions } from '../../../redux/actions/basket';
-import {
-	addProductFavoriteAction,
-	removeProductFavoriteAction,
-} from '../../../redux/reducers/productsReducer';
 import Like from '../../UI/Like';
 import BreadCrumbs from '../../UI/BreadCrumbs/index';
 import DailyDealModal from '../../Widgets/ModalWindow/index';
+import useHandleFavoriteClick from '../../../utils/handleFavoriteClick';
 
 export default function ProductItemPage() {
 	const { id } = useParams();
@@ -24,11 +20,7 @@ export default function ProductItemPage() {
 	const categories = useSelector(state => state.categories.allCategories);
 	const { addProductToBasket } = useBasketActions();
 	const [count, setCount] = useState(1); // Локальное состояние для количества товара
-	const isFavorite = useSelector(state =>
-		state.products.favoriteProducts.some(
-			favProduct => favProduct.id === product.id
-		)
-	);
+	const handleFavoriteClick = useHandleFavoriteClick(product);
 	const [showModal, setShowModal] = useState(false);
 
 	useEffect(() => {
@@ -40,17 +32,6 @@ export default function ProductItemPage() {
 		return <div>Loading...</div>;
 	}
 
-	const handleFavoriteClick = e => {
-		e.preventDefault();
-		e.stopPropagation();
-		const updatedProduct = { ...product, isFavorite: !isFavorite };
-		if (isFavorite) {
-			dispatch(removeProductFavoriteAction(product.id));
-		} else {
-			dispatch(addProductFavoriteAction(updatedProduct));
-		}
-	};
-
 	const handleIncrement = () => {
 		setCount(prevCount => prevCount + 1);
 	};
@@ -59,9 +40,11 @@ export default function ProductItemPage() {
 		setCount(prevCount => (prevCount > 1 ? prevCount - 1 : 1));
 	};
 
-	const handleAddToCart = () => {
+	const handleAddToCart = e => {
+		e.preventDefault();
+		e.stopPropagation();
 		const productToAdd = { ...product, count };
-		addProductToBasket(productToAdd);
+		addProductToBasket(productToAdd); 
 	};
 
 	const handleShowModal = () => {
@@ -83,7 +66,7 @@ export default function ProductItemPage() {
 					src={`${ROOT_URL}${product.image}`}
 					alt={product.title}
 					onClick={handleShowModal} // Обработчик для открытия модального окна
-					className={s.product_image} // Добавлен класс для изображения товара
+					className={s.product_image}
 				/>
 				<div className={s.product_description}>
 					<div className={s.product_header}>

@@ -50,6 +50,7 @@
 	font-weight: 600;
 	line-height: 110%;
 	margin: 0;
+	color: var(--text_white);
 }
 
 .productDetails {

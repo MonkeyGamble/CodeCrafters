@@ -44,7 +44,7 @@ export default function ProductItemPage() {
 		e.preventDefault();
 		e.stopPropagation();
 		const productToAdd = { ...product, count };
-		addProductToBasket(productToAdd); //
+		addProductToBasket(productToAdd); 
 	};
 
 	const handleShowModal = () => {

@@ -9,14 +9,16 @@ export default function Footer() {
 		<footer>
 			<div className={`${s.footerContainer} content_line`}>
 				<h1>Contact</h1>
-				<div className={s.contactInfo}>
+
+				<section className={s.contactInfo}>
+
 					<div className={s.infoBox}>
 						<p className={s.label}>Phone</p>
 						<p className={s.content}>+49 999 999 99 99</p>
 					</div>
+
 					<div className={s.infoBox}>
 						<p className={s.label}>Socials</p>
-
 						<div className={s.socialLinks}>
 							<a href='https://instagram.com'>
 								<FontAwesomeIcon icon={faInstagram} className={s.social_netz} />
@@ -26,17 +28,20 @@ export default function Footer() {
 							</a>
 						</div>
 					</div>
+
 					<div className={s.infoBox}>
 						<p className={s.label}>Address</p>
 						<p className={s.content}>
 							Linkstraße 2, 8 OG, 10785, Berlin, Deutschland
 						</p>
 					</div>
+
 					<div className={s.infoBox}>
 						<p className={s.label}>Working Hours</p>
 						<p className={s.content}>24 hours a day</p>
 					</div>
-				</div>
+					
+				</section>
 
 				<iframe
 					className={s.map}

@@ -7,18 +7,19 @@ footer {
 .footerContainer {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start; /* Выравнивание по левому краю */
+	gap: 32px;
 }
 
 .footerContainer h1 {
 	font-size: 64px;
 	color: var(--text_black);
-	margin-bottom: 40px;
+	margin-bottom: 8px;
 }
 
 .contactInfo {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(2, 1 fr);
+	/* flex-wrap: wrap; */
 	gap: 32px;
 	margin-bottom: 32px;
 	width: 100%; /* Заполнение всей ширины контейнера */

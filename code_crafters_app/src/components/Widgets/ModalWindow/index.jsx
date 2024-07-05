@@ -13,12 +13,12 @@ import { getAllProducts } from '../../../redux/actions/products';
 import { useModalWindow } from '../../../redux/actions/modalWindow';
 import Like from '../../UI/Like/index';
 
-const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
+const DailyDealModal = ({ isOpen, onRequestClose, type, picture }) => {
 	const dispatch = useDispatch();
 	const [currentProductLocal, setCurrentProductLocal] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [isAdded, setIsAdded] = useState(false);
-	const [favorites, setFavorites] = useState([]); // Добавлено состояние для избранного
+	const [favorites, setFavorites] = useState([]);
 	const { getRandomProduct } = useModalWindow();
 	const products = useSelector(state => state.products.allProducts);
 	const product = useSelector(state => state.products.currentProduct);
@@ -27,6 +27,7 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 			favProduct => favProduct.id === product.id
 		)
 	);
+
 	useEffect(() => {
 		dispatch(getAllProducts());
 	}, [dispatch]);
@@ -43,7 +44,15 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 
 	useEffect(() => {
 		if (!isOpen) {
-			setIsAdded(false); // Сброс состояния кнопки при закрытии модального окна
+			setIsAdded(false);
+		}
+	}, [isOpen]);
+
+	useEffect(() => {
+		console.log('isOpen:', isOpen);
+		const productPictureElem = document.querySelector(`.${s.productPicture}`);
+		if (productPictureElem) {
+			console.log('Product Picture class list:', productPictureElem.classList);
 		}
 	}, [isOpen]);
 
@@ -57,7 +66,7 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 		if (price === '') return '';
 
 		const originalPrice = parseFloat(price);
-		const discountedPrice = (originalPrice * 0.5).toFixed(2); // 50% скидка
+		const discountedPrice = (originalPrice * 0.5).toFixed(2);
 
 		return discountedPrice;
 	};
@@ -72,20 +81,16 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 		const productToAdd = {
 			...displayedProduct,
 			count: 1,
-			discont_price: discountPrice, // Устанавливаем скидочную цену
+			discont_price: discountPrice,
 		};
 		dispatch(addProductToBasketAction(productToAdd));
-		setIsAdded(true); // Обновляем состояние после добавления товара
+		setIsAdded(true);
 		console.log('Added product to basket:', productToAdd);
 	};
 
-	const handleAddToFavorites = () => {
-		setFavorites([...favorites, displayedProduct]);
-		console.log('Added product to favorites:', displayedProduct);
-	};
 	const handleFavoriteClick = e => {
-		// e.preventDefault();
-		// e.stopPropagation();
+		e.preventDefault();
+		e.stopPropagation();
 		const updatedProduct = { ...product, isFavorite: !isFavorite };
 		if (isFavorite) {
 			dispatch(removeProductFavoriteAction(product.id));
@@ -93,57 +98,70 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 			dispatch(addProductFavoriteAction(updatedProduct));
 		}
 	};
+
 	const handleModalClick = e => {
-		if (e.target.className === 'modal') {
+		if (e.currentTarget.className === 'modal') {
 			onRequestClose();
 		}
+	};
+	const handleCloseModal = () => {
+		onRequestClose();
 	};
 
 	return (
 		<div className={s.modal} onClick={handleModalClick}>
-			<div className={s.modalContent}>
-				<RxCross2 className={s.close} onClick={onRequestClose} />
-
-				{type === 'deal' ? (
-					<>
-						<div className={s.modalHeader}>
-							<h2>50% discount on product of the day!</h2>
-						</div>
-
-						<div className={s.productDetails}>
-							<div className={s.discountBadge}>-50%</div>
-
-							<div
-								className={s.product_picture}
-								style={{
-									backgroundImage: `url(${ROOT_URL + displayedProduct.image})`,
-								}}
-							/>
-							<div className={s.like_icon}>
-								<Like onClick={handleFavoriteClick} product={product} />
-							</div>
-							<h2>{displayedProduct.title}</h2>
-							<div className={s.priceWrapper}>
-								<h3 className={s.discountPrice}>${discountPrice}</h3>
-								<h5 className={s.originalPrice}>${price}</h5>
-							</div>
-						</div>
-						<button
-							className={s.addToCart}
-							onClick={handleAddToCart}
-							disabled={isAdded}
-						>
-							{isAdded ? 'Added product to basket' : 'Add to Cart'}
-						</button>
-					</>
-				) : (
-					<div className={s.congratulations}>
-						<h2>Congratulations</h2>
-						<p>Your order has been successfully placed on the website.</p>
-						<p>A manager will contact you shortly to confirm your order.</p>
+			<RxCross2 className={s.close} onClick={onRequestClose} />
+			{type === 'deal' ? (
+				<div className={s.modalContent}>
+					<RxCross2 className={s.close} onClick={onRequestClose} />
+					<div className={s.modalHeader}>
+						<h2>50% discount on product of the day!</h2>
 					</div>
-				)}
-			</div>
+
+					<div className={s.productDetails}>
+						<div className={s.discountBadge}>-50%</div>
+
+						<div
+							className={s.product_picture}
+							style={{
+								backgroundImage: `url(${ROOT_URL + displayedProduct.image})`,
+							}}
+						/>
+						<div className={s.like_icon}>
+							<Like onClick={handleFavoriteClick} product={product} />
+						</div>
+						<h2>{displayedProduct.title}</h2>
+						<div className={s.priceWrapper}>
+							<h3 className={s.discountPrice}>${discountPrice}</h3>
+							<h5 className={s.originalPrice}>${price}</h5>
+						</div>
+					</div>
+					<button
+						className={s.addToCart}
+						onClick={handleAddToCart}
+						disabled={isAdded}
+					>
+						{isAdded ? 'Product added to Cart' : 'Add to Cart'}
+					</button>
+				</div>
+			) : type === 'ordered_successfully' ? (
+				<div className={s.modalContent}>
+					<div className={s.congratulations}>
+						<h2>Поздравляем!</h2>
+						<p>Ваш заказ успешно размещен на сайте.</p>
+						<p>Менеджер свяжется с вами для подтверждения заказа.</p>
+					</div>
+				</div>
+			) : null}
+
+			{type === 'product_card' && (
+				<div
+					className={`${s.productPicture} ${isOpen ? s.open : ''}`}
+					onClick={handleCloseModal}
+				>
+					<img src={picture} alt='Product' />
+				</div>
+			)}
 		</div>
 	);
 };

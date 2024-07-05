@@ -50,6 +50,9 @@ export default function ShoppingCartPage() {
 			<div className={s.component_header}>
 				<h1>Shopping cart</h1>
 				<div className={s.line}></div>
+				<Link to='/all_products'>
+					<button className={s.my_button}>Back to the store </button>
+				</Link>
 			</div>
 
 			{basketItems.length === 0 ? (

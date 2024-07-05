@@ -2,19 +2,20 @@ import React, { useEffect, useState } from 'react';
 import s from './ProductItem.module.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductById } from '../../../redux/actions/products.jsx';
-import { getAllCategories } from '../../../redux/actions/categories.jsx';
+import { getProductById } from '../../../redux/actions/products';
+import { getAllCategories } from '../../../redux/actions/categories';
 import { Link } from 'react-router-dom';
-import { ROOT_URL } from '../../../index.js';
+import { ROOT_URL } from '../../../index';
 import '../../../styles/Global.css';
-import Counter from '../../UI/Counter/index.jsx';
-import { useBasketActions } from '../../../redux/actions/basket.jsx';
+import Counter from '../../UI/Counter/index';
+import { useBasketActions } from '../../../redux/actions/basket';
 import {
 	addProductFavoriteAction,
 	removeProductFavoriteAction,
-} from '../../../redux/reducers/productsReducer.jsx';
+} from '../../../redux/reducers/productsReducer';
 import Like from '../../UI/Like';
-import BreadCrumbs from '../../UI/BreadCrumbs/index.jsx';
+import BreadCrumbs from '../../UI/BreadCrumbs/index';
+import DailyDealModal from '../../Widgets/ModalWindow/index';
 
 export default function ProductItemPage() {
 	const { id } = useParams();
@@ -28,6 +29,8 @@ export default function ProductItemPage() {
 			favProduct => favProduct.id === product.id
 		)
 	);
+	const [showModal, setShowModal] = useState(false);
+
 	useEffect(() => {
 		dispatch(getProductById(id));
 		dispatch(getAllCategories());
@@ -38,8 +41,8 @@ export default function ProductItemPage() {
 	}
 
 	const handleFavoriteClick = e => {
-		// e.preventDefault();
-		// e.stopPropagation();
+		e.preventDefault();
+		e.stopPropagation();
 		const updatedProduct = { ...product, isFavorite: !isFavorite };
 		if (isFavorite) {
 			dispatch(removeProductFavoriteAction(product.id));
@@ -61,6 +64,10 @@ export default function ProductItemPage() {
 		addProductToBasket(productToAdd);
 	};
 
+	const handleShowModal = () => {
+		setShowModal(true);
+	};
+
 	return (
 		<div className={`${s.product_wrapper} content_line`}>
 			<BreadCrumbs
@@ -72,11 +79,15 @@ export default function ProductItemPage() {
 			/>
 
 			<div className={s.product_card}>
-				<img src={`${ROOT_URL}${product.image}`} alt={product.title} />
+				<img
+					src={`${ROOT_URL}${product.image}`}
+					alt={product.title}
+					onClick={handleShowModal} // Обработчик для открытия модального окна
+					className={s.product_image} // Добавлен класс для изображения товара
+				/>
 				<div className={s.product_description}>
 					<div className={s.product_header}>
 						<h1>{product.title}</h1>
-
 						<Like onClick={handleFavoriteClick} product={product} />
 					</div>
 					<div className={s.price_section}>
@@ -104,15 +115,21 @@ export default function ProductItemPage() {
 							onIncrement={handleIncrement}
 							onDecrement={handleDecrement}
 						/>
-						{/* Передаем productId в Counter */}
 						<button className={s.add_button} onClick={handleAddToCart}>
 							Add to cart
 						</button>
 					</div>
-
 					<p>{product.description}</p>
 				</div>
 			</div>
+			{showModal && (
+				<DailyDealModal
+					isOpen={true}
+					onRequestClose={() => setShowModal(false)}
+					type='product_card'
+					picture={`${ROOT_URL}${product.image}`}
+				/>
+			)}
 		</div>
 	);
 }

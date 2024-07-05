@@ -28,7 +28,7 @@
 	position: absolute;
 	top: 32px;
 	right: 32px;
-	color: #ffffff; /* Цвет крестика */
+	color: #ffffff;
 	font-size: 44px;
 	cursor: pointer;
 }
@@ -41,8 +41,8 @@
 .modalHeader {
 	width: 424px;
 	text-align: left;
-	color: #ffffff; /* Белый цвет текста */
-	margin-bottom: 10px; /* Отступ снизу */
+	color: #ffffff;
+	margin-bottom: 10px;
 }
 
 .modalHeader > h2 {
@@ -63,17 +63,16 @@
 }
 
 .productDetails h2 {
-	font-size: 20px; /* Размер шрифта для названия товара */
+	font-size: 20px;
 	font-weight: 500;
 	margin-left: 32px;
-	color: #424436; /* Черный цвет текста */
+	color: #424436;
 	margin-left: 32px;
 	width: 360px;
 	white-space: nowrap; /*Запрещаем перенос строки*/
 	text-overflow: ellipsis; /* Добавляем троеточие */
 	overflow: hidden;
 	margin-bottom: 16px;
-	/* margin: 10px 0; Отступы */
 }
 
 .like_icon {
@@ -171,4 +170,26 @@
 
 .congratulations p {
 	font-size: 20px;
+}
+
+.productPicture {
+	text-align: center;
+	/* overflow: hidden; */
+	position: relative;
+}
+
+.productPicture img {
+	width: 900px; /* Целевая ширина */
+	height: 610px; /* Целевая высота */
+	width: 0;
+	height: 0;
+	transition: width 0.5s ease, height 0.5s ease;
+	position: absolute; /* Позиционируем абсолютно, чтобы контейнер мог занимать место до загрузки изображения */
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%); /* Центрируем изображение */
+}
+.productPicture.open img {
+	width: 900px; /* Целевая ширина */
+	height: 610px; /* Целевая высота */
 }

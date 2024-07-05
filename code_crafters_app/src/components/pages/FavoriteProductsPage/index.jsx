@@ -61,7 +61,7 @@ export default function FavoriteProductsPage() {
 					<Filter
 						filters={localFilters}
 						onFilterChange={handleFilterChange}
-						showDiscountedItemsFilter={false}
+						showDiscountedItemsFilter={true}
 					/>
 					<div className={s.productsList}>
 						{filteredFavoriteProducts.map(product => (

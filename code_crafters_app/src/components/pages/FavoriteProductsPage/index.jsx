@@ -1,40 +1,37 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ProductCard from '../../UI/ProductCard/index';
 import s from './FavoriteProductsPage.module.css';
 import { Link } from 'react-router-dom';
 import Filter from '../../UI/Filter';
 import { useFilters } from '../../UI/Filter/useFilters';
-import { getAllProducts } from '../../../redux/actions/products';
 import {
-	filterProductsAction,
 	setFiltersAction,
+	filterProductsAction,
 } from '../../../redux/reducers/productsReducer';
+import { filterProducts } from '../../UI/Filter/filterUtils';
 
 export default function FavoriteProductsPage() {
+	const dispatch = useDispatch();
 	const favoriteProducts = useSelector(
 		state => state.products.favoriteProducts
 	);
-	const dispatch = useDispatch();
 	const filters = useSelector(state => state.products.filters);
 	const [localFilters, handleFilterChange] = useFilters({
 		minPrice: '',
 		maxPrice: '',
-		isDiscounted: true,
+		isDiscounted: false,
 		sortOrder: 'default',
 	});
-
-	useEffect(() => {
-		dispatch(getAllProducts());
-	}, [dispatch]);
+	const [filteredFavoriteProducts, setFilteredFavoriteProducts] = useState([]);
 
 	useEffect(() => {
 		dispatch(setFiltersAction(localFilters));
 	}, [localFilters, dispatch]);
 
 	useEffect(() => {
-		dispatch(filterProductsAction());
-	}, [filters, dispatch]);
+		setFilteredFavoriteProducts(filterProducts(favoriteProducts, filters));
+	}, [favoriteProducts, filters]);
 
 	return (
 		<div className={`${s.favorite_wrapper} content_line`}>
@@ -67,7 +64,7 @@ export default function FavoriteProductsPage() {
 						showDiscountedItemsFilter={false}
 					/>
 					<div className={s.productsList}>
-						{favoriteProducts.map(product => (
+						{filteredFavoriteProducts.map(product => (
 							<ProductCard
 								key={product.id}
 								product={product}

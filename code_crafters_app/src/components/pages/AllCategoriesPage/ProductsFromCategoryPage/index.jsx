@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './ProductsFromCategoryPage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
 	addProductFavoriteAction,
 	removeProductFavoriteAction,
+	setFiltersAction,
+	filterProductsAction,
 } from '../../../../redux/reducers/productsReducer';
 import {
 	getAllProducts,
@@ -12,14 +14,10 @@ import {
 } from '../../../../redux/actions/products';
 import '../../../../styles/Global.css';
 import BreadCrumbs from '../../../UI/BreadCrumbs';
-import ProductCard from '../../../UI/ProductCard'; // Предположим, что у вас есть компонент ProductCard
+import ProductCard from '../../../UI/ProductCard';
 import { useFilters } from '../../../UI/Filter/useFilters';
 import Filter from '../../../UI/Filter';
-
-import {
-	setFiltersAction,
-	filterProductsAction,
-} from '../../../../redux/reducers/productsReducer';
+import { filterProducts } from '../../../UI/Filter/filterUtils';
 
 export default function ProductsFromCategoryPage() {
 	const { id } = useParams();
@@ -34,20 +32,24 @@ export default function ProductsFromCategoryPage() {
 		isDiscounted: false,
 		sortOrder: 'default',
 	});
+	const [filteredCategoryProducts, setFilteredCategoryProducts] = useState([]);
+
 	useEffect(() => {
 		dispatch(getProductsByCategoryId(id));
 	}, [dispatch, id]);
-	useEffect(() => {
-		dispatch(getAllProducts());
-	}, [dispatch]);
 
 	useEffect(() => {
 		dispatch(setFiltersAction(localFilters));
 	}, [localFilters, dispatch]);
 
 	useEffect(() => {
-		dispatch(filterProductsAction());
-	}, [filters, dispatch]);
+		if (productsByCategory.data) {
+			setFilteredCategoryProducts(
+				filterProducts(productsByCategory.data, filters)
+			);
+		}
+	}, [productsByCategory, filters]);
+
 	const handleFavoriteClick = (e, product) => {
 		e.preventDefault();
 		e.stopPropagation();
@@ -78,7 +80,7 @@ export default function ProductsFromCategoryPage() {
 					/>
 
 					<div className={s.cards_container}>
-						{productsByCategory.data.map(product => (
+						{filteredCategoryProducts.map(product => (
 							<ProductCard
 								key={product.id}
 								product={product}

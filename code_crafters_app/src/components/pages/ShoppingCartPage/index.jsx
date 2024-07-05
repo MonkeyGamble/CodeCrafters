@@ -14,6 +14,8 @@ import {
 import SubmitForm from '../../UI/SubmitForm/index.jsx';
 import { clearBasketAction } from '../../../redux/reducers/basketReducer.jsx';
 import DailyDealModal from '../../Widgets/ModalWindow/index.jsx';
+import ProductSkeleton from '../../Widgets/ProductSkeleton/productSkeleton.jsx';
+import { setLoadingSkeleton } from '../../../redux/reducers/productsReducer.jsx';
 
 export default function ShoppingCartPage() {
 	const dispatch = useDispatch();

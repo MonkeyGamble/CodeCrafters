@@ -16,6 +16,7 @@ const defaultState = {
 		sortOrder: 'default',
 	},
 	loading: false, // Добавлено состояние загрузки страницы
+	loadingSkeleton: true, // Начальное состояние скелетона
 };
 
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
@@ -30,9 +31,15 @@ const SET_FILTERS = 'SET_FILTERS';
 const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
 const START_LOADING = 'START_LOADING';
 const STOP_LOADING = 'STOP_LOADING';
+const SET_LOADING_SKELETON = 'SET_LOADING_SKELETON';
 
 export const productsReducer = (state = defaultState, action) => {
 	switch (action.type) {
+		case SET_LOADING_SKELETON:
+			return {
+				...state,
+				loadingSkeleton: action.payload,
+			};
 		case START_LOADING:
 			return {
 				...state,
@@ -139,6 +146,11 @@ export const productsReducer = (state = defaultState, action) => {
 			return state;
 	}
 };
+
+export const setLoadingSkeleton = isLoading => ({
+	type: SET_LOADING_SKELETON,
+	payload: isLoading,
+});
 
 export const startLoadingAction = () => ({
 	type: START_LOADING,

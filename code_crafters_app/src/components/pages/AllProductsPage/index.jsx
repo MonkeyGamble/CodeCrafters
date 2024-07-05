@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import s from './AllProductsPage.module.css';
@@ -11,6 +11,7 @@ import {
 	filterProductsAction,
 } from '../../../redux/reducers/productsReducer.jsx';
 import BreadCrumbs from '../../UI/BreadCrumbs/index.jsx';
+import ProductSkeleton from '../../Widgets/ProductSkeleton/productSkeleton.jsx';
 
 export default function AllProductsPage() {
 	const dispatch = useDispatch();
@@ -26,9 +27,28 @@ export default function AllProductsPage() {
 		sortOrder: 'default',
 	});
 
+	const [loading, setLoading] = useState(true);
+	const [showSkeleton, setShowSkeleton] = useState(true);
+
 	useEffect(() => {
-		dispatch(getAllProducts());
+		const fetchData = async () => {
+			await dispatch(getAllProducts());
+			setTimeout(() => {
+				setLoading(false);
+			}, 1000);
+		};
+
+		fetchData();
 	}, [dispatch]);
+
+	useEffect(() => {
+		// После 3 секунд скрываем скелетоны
+		if (!loading) {
+			setTimeout(() => {
+				setShowSkeleton(false);
+			}, 1000);
+		}
+	}, [loading]);
 
 	useEffect(() => {
 		dispatch(setFiltersAction(localFilters));
@@ -51,9 +71,13 @@ export default function AllProductsPage() {
 			/>
 
 			<div className={s.cards_container}>
-				{filteredProducts.map(product => (
-					<ProductCard key={product.id} product={product} />
-				))}
+				{showSkeleton
+					? Array.from({ length: 12 }).map((_, index) => (
+							<ProductSkeleton key={index} />
+					  ))
+					: filteredProducts.map(product => (
+							<ProductCard key={product.id} product={product} />
+					  ))}
 			</div>
 		</div>
 	);

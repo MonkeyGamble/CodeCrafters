@@ -10,12 +10,16 @@ import {
 	filterProductsAction,
 } from '../../../redux/reducers/productsReducer';
 import { filterProducts } from '../../UI/Filter/filterUtils';
+import ProductSkeleton from '../../Widgets/ProductSkeleton/productSkeleton';
+import { setLoadingSkeleton } from '../../../redux/reducers/productsReducer';
+import BreadCrumbs from '../../UI/BreadCrumbs';
 
 export default function FavoriteProductsPage() {
 	const dispatch = useDispatch();
 	const favoriteProducts = useSelector(
 		state => state.products.favoriteProducts
 	);
+
 	const filters = useSelector(state => state.products.filters);
 	const [localFilters, handleFilterChange] = useFilters({
 		minPrice: '',
@@ -24,6 +28,7 @@ export default function FavoriteProductsPage() {
 		sortOrder: 'default',
 	});
 	const [filteredFavoriteProducts, setFilteredFavoriteProducts] = useState([]);
+	const [showSkeleton, setShowSkeleton] = useState(true); // Состояние для отображения скелетона
 
 	useEffect(() => {
 		dispatch(setFiltersAction(localFilters));
@@ -33,9 +38,27 @@ export default function FavoriteProductsPage() {
 		setFilteredFavoriteProducts(filterProducts(favoriteProducts, filters));
 	}, [favoriteProducts, filters]);
 
+	useEffect(() => {
+		// Устанавливаем showSkeleton в false через 1 секунду
+		const timer = setTimeout(() => {
+			setShowSkeleton(false);
+		}, 1000);
+
+		return () => clearTimeout(timer); // Очищаем таймер при размонтировании компонента
+	}, []);
+
+	useEffect(() => {
+		// Имитация загрузки данных
+		setTimeout(() => {
+			dispatch(setLoadingSkeleton(false)); // Устанавливаем состояние загрузки в false
+		}, 1000);
+	}, [dispatch]);
+
 	return (
 		<div className={`${s.favorite_wrapper} content_line`}>
-			<div className={s.nav_buttons}>
+			<BreadCrumbs sectionName='Favorite products' />
+
+			{/* <div className={s.nav_buttons}>
 				<Link to='/'>
 					<button className={s.first_button}>Main page</button>
 				</Link>
@@ -43,11 +66,19 @@ export default function FavoriteProductsPage() {
 				<Link to='/favorite_products'>
 					<button className={s.second_button}>Favorite products</button>
 				</Link>
-			</div>
+			</div> */}
 
 			<h1>Liked products</h1>
 
-			{favoriteProducts.length === 0 ? (
+			{showSkeleton ? (
+				// Если showSkeleton равен true, показываем скелетоны
+				<div className={s.productsList}>
+					{Array.from({ length: 8 }).map((_, index) => (
+						<ProductSkeleton key={index} />
+					))}
+				</div>
+			) : favoriteProducts.length === 0 ? (
+				// Если данных нет, показываем сообщение
 				<div className={s.empty_cart}>
 					<p>
 						Looks like you have no items in your favorite products currently.
@@ -57,6 +88,7 @@ export default function FavoriteProductsPage() {
 					</Link>
 				</div>
 			) : (
+				// Иначе отображаем отфильтрованные избранные продукты
 				<>
 					<Filter
 						filters={localFilters}

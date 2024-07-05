@@ -1,14 +1,24 @@
+.products_list {
+	display: flex;
+	gap: 32px;
+}
+
 .sale_container {
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
 	margin-top: 108px;
 }
+.products_list .component_header {
+	display: flex;
+	align-items: center;
+}
 
 .component_header {
 	display: flex;
 	align-items: center;
 }
+
 .component_header button {
 	width: 97px;
 	height: 36px;

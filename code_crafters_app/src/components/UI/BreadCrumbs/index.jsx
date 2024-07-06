@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductById } from '../../../redux/actions/products';
 import { getAllCategories } from '../../../redux/actions/categories';
-import s from './BreadCrumbs.module.css';
+import s from './breadCrumbs.module.css';
 
 export default function BreadCrumbs({ product, sectionName, categoryName }) {
 	const dispatch = useDispatch();

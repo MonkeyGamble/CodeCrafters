@@ -18,15 +18,14 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 	const [currentProductLocal, setCurrentProductLocal] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [isAdded, setIsAdded] = useState(false);
-	const [favorites, setFavorites] = useState([]); // Добавлено состояние для избранного
+	const [favorites, setFavorites] = useState([]);
 	const { getRandomProduct } = useModalWindow();
 	const products = useSelector(state => state.products.allProducts);
 	const product = useSelector(state => state.products.currentProduct);
 	const isFavorite = useSelector(state =>
-		state.products.favoriteProducts.some(
-			favProduct => favProduct.id === product.id
-		)
+		product ? state.products.favoriteProducts.some(favProduct => favProduct.id === product.id) : false
 	);
+
 	useEffect(() => {
 		dispatch(getAllProducts());
 	}, [dispatch]);
@@ -43,7 +42,7 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 
 	useEffect(() => {
 		if (!isOpen) {
-			setIsAdded(false); // Сброс состояния кнопки при закрытии модального окна
+			setIsAdded(false);
 		}
 	}, [isOpen]);
 
@@ -57,7 +56,7 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 		if (price === '') return '';
 
 		const originalPrice = parseFloat(price);
-		const discountedPrice = (originalPrice * 0.5).toFixed(2); // 50% скидка
+		const discountedPrice = (originalPrice * 0.5).toFixed(2);
 
 		return discountedPrice;
 	};
@@ -72,10 +71,10 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 		const productToAdd = {
 			...displayedProduct,
 			count: 1,
-			discont_price: discountPrice, // Устанавливаем скидочную цену
+			discount_price: discountPrice,
 		};
 		dispatch(addProductToBasketAction(productToAdd));
-		setIsAdded(true); // Обновляем состояние после добавления товара
+		setIsAdded(true);
 		console.log('Added product to basket:', productToAdd);
 	};
 
@@ -83,9 +82,8 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 		setFavorites([...favorites, displayedProduct]);
 		console.log('Added product to favorites:', displayedProduct);
 	};
+
 	const handleFavoriteClick = e => {
-		// e.preventDefault();
-		// e.stopPropagation();
 		const updatedProduct = { ...product, isFavorite: !isFavorite };
 		if (isFavorite) {
 			dispatch(removeProductFavoriteAction(product.id));
@@ -93,6 +91,7 @@ const DailyDealModal = ({ isOpen, onRequestClose, type }) => {
 			dispatch(addProductFavoriteAction(updatedProduct));
 		}
 	};
+
 	const handleModalClick = e => {
 		if (e.target.className === 'modal') {
 			onRequestClose();

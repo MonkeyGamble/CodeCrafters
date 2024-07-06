@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { postData } from '../../../redux/actions/postRequests';
+import { postData } from '../../redux/actions/postRequests';
 
 const OrderForm = () => {
 	const [firstName, setFirstName] = useState('');

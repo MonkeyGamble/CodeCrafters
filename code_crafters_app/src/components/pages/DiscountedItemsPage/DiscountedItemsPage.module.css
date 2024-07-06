@@ -43,6 +43,19 @@ h1 {
 	display: none;
 }
 
+.skeleton_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.skeleton {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(316px, 1fr));
+
+	gap: 32px;
+}
+
 /* .filter {
 	display: flex;
 	gap: 40px;

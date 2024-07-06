@@ -1,5 +1,5 @@
 import s from './DiscountUserForm.module.css';
-import SubmitForm from '../../../SubmitForm/index';
+import SubmitForm from '../../../UI/SubmitForm/index';
 
 export default function DiscountUserForm() {
 	return (

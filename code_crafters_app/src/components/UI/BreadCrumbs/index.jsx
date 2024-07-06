@@ -1,9 +1,9 @@
+import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import s from './breadCrumbs.module.css';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductById } from '../../../asyncActions/products';
-import { getAllCategories } from '../../../asyncActions/categories';
+import { getProductById } from '../../../redux/actions/products';
+import { getAllCategories } from '../../../redux/actions/categories';
+import s from './breadCrumbs.module.css';
 
 export default function BreadCrumbs({ product, sectionName, categoryName }) {
 	const dispatch = useDispatch();
@@ -11,9 +11,15 @@ export default function BreadCrumbs({ product, sectionName, categoryName }) {
 	const { id } = useParams();
 
 	useEffect(() => {
-		dispatch(getProductById(id));
+		if (id) {
+			dispatch(getProductById(id));
+		}
 		dispatch(getAllCategories());
 	}, [dispatch, id]);
+
+	const category = categories.find(
+		category => category.id === product?.categoryId
+	);
 
 	return (
 		<div className={s.nav_buttons}>
@@ -22,18 +28,34 @@ export default function BreadCrumbs({ product, sectionName, categoryName }) {
 			</Link>
 			<div className={s.nav_line}></div>
 			<Link to='/all_categories'>
-				<button className={s.section_button}>{sectionName}</button>
+				<button
+					className={`${s.section_button} ${
+						!categoryName ? s.text_black : s.text_grey
+					}`}
+				>
+					{sectionName}
+				</button>
 			</Link>
-			<div className={s.nav_line}></div>
-			<Link
-				to={`/categories/${
-					categories.find(category => category.id === product.categoryId)?.id
-				}`}
-			>
-				<button className={s.category_name_button}>{categoryName}</button>
-			</Link>
-			<div className={s.nav_line}></div>
-			<button className={s.product_name_button}>{product.title}</button>
+			{categoryName && (
+				<>
+					<div className={s.nav_line}></div>
+					<Link to={`/categories/${category?.id}`}>
+						<button
+							className={`${s.category_name_button} ${
+								!product ? s.text_black : s.text_grey
+							}`}
+						>
+							{categoryName}
+						</button>
+					</Link>
+					{product && (
+						<>
+							<div className={s.nav_line}></div>
+							<button className={s.product_name_button}>{product.title}</button>
+						</>
+					)}
+				</>
+			)}
 		</div>
 	);
 }

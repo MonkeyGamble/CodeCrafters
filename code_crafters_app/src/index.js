@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './Global.css';
-import lightColors from './lightColors';
-import darkColors from './darkColors';
+import './styles/Global.css';
+import lightColors from './styles/lightColors';
+import darkColors from './styles/darkColors';
 import { Provider } from 'react-redux';
-import { store, persistor } from './store/index'; 
+import { store, persistor } from './redux/store/index';
 import { PersistGate } from 'redux-persist/integration/react';
 
-export const ROOT_URL = 'http://localhost:3333/';
 
-// export const ROOT_URL = 'https://telran-backend.onrender.com/';
+// export const ROOT_URL = 'http://localhost:3333/';
+
+export const ROOT_URL = 'https://telran-backend.onrender.com/';
+
 
 const setCSSVariables = colors => {
 	const root = document.documentElement;

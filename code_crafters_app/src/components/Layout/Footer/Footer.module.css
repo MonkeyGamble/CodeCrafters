@@ -1,0 +1,72 @@
+footer {
+	margin-top: 80px;
+	padding-bottom: 80px;
+	background-color: var(--white);
+}
+
+.footerContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+
+.footerContainer h1 {
+	font-size: 64px;
+	color: var(--text_black);
+	margin-bottom: 8px;
+}
+
+.contactInfo {
+	display: grid;
+	grid-template-columns: repeat(2, 1 fr);
+	/* flex-wrap: wrap; */
+	gap: 32px;
+	margin-bottom: 32px;
+	width: 100%; /* Заполнение всей ширины контейнера */
+}
+
+.infoBox {
+	flex: 1 1 calc(50% - 20px);
+	background-color: var(--light_grey);
+	border-radius: 12px;
+	padding: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.infoBox .label {
+	font-size: 20px;
+	font-weight: 500;
+	color: var(--text_grey);
+}
+
+.infoBox .content {
+	font-size: 40px;
+	font-weight: 600;
+	color: var(--text_black); /* Черный цвет для содержимого */
+	line-height: 1.1;
+}
+
+.socialLinks {
+	display: flex;
+	gap: 16px;
+}
+
+.social_netz {
+	font-size: 43px;
+	color: var(--black);
+
+	text-decoration: none;
+}
+
+.social_netz:hover {
+	color: #555;
+}
+
+.map {
+	height: 350px;
+	width: 100%;
+	border-radius: 12px;
+	width: 100%;
+}

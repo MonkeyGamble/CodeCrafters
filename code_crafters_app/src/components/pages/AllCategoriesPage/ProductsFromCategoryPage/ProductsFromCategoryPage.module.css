@@ -1,8 +1,21 @@
 .products_wrapper {
-	margin-top: 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
 }
 
-/* НАВИГАЦИОННЫЕ КНОПКИ */
+.cards_container {
+	display: grid;
+	justify-content: space-around;
+	grid-template-columns: repeat(auto-fill, minmax(316px, 1fr));
+	gap: 32px;
+}
+
+.cards_container a {
+	text-decoration: none;
+}
+
+/* НАВИГАЦИОННЫЕ КНОПКИ
 
 .nav_buttons {
 	display: flex;
@@ -32,19 +45,9 @@
 	width: 16px;
 	height: 1px;
 	background-color: var(--grey_divider);
-}
+} */
 
-.cards_container {
-	display: grid;
-	justify-content: space-around;
-	grid-template-columns: repeat(auto-fill, minmax(316px, 1fr));
-	gap: 32px;
-}
-
-.cards_container a {
-	text-decoration: none;
-}
-.card {
+/* .card {
 	width: 316px;
 	height: 422px;
 	background-color: var(--text_white);
@@ -54,9 +57,9 @@
 	border-radius: 12px;
 	cursor: pointer;
 	position: relative;
-}
+} */
 
-.product_picture {
+/* .product_picture {
 	display: flex;
 	align-items: first flex-start;
 	padding: 16px 16px 0 17px;
@@ -69,25 +72,16 @@
 	border-bottom: 1px solid var(--grey_divider);
 	background-position: center;
 	background-size: cover;
-}
+} */
 
-.product_description {
+/* .product_description {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
 	padding: 20px 32px 32px 32px;
-}
+} */
 
-.product_description h3 {
-	font-size: 20px;
-	font-weight: 500;
-	overflow: hidden;
-	color: var(--text_black);
-	white-space: nowrap; /* Запрещаем перенос строки */
-	text-overflow: ellipsis; /* Добавляем троеточие */
-}
-
-.discount_size {
+/* .discount_size {
 	width: 68px;
 	height: 34px;
 	border-radius: 6px;
@@ -99,24 +93,24 @@
 	font-size: 20px;
 	font-weight: 600;
 	letter-spacing: 3%;
-}
+} */
 
-.like_cart {
+/* .like_cart {
 	display: flex;
 	flex-direction: column;
 	margin-left: auto;
 	gap: 10px;
 	z-index: 999;
 	cursor: pointer;
-}
+} */
 
-.price {
+/* .price {
 	display: flex;
 	align-items: last baseline;
 	gap: 16px;
-}
+} */
 
-.price h2 {
+/* .price h2 {
 	font-size: 40px;
 	font-weight: 600;
 
@@ -129,7 +123,7 @@
 
 	color: var(--grey);
 	text-decoration: line-through;
-}
+} */
 .button_340 {
 	display: none;
 }

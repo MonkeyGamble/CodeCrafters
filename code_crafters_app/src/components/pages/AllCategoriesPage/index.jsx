@@ -1,20 +1,13 @@
-import Categories from '../../Categories/index';
+import Categories from '../../Common/Categories/index';
+import BreadCrumbs from '../../UI/BreadCrumbs';
 import s from './AllCategoriesPage.module.css';
-import { NavLink } from 'react-router-dom';
+import '../../../styles/Global.css';
 
 export default function AllCategoriesPage() {
-
-	return <div className={`${s.sale_container} ${s.content_line}`}>
-		<div className={s.nav_buttons}>
-            <NavLink to="/">
-			<button className={s.mainPageButton}>Main page</button>
-            </NavLink>
-			<div className={s.line}></div>
-
-			<button className={s.categoriesPageButton}>Categories</button>
+	return (
+		<div className={`${s.sale_container} content_line`}>
+			<BreadCrumbs sectionName={'Categories'} />
+			<Categories limit={1000} style={s} />
 		</div>
-		            <Categories limit={10} style={s} />
-
-	</div>;
-
+	);
 }

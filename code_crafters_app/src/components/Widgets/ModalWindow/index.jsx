@@ -22,7 +22,6 @@ const DailyDealModal = ({ isOpen, onRequestClose, type, picture }) => {
 	const handleFavoriteClick = useHandleFavoriteClick(product);
 	const handleBasketClick = useHandleBasketClick(product);
 
-
 	useEffect(() => {
 		dispatch(getAllProducts());
 	}, [dispatch]);
@@ -40,8 +39,6 @@ const DailyDealModal = ({ isOpen, onRequestClose, type, picture }) => {
 	useEffect(() => {
 		if (!isOpen) {
 			setIsAdded(false);
-
-
 		}
 	}, [isOpen]);
 
@@ -50,7 +47,6 @@ const DailyDealModal = ({ isOpen, onRequestClose, type, picture }) => {
 		const productPictureElem = document.querySelector(`.${s.productPicture}`);
 		if (productPictureElem) {
 			console.log('Product Picture class list:', productPictureElem.classList);
-
 		}
 	}, [isOpen]);
 
@@ -89,7 +85,6 @@ const DailyDealModal = ({ isOpen, onRequestClose, type, picture }) => {
 		setIsAdded(true);
 		console.log('Added product to basket:', productToAdd);
 	};
-
 
 	const handleModalClick = e => {
 		if (e.currentTarget.className === 'modal') {
@@ -139,6 +134,7 @@ const DailyDealModal = ({ isOpen, onRequestClose, type, picture }) => {
 				</div>
 			) : type === 'ordered_successfully' ? (
 				<div className={s.modalContent}>
+					<RxCross2 className={s.close} onClick={onRequestClose} />
 					<div className={s.congratulations}>
 						<h2>Congratulations! </h2>
 						<p>Your order has been successfully placed on the website.</p>

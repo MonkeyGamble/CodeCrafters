@@ -14,10 +14,7 @@ import {
 import SubmitForm from '../../UI/SubmitForm/index.jsx';
 import { clearBasketAction } from '../../../redux/reducers/basketReducer.jsx';
 import DailyDealModal from '../../Widgets/ModalWindow/index.jsx';
-import { sendOrderRequest, sendSaleRequest } from '../../../asyncActions/postRequests.jsx'; 
-import ProductSkeleton from '../../Widgets/ProductSkeleton/productSkeleton.jsx';
-import { setLoadingSkeleton } from '../../../redux/reducers/productsReducer.jsx';
-
+import { sendOrderRequest } from '../../../redux/actions/postRequests.jsx';
 
 export default function ShoppingCartPage() {
 	const dispatch = useDispatch();
@@ -43,53 +40,30 @@ export default function ShoppingCartPage() {
 		0
 	);
 
-
-
-
-	const handleOrderSuccess = async () => {
-		
-		const orderData = {
-			name: 'Customer Name', 
-			phoneNumber: 'Customer Phone', 
-			email: 'Customer Email', 
-			products: basketItems.map(item => ({
-				id: item.id,
-				count: item.count,
-				price: item.price,
-				discont_price: item.discont_price
-			})),
-			totalPrice: basketPrice,
-		};
-
-		
-		const result = await sendOrderRequest(orderData);
-		console.log(result);
-
-		
+	const handleOrderSuccess = () => {
 		dispatch(clearBasketAction());
 		setShowModal(true);
 	};
 
-	const handleSaleRequest = async () => {
-		// Отправляем запрос на купон
-		const saleData = {
-			name: 'Customer Name', 
-			email: 'Customer Email', 
+	const handleOrderSubmit = async data => {
+		const orderData = {
+			name: data.name,
+			phoneNumber: data.phoneNumber,
+			email: data.email,
+			products: basketItems.map(item => ({
+				id: item.id,
+				count: item.count,
+				price: item.price,
+				discont_price: item.discont_price,
+			})),
+			totalPrice: basketPrice,
 		};
 
-		const result = await sendSaleRequest(saleData);
-		console.log(result);
+		const response = await sendOrderRequest(orderData);
+		return response;
 	};
 
-	
-					
-						
-							
-				
-				
-
-
-return (
+	return (
 		<div className={`${s.shopping_cart_wrapper} content_line`}>
 			<div className={s.component_header}>
 				<h1>Shopping cart</h1>
@@ -164,12 +138,8 @@ return (
 							button='Order'
 							onSuccess='Ordered successfully'
 							onSuccessAction={handleOrderSuccess} // Передача функции для обработки успешного заказа
+							submitFunction={handleOrderSubmit} // Передача функции для отправки данных заказа
 						/>
-            
-            
-						<button onClick={handleSaleRequest}>Get Coupon</button> {/* Кнопка для отправки заявки на купон */}
-            
-            
 					</div>
 				</div>
 			)}
@@ -184,4 +154,3 @@ return (
 		</div>
 	);
 }
-*/

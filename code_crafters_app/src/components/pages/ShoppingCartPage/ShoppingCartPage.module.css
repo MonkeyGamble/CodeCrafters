@@ -191,6 +191,16 @@ h1 {
 	/* font-family: 'Montserrat', sans-serif; */
 }
 
+.inputContainer {
+	position: relative;
+}
+
+.label {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
 .input,
 .submitButton {
 	width: 484px;
@@ -210,6 +220,7 @@ h1 {
 
 .input {
 	color: var(--text_black);
+	position: relative;
 }
 .input::placeholder {
 	color: var(--text_grey);
@@ -227,6 +238,14 @@ h1 {
 	width: 53%;
 	margin: 5px auto;
 	min-height: 20px;
+
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: var(--white);
+	padding: 0 5px;
+	z-index: 1;
 }
 
 .successMessage {

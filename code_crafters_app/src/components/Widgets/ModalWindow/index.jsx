@@ -15,11 +15,13 @@ const DailyDealModal = ({ isOpen, onRequestClose, type, picture }) => {
 	const [currentProductLocal, setCurrentProductLocal] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [isAdded, setIsAdded] = useState(false);
+
 	const { getRandomProduct } = useModalWindow();
 	const products = useSelector(state => state.products.allProducts);
 	const product = useSelector(state => state.products.currentProduct);
 	const handleFavoriteClick = useHandleFavoriteClick(product);
 	const handleBasketClick = useHandleBasketClick(product);
+
 
 	useEffect(() => {
 		dispatch(getAllProducts());
@@ -38,6 +40,8 @@ const DailyDealModal = ({ isOpen, onRequestClose, type, picture }) => {
 	useEffect(() => {
 		if (!isOpen) {
 			setIsAdded(false);
+
+
 		}
 	}, [isOpen]);
 
@@ -46,6 +50,7 @@ const DailyDealModal = ({ isOpen, onRequestClose, type, picture }) => {
 		const productPictureElem = document.querySelector(`.${s.productPicture}`);
 		if (productPictureElem) {
 			console.log('Product Picture class list:', productPictureElem.classList);
+
 		}
 	}, [isOpen]);
 
@@ -76,12 +81,15 @@ const DailyDealModal = ({ isOpen, onRequestClose, type, picture }) => {
 		const productToAdd = {
 			...displayedProduct,
 			count: 1,
+
 			discont_price: discountPrice,
 		};
 		handleBasketClick(e);
+
 		setIsAdded(true);
 		console.log('Added product to basket:', productToAdd);
 	};
+
 
 	const handleModalClick = e => {
 		if (e.currentTarget.className === 'modal') {

@@ -14,8 +14,10 @@ import {
 import SubmitForm from '../../UI/SubmitForm/index.jsx';
 import { clearBasketAction } from '../../../redux/reducers/basketReducer.jsx';
 import DailyDealModal from '../../Widgets/ModalWindow/index.jsx';
+import { sendOrderRequest, sendSaleRequest } from '../../../asyncActions/postRequests.jsx'; 
 import ProductSkeleton from '../../Widgets/ProductSkeleton/productSkeleton.jsx';
 import { setLoadingSkeleton } from '../../../redux/reducers/productsReducer.jsx';
+
 
 export default function ShoppingCartPage() {
 	const dispatch = useDispatch();
@@ -41,13 +43,53 @@ export default function ShoppingCartPage() {
 		0
 	);
 
-	const handleOrderSuccess = () => {
-		// Очистка корзины после успешного заказа
+
+
+
+	const handleOrderSuccess = async () => {
+		
+		const orderData = {
+			name: 'Customer Name', 
+			phoneNumber: 'Customer Phone', 
+			email: 'Customer Email', 
+			products: basketItems.map(item => ({
+				id: item.id,
+				count: item.count,
+				price: item.price,
+				discont_price: item.discont_price
+			})),
+			totalPrice: basketPrice,
+		};
+
+		
+		const result = await sendOrderRequest(orderData);
+		console.log(result);
+
+		
 		dispatch(clearBasketAction());
 		setShowModal(true);
 	};
 
-	return (
+	const handleSaleRequest = async () => {
+		// Отправляем запрос на купон
+		const saleData = {
+			name: 'Customer Name', 
+			email: 'Customer Email', 
+		};
+
+		const result = await sendSaleRequest(saleData);
+		console.log(result);
+	};
+
+	
+					
+						
+							
+				
+				
+
+
+return (
 		<div className={`${s.shopping_cart_wrapper} content_line`}>
 			<div className={s.component_header}>
 				<h1>Shopping cart</h1>
@@ -123,6 +165,11 @@ export default function ShoppingCartPage() {
 							onSuccess='Ordered successfully'
 							onSuccessAction={handleOrderSuccess} // Передача функции для обработки успешного заказа
 						/>
+            
+            
+						<button onClick={handleSaleRequest}>Get Coupon</button> {/* Кнопка для отправки заявки на купон */}
+            
+            
 					</div>
 				</div>
 			)}
@@ -137,3 +184,4 @@ export default function ShoppingCartPage() {
 		</div>
 	);
 }
+*/

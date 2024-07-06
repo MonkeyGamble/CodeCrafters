@@ -8,9 +8,11 @@ import { Provider } from 'react-redux';
 import { store, persistor } from './redux/store/index';
 import { PersistGate } from 'redux-persist/integration/react';
 
+
 // export const ROOT_URL = 'http://localhost:3333/';
 
 export const ROOT_URL = 'https://telran-backend.onrender.com/';
+
 
 const setCSSVariables = colors => {
 	const root = document.documentElement;

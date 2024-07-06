@@ -5,10 +5,7 @@ import s from './FavoriteProductsPage.module.css';
 import { Link } from 'react-router-dom';
 import Filter from '../../UI/Filter';
 import { useFilters } from '../../UI/Filter/useFilters';
-import {
-	setFiltersAction,
-	filterProductsAction,
-} from '../../../redux/reducers/productsReducer';
+import { setFiltersAction } from '../../../redux/reducers/productsReducer';
 import { filterProducts } from '../../UI/Filter/filterUtils';
 import ProductSkeleton from '../../Widgets/ProductSkeleton/productSkeleton';
 import { setLoadingSkeleton } from '../../../redux/reducers/productsReducer';

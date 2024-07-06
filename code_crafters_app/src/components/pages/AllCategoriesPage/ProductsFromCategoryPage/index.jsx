@@ -6,12 +6,8 @@ import {
 	addProductFavoriteAction,
 	removeProductFavoriteAction,
 	setFiltersAction,
-	filterProductsAction,
 } from '../../../../redux/reducers/productsReducer';
-import {
-	getAllProducts,
-	getProductsByCategoryId,
-} from '../../../../redux/actions/products';
+import { getProductsByCategoryId } from '../../../../redux/actions/products';
 import '../../../../styles/Global.css';
 import BreadCrumbs from '../../../UI/BreadCrumbs';
 import ProductCard from '../../../UI/ProductCard';

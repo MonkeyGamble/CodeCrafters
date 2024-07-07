@@ -11,15 +11,30 @@ import {
 import { ROOT_URL } from '../../index';
 
 export function getAllProducts() {
-	return function (dispatch) {
-		fetch(ROOT_URL + 'products/all')
-			.then(res => res.json())
-			.then(products => {
-				dispatch(getAllProductsAction(products));
-			})
-			.catch(error => console.error('Error fetching products:', error));
+	return async function (dispatch) {
+		try {
+			const response = await fetch(`${ROOT_URL}products/all`);
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			const products = await response.json();
+			dispatch(getAllProductsAction(products));
+		} catch (error) {
+			console.error('Error fetching products:', error);
+		}
 	};
 }
+
+// export function getAllProducts() {
+// 	return function (dispatch) {
+// 		fetch(ROOT_URL + 'products/all')
+// 			.then(res => res.json())
+// 			.then(products => {
+// 				dispatch(getAllProductsAction(products));
+// 			})
+// 			.catch(error => console.error('Error fetching products:', error));
+// 	};
+// }
 
 export function getProductById(id) {
 	return async function (dispatch) {

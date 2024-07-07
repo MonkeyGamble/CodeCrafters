@@ -1,0 +1,103 @@
+  .card {
+	width: 316px;
+	height: 422px;
+	background-color: var(--white);
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--grey_divider);
+	border-radius: 12px;
+	cursor: pointer;
+}
+
+.product_picture {
+	width: 314px;
+	height: 284px;
+	display: flex;
+	/* justify-content: space-between; */
+	position: relative;
+	padding: 16px 16px 0 17px;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+
+	border-bottom: 1px solid var(--grey_divider);
+	background-size: cover;
+	background-position: center;
+}
+
+.product_description {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 20px 32px 32px 32px;
+}
+
+.product_description h3 {
+	font-size: 20px;
+	font-weight: 500;
+	color: var(--text_black);
+	overflow: hidden;
+	white-space: nowrap; /* Запрещаем перенос строки */
+	text-overflow: ellipsis; /* Добавляем троеточие */
+}
+
+.discount_size {
+	position: absolute;
+	left: 16px;
+	top: 16px;
+	width: 68px;
+	height: 34px;
+	border-radius: 6px;
+
+	background-color: var(--sale);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--text_white);
+
+	font-size: 20px;
+	font-weight: 600;
+	letter-spacing: 3%;
+}
+
+.like_cart {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.like_cart img {
+	cursor: pointer;
+}
+
+.like_active {
+	filter: brightness(0) saturate(100%) invert(65%) sepia(9%) saturate(2673%)
+		hue-rotate(28deg) brightness(90%) contrast(88%);
+}
+.price {
+	display: flex;
+	align-items: last baseline;
+	gap: 16px;
+}
+
+.price h2 {
+	color: var(--text_black);
+	font-size: 40px;
+	font-weight: 600;
+}
+
+.price h5 {
+	color: var(--text_grey);
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.price h4 {
+	color: var(--text_black);
+	font-size: 40px;
+	font-weight: 600;
+}

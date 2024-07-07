@@ -3,7 +3,9 @@ import { useBasketActions } from '../redux/actions/basket';
 
 const useHandleBasketClick = product => {
 	const inBasket = useSelector(state =>
-		state.basket.basket.items.some(baskProduct => baskProduct.id === product.id)
+		state.basket.basket.items.some(
+			baskProduct => baskProduct.id === product?.id
+		)
 	);
 	const { addProductToBasket, removeProductFromBasket } = useBasketActions();
 

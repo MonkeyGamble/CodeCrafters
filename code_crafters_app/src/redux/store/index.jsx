@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
 	key: 'root',
 	storage,
-	// whitelist: ['basket', 'favoriteProducts'],
+	whitelist: ['basket'],
 };
 
 // Создание persisted редьюсера

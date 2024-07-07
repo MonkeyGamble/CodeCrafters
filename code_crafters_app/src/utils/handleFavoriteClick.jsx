@@ -6,16 +6,22 @@ import {
 
 const useHandleFavoriteClick = product => {
 	const dispatch = useDispatch();
-	const isFavorite = useSelector(state =>
-		state.products.favoriteProducts.some(
+	const isFavorite = useSelector(state => {
+		if (!product || !product.id) {
+			return false;
+		}
+		return state.products.favoriteProducts.some(
 			favProduct => favProduct.id === product.id
-		)
-	);
+		);
+	});
 
 	const handleFavoriteClick = e => {
 		e.preventDefault();
 		e.stopPropagation();
-		// const updatedProduct = { ...product, isFavorite: !isFavorite };
+		if (!product || !product.id) {
+			console.error('Product is null or undefined or does not have an id');
+			return;
+		}
 		if (isFavorite) {
 			dispatch(removeProductFavoriteAction(product.id));
 		} else {

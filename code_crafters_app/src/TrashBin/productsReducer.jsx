@@ -5,9 +5,8 @@ const defaultState = {
 	productsFromCategory: {},
 	discountProducts: [],
 	product: { count: 1 },
-	favoriteProducts: JSON.parse(localStorage.getItem('favoriteProducts')) || [], // Загрузка из localStorage
-	favoriteProductsCount:
-		JSON.parse(localStorage.getItem('favoriteProductsCount')) || 0, // Загрузка из localStorage
+	favoriteProducts: [],
+	favoriteProductsCount: 0, // Добавлено поле кол-ва продуктов в Избранных
 	currentProduct: null,
 	filteredProducts: [],
 	filters: {
@@ -16,7 +15,7 @@ const defaultState = {
 		isDiscounted: false,
 		sortOrder: 'default',
 	},
-	loading: false, // Состояние загрузки страницы
+	loading: false, // Добавлено состояние загрузки страницы
 	loadingSkeleton: true, // Начальное состояние скелетона
 };
 
@@ -33,14 +32,6 @@ const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
 const START_LOADING = 'START_LOADING';
 const STOP_LOADING = 'STOP_LOADING';
 const SET_LOADING_SKELETON = 'SET_LOADING_SKELETON';
-
-const updateLocalStorage = (favoriteProducts, favoriteProductsCount) => {
-	localStorage.setItem('favoriteProducts', JSON.stringify(favoriteProducts));
-	localStorage.setItem(
-		'favoriteProductsCount',
-		JSON.stringify(favoriteProductsCount)
-	);
-};
 
 export const productsReducer = (state = defaultState, action) => {
 	switch (action.type) {
@@ -79,19 +70,10 @@ export const productsReducer = (state = defaultState, action) => {
 				return state; // Товар уже есть в избранных, ничего не меняем
 			}
 			console.log('Adding to favorites:', productToAdd);
-			const updatedFavoriteProductsAdd = [
-				...state.favoriteProducts,
-				productToAdd,
-			];
-			const updatedFavoriteProductsCountAdd = state.favoriteProductsCount + 1;
-			updateLocalStorage(
-				updatedFavoriteProductsAdd,
-				updatedFavoriteProductsCountAdd
-			);
 			return {
 				...state,
-				favoriteProducts: updatedFavoriteProductsAdd,
-				favoriteProductsCount: updatedFavoriteProductsCountAdd, // Увеличение счётчика
+				favoriteProducts: [...state.favoriteProducts, productToAdd],
+				favoriteProductsCount: state.favoriteProductsCount + 1, // Увеличение счётчика
 				allProducts: state.allProducts.map(product =>
 					product.id === action.payload.id
 						? { ...product, isFavorite: true }
@@ -104,12 +86,10 @@ export const productsReducer = (state = defaultState, action) => {
 			const updatedFavoriteProducts = state.favoriteProducts.filter(
 				product => product.id !== action.payload.id
 			);
-			const updatedFavoriteProductsCount = state.favoriteProductsCount - 1;
-			updateLocalStorage(updatedFavoriteProducts, updatedFavoriteProductsCount);
 			return {
 				...state,
 				favoriteProducts: updatedFavoriteProducts,
-				favoriteProductsCount: updatedFavoriteProductsCount, // Уменьшение счётчика
+				favoriteProductsCount: state.favoriteProductsCount - 1, // Уменьшение счётчика
 			};
 
 		case GET_PRODUCT_BY_ID:

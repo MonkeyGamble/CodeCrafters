@@ -10,6 +10,7 @@ const defaultState = {
 	currentProduct: null,
 	filteredProducts: [],
 	filters: {
+
 		minPrice: '',
 		maxPrice: '',
 		isDiscounted: false,
@@ -18,7 +19,11 @@ const defaultState = {
 	loading: false, // Добавлено состояние загрузки страницы
 	loadingSkeleton: true, // Начальное состояние скелетона
 };
+  
+  
 
+
+	
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 const GET_PRODUCTS_BY_CATEGORY_ID = 'GET_PRODUCTS_BY_CATEGORY_ID';
@@ -27,10 +32,16 @@ const DECR_PRODUCT_COUNT = 'DECR_PRODUCT_COUNT';
 const ADD_PRODUCT_FAVORITE = 'ADD_PRODUCT_FAVORITE';
 const REMOVE_PRODUCT_FAVORITE = 'REMOVE_PRODUCT_FAVORITE';
 const SET_CURRENT_PRODUCT = 'SET_CURRENT_PRODUCT';
+
 const SET_FILTERS = 'SET_FILTERS';
 const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
 const START_LOADING = 'START_LOADING';
 const STOP_LOADING = 'STOP_LOADING';
+
+
+
+
+
 const SET_LOADING_SKELETON = 'SET_LOADING_SKELETON';
 
 export const productsReducer = (state = defaultState, action) => {

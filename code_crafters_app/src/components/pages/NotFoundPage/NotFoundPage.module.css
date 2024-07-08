@@ -39,15 +39,16 @@
 
 .content a {
 	width: 210px;
-	height: 60px;
+	/* height: 60px; */
 	background-color: var(--green);
 	border-radius: 6px;
-	padding: 16px 56px;
+	padding: 16px 26px;
 	font-size: 20px;
 	font-weight: 600;
 	color: var(--text_white);
 	text-decoration: none;
 	margin-top: 16px;
+	text-align: center;
 }
 @media (max-width: 1000px) {
 	.not_found_wrapper {
@@ -66,8 +67,10 @@
 	}
 	.content a {
 		width: 180px;
-		height: 50px;
+		/* height: 50px; */
 		font-size: 18px;
+		text-wrap: nowrap;
+		text-align: center;
 	}
 }
 
@@ -88,7 +91,7 @@
 	}
 	.content a {
 		width: 160px;
-		height: 44px;
+		/* height: 44px; */
 		font-size: 16px;
 	}
 }
@@ -110,7 +113,7 @@
 	}
 	.content a {
 		width: 140px;
-		height: 40px;
+		/* height: 40px; */
 		font-size: 14px;
 	}
 }
@@ -125,15 +128,17 @@
 		height: 130px;
 	}
 	.content h1 {
+		max-width: 190px;
 		font-size: 32px;
+		text-align: center;
 	}
 	.content p {
-		font-size: 12px;
+		font-size: 18px;
 	}
 	.content a {
 		width: 120px;
-		height: 36px;
-		font-size: 12px;
+		/* height: 36px; */
+		font-size: 18px;
 		padding: 12px 40px;
 	}
 }

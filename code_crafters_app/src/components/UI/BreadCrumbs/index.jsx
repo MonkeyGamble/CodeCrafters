@@ -22,7 +22,7 @@ export default function BreadCrumbs({ product, sectionName, categoryName }) {
 	);
 
 	return (
-		<div className={s.nav_buttons}>
+		<section className={s.nav_buttons}>
 			<Link to='/'>
 				<button className={s.to_homepage}>Main page</button>
 			</Link>
@@ -56,6 +56,6 @@ export default function BreadCrumbs({ product, sectionName, categoryName }) {
 					)}
 				</>
 			)}
-		</div>
+		</section>
 	);
 }

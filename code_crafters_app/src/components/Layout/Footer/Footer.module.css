@@ -2,12 +2,15 @@ footer {
 	margin-top: 80px;
 	padding-bottom: 80px;
 	background-color: var(--white);
+	font-family: 'Montserrat';
 }
 
 .footerContainer {
 	display: flex;
 	flex-direction: column;
 	gap: 32px;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .footerContainer h1 {
@@ -18,7 +21,7 @@ footer {
 
 .contactInfo {
 	display: grid;
-	grid-template-columns: 780px 548px;
+	grid-template-columns: calc(60% - 16px) calc(40% - 16px);
 	grid-template-rows: auto auto;
 	gap: 32px;
 	width: 100%; /* Заполнение всей ширины контейнера */
@@ -65,5 +68,46 @@ footer {
 	height: 350px;
 	width: 100%;
 	border-radius: 12px;
-	width: 100%;
+}
+
+@media (max-width: 1000px) {
+	.contactInfo {
+		grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+	}
+}
+
+@media (max-width: 768px) {
+	.contactInfo {
+		grid-template-columns: calc(65% - 10px) calc(35% - 10px);
+	}
+	h1 {
+		font-size: 56px;
+	}
+	.infoBox .label {
+		font-size: 18px;
+	}
+	.infoBox .content {
+		font-size: 28px;
+	}
+}
+
+@media (max-width: 480px) {
+	.contactInfo {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		padding: 0;
+	}
+	h1 {
+		font-size: 48px;
+	}
+	.infoBox {
+		padding: 24px 20px;
+	}
+}
+
+@media (max-width: 360px) {
+	h1 {
+		font-size: 40px;
+	}
 }

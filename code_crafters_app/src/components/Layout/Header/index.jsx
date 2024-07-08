@@ -34,7 +34,7 @@ export default function Header() {
 		<header className={`${s.container} ${s.content_line}`}>
 			<div className={s.header_left}>
 				<Link to='/'>
-					<img src={logo} alt='logo' />
+					<img src={logo} alt='logo' className={s.logo} />
 				</Link>
 				<ThemeButton className={s.theme_button} />
 			</div>
@@ -63,12 +63,19 @@ export default function Header() {
 			</div>
 
 			<div className={s.header_right}>
-				<Like onClick={handleLikeClick} showCount={true} darkTheme={!isLight} />
+				<Like
+					onClick={handleLikeClick}
+					showCount={true}
+					darkTheme={!isLight}
+					className={s.like_icon}
+				/>
 				<Basket
 					onClick={handleBasketClick}
 					showCount={true}
 					darkTheme={!isLight}
+					className={s.basket_icon}
 				/>
+
 				<RxHamburgerMenu className={s.burger} onClick={handlePopupMenu} />
 				<PopupNavMenu
 					isPopupOpen={isPopupOpen}

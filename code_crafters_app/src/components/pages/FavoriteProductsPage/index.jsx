@@ -55,16 +55,6 @@ export default function FavoriteProductsPage() {
 		<div className={`${s.favorite_wrapper} content_line`}>
 			<BreadCrumbs sectionName='Favorite products' />
 
-			{/* <div className={s.nav_buttons}>
-				<Link to='/'>
-					<button className={s.first_button}>Main page</button>
-				</Link>
-				<div className={s.nav_line}></div>
-				<Link to='/favorite_products'>
-					<button className={s.second_button}>Favorite products</button>
-				</Link>
-			</div> */}
-
 			<h1>Liked products</h1>
 
 			{showSkeleton ? (

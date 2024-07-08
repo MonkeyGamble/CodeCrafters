@@ -2,7 +2,6 @@
 	display: flex;
 	align-items: center;
 	/* margin-bottom: 40px; */
-	margin-top: 40px;
 }
 
 .nav_buttons button {
@@ -37,4 +36,10 @@
 
 .text_grey {
 	color: var(--text_grey);
+}
+
+@media (max-width: 480px) {
+	.nav_buttons {
+		display: none;
+	}
 }

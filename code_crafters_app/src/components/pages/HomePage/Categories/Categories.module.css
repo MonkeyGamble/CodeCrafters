@@ -1,12 +1,7 @@
-
 .categories {
 	display: flex;
 	flex-direction: column;
-	gap: 40px;
 	margin-top: 80px;
-	margin-bottom: 60px;   
-	 /*transition: all 0.3s ease;*/
-
 }
 
 .line {
@@ -31,158 +26,132 @@
 	cursor: pointer;
 }
 
-.wrapper {
-	max-width: 1440px;
-	height: 528px;
-	margin: 0 auto;
-}
-
 .header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 32px;
+	margin-bottom: 40px;
 }
 
 .header h2 {
-	font-family: 'Montserrat', sans-serif; 
-    font-weight: 700;
+	font-weight: 700;
 	font-size: 64px;
 	color: var(--text_black);
 }
 
-.categoryList {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 32px;
-	/* display: flex;
-	justify-content: space-between; */
+.category_list {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	/* gap: 32px; */
 }
 
-.categoryList a {
+.category_item {
+	width: calc(25% - 16px); /* Ширина каждого элемента с учетом gap */
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+}
+
+.category_image {
+	width: 100%; /* Изображение занимает всю доступную ширину родительского элемента */
+	height: 350px;
+	object-fit: cover; /* Заполнение изображения по размерам */
+	border-radius: 10px;
+}
+
+.category_item p {
+	font-optical-sizing: auto;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.category_list a {
 	text-decoration: none;
 	color: var(--text_black);
 }
-.categoryItem {
-	text-align: center;
-}
 
-.categoryImage {
-	width: 316px;
-	height: 350px;
-	object-fit: cover;
-	background-position: center;
-	border-radius: 10px;
-	
-}
-
-.categoryItem p {
-	font-family: 'Montserrat', sans-serif; 
-	font-optical-sizing: auto;
-	font-style: normal;
-	font-weight: 500;
-	margin-top: 10px;
-	font-size: 20px;
-}
-
-@media (max-width: 1000px) {
-	.categoryImage {
-		width: 225px;
-		height: 250px;
-	}
-    
-	.header h2 {
-		font-size: 64px;
-	}
-
-	.my_button {
-		font-size: 16px;
-	}
+.my_button_bottom {
+	display: none;
 }
 
 @media (max-width: 768px) {
-    .categories {
-		margin-bottom: 225px;
-	}
-
-    .categoryList {
-		grid-template-columns: repeat(2, 1fr); /* Две колонки */
-		gap: 16px; 
-	}
-   
-	.categoryImage {
-		width: 354px;
-		height: 250px; 
-		
-	}
-
 	.header h2 {
-		font-size: 56px; 
+		font-size: 56px;
 	}
 
-	.my_button {
-		width: 142px;
-		height: 36px;
-		font-size: 16px;
+	.category_list {
+		display: grid;
+		grid-template-columns: repeat(2, calc(50% - 16px));
+		grid-template-rows: auto;
+		gap: 16px;
+	}
+
+	.category_item {
+		width: 100%;
 	}
 }
 
 @media (max-width: 480px) {
-	.categoryImage {
-		width: 210px;
-		height: 254px;
-	}
 	.header h2 {
-		font-size: 48px; 
+		font-size: 48px;
 	}
 	.my_button {
 		width: 129px;
 		height: 34px;
-		font-size: 16px;
+		font-size: 14px;
+	}
+	.category_item p {
+		font-size: 18px;
 	}
 }
 
 @media (max-width: 360px) {
-
 	.categories {
-		margin-bottom: 685px;
-	}
-    .categoryList {
-		grid-template-columns: 1fr; /* Одна колонка */
-		gap: 16px; 
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 24px;
+		text-align: center;
+		padding: 0 20px;
 	}
 
-    .categoryImage {
-		width: 320px;
-		height: 220px;
+	.line {
+		display: none;
 	}
-	.header {
+
+	.category_list {
 		display: flex;
-	justify-content: space-between;
-	align-items: center;
-	
+		flex-direction: column;
+		gap: 20px;
+		order: 2; /* Порядок .category_list в колонке */
+		/* margin-top: 20px; */
 	}
-	.header h2 {
-		width: 320px;
-		text-align: left;
-		margin: 0;/*align-self: center;*/
-		font-size: 40px; 
-		
+	.header .my_button {
+		display: none;
 	}
-	.my_button {
-		display: block;
+
+	.categories a,
+	button {
+		text-decoration: none;
+		font-family: 'Montserrat';
+	}
+
+	.categories .my_button_bottom {
+		display: inline;
 		width: 145px;
 		height: 42px;
-		font-size: 14px;
-		
+		border-radius: 6px;
+		background-color: transparent;
+		border: 1px solid var(--grey_divider);
+		color: var(--black);
+		font-optical-sizing: auto;
+		font-style: normal;
+		font-size: 16px;
+		font-weight: 500;
+		cursor: pointer;
 	}
-	
 }
-
-
-/*
-
-
-	 
-	
-*/

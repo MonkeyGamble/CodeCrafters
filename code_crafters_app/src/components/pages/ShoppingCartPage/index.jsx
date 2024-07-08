@@ -52,6 +52,7 @@ export default function ShoppingCartPage() {
 			email: data.email,
 			products: basketItems.map(item => ({
 				id: item.id,
+				title: item.title,
 				count: item.count,
 				price: item.price,
 				discont_price: item.discont_price,
@@ -60,6 +61,7 @@ export default function ShoppingCartPage() {
 		};
 
 		const response = await sendOrderRequest(orderData);
+		console.log('Order data: ', orderData);
 		return response;
 	};
 

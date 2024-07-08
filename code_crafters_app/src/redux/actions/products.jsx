@@ -25,16 +25,6 @@ export function getAllProducts() {
 	};
 }
 
-// export function getAllProducts() {
-// 	return function (dispatch) {
-// 		fetch(ROOT_URL + 'products/all')
-// 			.then(res => res.json())
-// 			.then(products => {
-// 				dispatch(getAllProductsAction(products));
-// 			})
-// 			.catch(error => console.error('Error fetching products:', error));
-// 	};
-// }
 
 export function getProductById(id) {
 	return async function (dispatch) {
@@ -63,16 +53,6 @@ export function removeProductFavorite(id) {
 	};
 }
 
-/*
-
-export function addProductFavorite(product) { return function(dispatch) { 
-	dispatch(addProductFavoriteAction(product)); }; }
-
-export function removeProductFavorite(id) { 
-		return function(dispatch) { dispatch(removeProductFavoriteAction(id)); }; }
-
-
-*/
 
 export function getProductsByCategoryId(id) {
 	return async function (dispatch) {

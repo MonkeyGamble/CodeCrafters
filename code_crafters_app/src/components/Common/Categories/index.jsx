@@ -18,10 +18,6 @@ export default function Categories({ limit, style }) {
 			<div className={`${style.wrapper} .content_line`}>
 				<div className={style.header}>
 					<h2>Categories</h2>
-					{/* <span className={style.line}></span>
-					<NavLink to='/all_categories'>
-						<button className={style.my_button}>All categories</button>
-					</NavLink> */}
 				</div>
 
 				<div className={style.category_list}>

@@ -56,12 +56,18 @@ h1 {
 .line {
 	display: none;
 }
-
+@media (max-width: 1000px) {
+	/* .discount_wrapper {
+		padding: 0 20px;
+	} */
+	.cards_container {
+		grid-template-columns: repeat(auto-fill, minmax(calc(20% - 5px), 1fr));
+		gap: 20px;
+	}
+}
 @media (max-width: 768px) {
 	.cards_container {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 20px;
+		grid-template-columns: repeat(auto-fill, minmax(calc(50% - 10px), 1fr));
 	}
 	.component_header h1 {
 		font-size: 56px;

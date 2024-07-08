@@ -11,7 +11,6 @@ const defaultState = {
 	currentProduct: null,
 	filteredProducts: [],
 	filters: {
-
 		minPrice: '',
 		maxPrice: '',
 		isDiscounted: false,

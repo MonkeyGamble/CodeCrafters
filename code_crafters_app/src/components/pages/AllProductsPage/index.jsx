@@ -41,7 +41,7 @@ export default function AllProductsPage() {
 	}, [dispatch]);
 
 	useEffect(() => {
-		// После 3 секунд скрываем скелетоны
+		// После 1 секунды скрываем скелетоны
 		if (!loading) {
 			setTimeout(() => {
 				setShowSkeleton(false);

@@ -128,8 +128,8 @@ h1 {
 		gap: 20px;
 	}
 	.card {
-		width: 320px;
-		height: 335px;
+		width: 100%;
+		/* height: 335px; */
 	}
 	.product_picture {
 		width: 318px;

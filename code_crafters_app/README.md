@@ -14,57 +14,56 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+#### Project theme
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Online store of goods for gardening and home.
 
-### `npm run build`
+##### Link to technical specifications
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+https://docs.google.com/document/d/1-d-txMvn4pGiZ2p7eL-f4I2iy2EBqjZN/edit?usp=sharing&ouid=106808451092815483562&rtpof=true&sd=true
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+###### Link to FIGMA design
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+https://www.figma.com/file/SDNWLzCWkh9ZXdCpWEaByv/project-frontend?type=design&node-id=280-1136&mode=design&t=NJTGdloftvn8I6Vz-0
 
-### `npm run eject`
+###### Link to deploy realization
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+https://code-crafters-sandy.vercel.app
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+###### Project Description
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The Web-app for an online store selling home and garden products. The site should provide users with a convenient interface to view products, categorize them, add them to the cart, and complete orders.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Home Page](image.png)
 
-## Learn More
+##### Project tree
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+https://miro.com/app/board/uXjVKERpOpw=/?moveToWidget=3458764592733521094&cot=14
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+###### Technology stack
 
-### Code Splitting
+JavaScript: Used as the primary programming language to develop the frontend logic of the application due to its wide support and versatility in web development.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+React: Chosen as the frontend library for building user interfaces, enabling the creation of reusable UI components and facilitating efficient rendering of dynamic data.
 
-### Analyzing the Bundle Size
+Redux: Utilized for managing the application's global state, ensuring centralized data management across components and enabling predictable state changes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+React-router-dom: Implemented for client-side routing within the React application, enabling navigation between different views or pages without a full page reload.
 
-### Making a Progressive Web App
+React-hook-form: Integrated to handle form validation and management in React components, providing a straightforward and efficient way to validate user input.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+React-modal: Used to create and manage modal dialogs within the application, improving user experience by displaying content or actions in a focused overlay without leaving the current page.
 
-### Advanced Configuration
+Redux-persist: Implemented for persisting Redux state in the browser's local storage, ensuring state persistence across sessions and page reloads for enhanced user experience.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Redux-thunk: Employed as a middleware for Redux to handle asynchronous actions, enabling Redux to manage side effects such as API calls and dispatching multiple actions based on asynchronous results.
 
-### Deployment
+Axios: Utilized for making HTTP requests from the client-side to interact with the backend API, handling asynchronous data fetching and updating operations seamlessly.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+##### Project DEVELOPERS
 
-### `npm run build` fails to minify
+Kostiantyn Kryvorotov
+Liudmyla Oldenburg
+Diana Tsymbaliuk
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+

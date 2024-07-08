@@ -44,7 +44,7 @@ export default function ProductItemPage() {
 		e.preventDefault();
 		e.stopPropagation();
 		const productToAdd = { ...product, count };
-		addProductToBasket(productToAdd); 
+		addProductToBasket(productToAdd);
 	};
 
 	const handleShowModal = () => {
@@ -62,12 +62,16 @@ export default function ProductItemPage() {
 			/>
 
 			<div className={s.product_card}>
-				<img
-					src={`${ROOT_URL}${product.image}`}
-					alt={product.title}
-					onClick={handleShowModal} // Обработчик для открытия модального окна
-					className={s.product_image}
-				/>
+				
+				<div className={s.image_wrapper}>
+					<img
+						src={`${ROOT_URL}${product.image}`}
+						alt={product.title}
+						onClick={handleShowModal} // Обработчик для открытия модального окна
+						className={s.product_image}
+					/>
+				</div>
+
 				<div className={s.product_description}>
 					<div className={s.product_header}>
 						<h1>{product.title}</h1>
@@ -92,6 +96,7 @@ export default function ProductItemPage() {
 							<h2>${product.price}</h2>
 						)}
 					</div>
+					
 					<div className={s.add_to_cart}>
 						<Counter
 							count={count}
@@ -102,9 +107,13 @@ export default function ProductItemPage() {
 							Add to cart
 						</button>
 					</div>
+					
 					<p>{product.description}</p>
+
 				</div>
+
 			</div>
+			
 			{showModal && (
 				<DailyDealModal
 					isOpen={true}

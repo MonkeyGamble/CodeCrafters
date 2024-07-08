@@ -1,17 +1,8 @@
-.products_list {
-	display: flex;
-	gap: 32px;
-}
-
 .sale_container {
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
 	margin-top: 108px;
-}
-.products_list .component_header {
-	display: flex;
-	align-items: center;
 }
 
 .component_header {
@@ -46,25 +37,19 @@ h1 {
 .cards_container {
 	display: flex;
 	justify-content: space-around;
-	gap: 32px;
+	gap: 16px;
 }
 
 .cards_container a {
 	text-decoration: none;
 }
 
-.card {
+/* .card {
 	width: 316px;
 	height: 422px;
-	background-color: var(--text_white);
-	display: flex;
-	flex-direction: column;
-	border: 1px solid var(--grey_divider);
-	border-radius: 12px;
-	cursor: pointer;
-}
+} */
 
-.product_picture {
+/* .product_picture {
 	width: 314px;
 	height: 284px;
 	display: flex;
@@ -78,40 +63,16 @@ h1 {
 	border-bottom: 1px solid var(--grey_divider);
 	background-size: cover;
 	background-position: center;
-}
+} */
 
-.product_description {
+/* .product_description {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
 	padding: 20px 32px 32px 32px;
-}
+} */
 
-.product_description h3 {
-	font-size: 20px;
-	font-weight: 500;
-	color: var(--text_black);
-	overflow: hidden;
-	white-space: nowrap; /* Запрещаем перенос строки */
-	text-overflow: ellipsis; /* Добавляем троеточие */
-}
-
-.discount_size {
-	width: 68px;
-	height: 34px;
-	border-radius: 6px;
-
-	background-color: var(--sale);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: var(--text_white);
-
-	font-size: 20px;
-	font-weight: 600;
-	letter-spacing: 3%;
-}
-
+/* 
 .like_cart {
 	display: flex;
 	flex-direction: column;
@@ -120,9 +81,9 @@ h1 {
 
 .like_cart img {
 	cursor: pointer;
-}
+} */
 
-.price {
+/* .price {
 	display: flex;
 	align-items: last baseline;
 	gap: 16px;
@@ -133,17 +94,23 @@ h1 {
 	font-weight: 600;
 
 	color: var(--text_black);
-}
+} */
 
-.price h5 {
+/* .price h5 {
 	font-size: 20px;
 	font-weight: 500;
 
 	color: var(--grey);
 	text-decoration: line-through;
-}
+} */
 .button_340 {
 	display: none;
+}
+
+@media (max-width: 1440px) {
+	.discount_user_form {
+		gap: calc(32px + (16px - 32px) * ((100vw - 480px) / (1440 - 480)));
+	}
 }
 
 @media (max-width: 1000px) {
@@ -153,63 +120,28 @@ h1 {
 	.sale_container {
 		padding: 0 20px;
 	}
-	.card {
-		width: 225px;
-		height: 398px;
-	}
-	.product_picture {
-		width: 223px;
-		height: 250px;
-	}
-	.product_description {
-		padding: 20px;
-		gap: 12px;
-	}
-	.price {
-		gap: 12px;
-	}
 }
 
 @media (max-width: 768px) {
 	.cards_container {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: repeat(2, 1fr);
-		gap: 20px;
+		grid-template-columns: repeat(2, calc(50% - 16px));
+		grid-template-rows: auto;
+		gap: 16px;
 	}
 	.component_header h1 {
 		font-size: 56px;
 	}
-	.card {
-		width: 354px;
-		height: 372px;
-	}
-	.product_picture {
-		width: 352px;
-		height: 250px;
-	}
 }
 @media (max-width: 480px) {
+	/* .discount_user_form {
+		gap: 16px;
+	} */
+
 	.component_header h1 {
 		font-size: 48px;
 	}
-	.card {
-		width: 210px;
-		height: 358px;
-	}
-	.product_picture {
-		width: 208px;
-		height: 220px;
-	}
-	.product_description h3 {
-		font-size: 18px;
-	}
-	.product_description h2 {
-		font-size: 36px;
-	}
-	.product_description h5 {
-		font-size: 18px;
-	}
+
 	.component_header button {
 		width: 89px;
 		height: 34px;
@@ -226,14 +158,13 @@ h1 {
 	.cards_container {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 24px;
+		text-align: center;
+		padding: 0 100px;
 	}
-	.card {
-		width: 320px;
-		height: 335px;
-	}
-	.product_picture {
-		width: 318px;
-	}
+
 	.line,
 	.component_header button {
 		display: none;

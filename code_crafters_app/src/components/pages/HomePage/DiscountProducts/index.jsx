@@ -20,10 +20,13 @@ export default function DiscountProductsHomePage() {
 	const randomDiscountProducts = shuffle(discountProducts).slice(0, 4);
 
 	return (
-		<DiscountProducts
-			products={randomDiscountProducts}
-			header='Sale'
-			styles={s}
-		/>
+		<div className={s.wrapper}>
+			{' '}
+			<DiscountProducts
+				products={randomDiscountProducts}
+				header='Sale'
+				styles={s}
+			/>
+		</div>
 	);
 }

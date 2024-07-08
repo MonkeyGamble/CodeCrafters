@@ -18,31 +18,32 @@ export default function Categories({ limit, style }) {
 			<div className={`${style.wrapper} .content_line`}>
 				<div className={style.header}>
 					<h2>Categories</h2>
-					<span className={style.line}></span>
+					{/* <span className={style.line}></span>
 					<NavLink to='/all_categories'>
 						<button className={style.my_button}>All categories</button>
-					</NavLink>
+					</NavLink> */}
 				</div>
 
-				<div className={style.categoryList}>
+				<div className={style.category_list}>
 					{categories.slice(0, limit).map(category => (
 						<Link
 							key={category.id}
 							to={`/categories/${category.id}`}
-							className={style.categoryItem}
+							className={style.category_item}
 						>
-							<div key={category.id} className={style.categoryItem}>
-								<img
-									src={ROOT_URL + category.image}
-									alt={category.title}
-									className={style.categoryImage}
-								/>
-								<p>{category.title}</p>
-							</div>
+							<img
+								src={ROOT_URL + category.image}
+								alt={category.title}
+								className={style.category_image}
+							/>
+							<p>{category.title}</p>
 						</Link>
 					))}
 				</div>
 			</div>
+			<NavLink to='/all_categories'>
+				<button className={style.my_button_bottom}>All categories</button>
+			</NavLink>
 		</section>
 	);
 }

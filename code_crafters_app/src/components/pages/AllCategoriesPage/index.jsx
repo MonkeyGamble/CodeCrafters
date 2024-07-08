@@ -5,7 +5,7 @@ import '../../../styles/Global.css';
 
 export default function AllCategoriesPage() {
 	return (
-		<div className={`${s.sale_container} content_line`}>
+		<div className={`${s.categories_container} content_line`}>
 			<BreadCrumbs sectionName={'Categories'} />
 			<Categories limit={1000} style={s} />
 		</div>

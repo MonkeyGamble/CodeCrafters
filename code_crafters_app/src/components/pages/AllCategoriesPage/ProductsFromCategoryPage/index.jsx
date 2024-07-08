@@ -81,6 +81,7 @@ export default function ProductsFromCategoryPage() {
 								key={product.id}
 								product={product}
 								onFavoriteClick={e => handleFavoriteClick(e, product)}
+								style={s}
 							/>
 						))}
 					</div>

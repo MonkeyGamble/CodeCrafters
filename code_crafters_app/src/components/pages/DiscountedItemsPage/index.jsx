@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import DiscountProducts from '../../Common/DiscountProducts';
 import { getAllProducts } from '../../../redux/actions/products';
 import s from './DiscountedItemsPage.module.css';
 import Filter from '../../UI/Filter';
@@ -9,9 +8,12 @@ import {
 	setFiltersAction,
 	filterProductsAction,
 	setLoadingSkeleton,
+	removeProductFavoriteAction,
+	addProductFavoriteAction,
 } from '../../../redux/reducers/productsReducer';
 import BreadCrumbs from '../../UI/BreadCrumbs';
 import ProductSkeleton from '../../Widgets/ProductSkeleton/productSkeleton';
+import ProductCard from '../../UI/ProductCard';
 
 export default function DiscountItemsPage() {
 	const dispatch = useDispatch();
@@ -48,44 +50,50 @@ export default function DiscountItemsPage() {
 			setShowSkeleton(false); // Устанавливаем состояние showSkeleton в false
 			dispatch(setLoadingSkeleton(false)); // Устанавливаем состояние загрузки скелетона в false
 		}, 1000);
-
 		return () => clearTimeout(timer); // Очищаем таймер при размонтировании компонента
 	}, [dispatch]);
+
+	const handleFavoriteClick = (e, product) => {
+		e.preventDefault();
+		e.stopPropagation();
+		const isFavorite = product.isFavorite;
+		const updatedProduct = { ...product, isFavorite: !isFavorite };
+		if (isFavorite) {
+			dispatch(removeProductFavoriteAction(product.id));
+		} else {
+			dispatch(addProductFavoriteAction(updatedProduct));
+		}
+	};
 
 	return (
 		<div className={`${s.discount_wrapper} content_line`}>
 			<BreadCrumbs sectionName='All sales' />
 
 			<div className={s.cards_wrapper}>
+				<h1>Discounted items</h1>
+				<Filter
+					filters={localFilters}
+					onFilterChange={handleFilterChange}
+					showDiscountedItemsFilter={false}
+				/>
 				{showSkeleton || loadingSkeleton ? (
 					// Если showSkeleton или loadingSkeleton равен true, показываем скелетоны
-					<div className={s.skeleton_wrapper}>
-						<h1>Discounted items</h1>
-						<Filter
-							filters={localFilters}
-							onFilterChange={handleFilterChange}
-							showDiscountedItemsFilter={false}
-						/>
-						<div className={s.skeleton}>
-							{Array.from({ length: 8 }).map((_, index) => (
-								<ProductSkeleton key={index} />
-							))}
-						</div>
+					<div className={s.skeleton}>
+						{Array.from({ length: 8 }).map((_, index) => (
+							<ProductSkeleton key={index} />
+						))}
 					</div>
 				) : (
-					// Иначе отображаем реальные отфильтрованные продукты
-					<DiscountProducts
-						products={filteredProducts}
-						header='Discounted Items'
-						styles={s}
-						filter={
-							<Filter
-								filters={localFilters}
-								onFilterChange={handleFilterChange}
-								showDiscountedItemsFilter={false}
+					<div className={s.cards_container}>
+						{filteredProducts.map(product => (
+							<ProductCard
+								key={product.id}
+								product={product}
+								onFavoriteClick={e => handleFavoriteClick(e, product)}
+								style={s}
 							/>
-						}
-					/>
+						))}
+					</div>
 				)}
 			</div>
 		</div>

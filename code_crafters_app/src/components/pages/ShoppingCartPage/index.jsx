@@ -97,11 +97,14 @@ export default function ShoppingCartPage() {
 									</div>
 
 									<div className={s.product_price_section}>
-										<Counter
-											count={product.count}
-											onIncrement={() => handleIncrement(product.id)}
-											onDecrement={() => handleDecrement(product.id)}
-										/>
+										<div className={s.counter}>
+											<Counter
+												count={product.count}
+												onIncrement={() => handleIncrement(product.id)}
+												onDecrement={() => handleDecrement(product.id)}
+											/>
+										</div>
+
 										<div className={s.price}>
 											{product.discont_price ? (
 												<>

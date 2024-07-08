@@ -1,11 +1,12 @@
 
 .categories {
+	display: block;
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
 	margin-top: 80px;
 	margin-bottom: 60px;   
-	 /*transition: all 0.3s ease;*/
+	/*transition: all 0.3s ease;*/
 
 }
 

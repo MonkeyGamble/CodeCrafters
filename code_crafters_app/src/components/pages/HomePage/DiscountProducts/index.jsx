@@ -54,7 +54,7 @@ export default function DiscountProductsHomePage() {
 
 	const handleCardClick = e => {
 		e.stopPropagation();
-		// Если кликнули на карточку продукта внутри Link, предотвращаем всплытие события
+		// Если кликнули на карточку продукта внутри Link, предотвращаем всплытие события, чтобы оно не распространялось на клики на Фаворитные и Корзину
 	};
 
 	return (
